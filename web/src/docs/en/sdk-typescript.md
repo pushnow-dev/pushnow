@@ -21,7 +21,7 @@ Install the generated tarball in your consuming project:
 npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
 ```
 
-The package's local import name is `@pushnow/sdk`. This is a local tarball install, not a claim that `npm install @pushnow/sdk` works from a public registry. The package is ESM and includes TypeScript declarations; there is no CommonJS entry.
+The package name is `pushnow-sdk`. Use `npm install pushnow-sdk` after publication, or install the local tarball during development. The package is ESM and includes TypeScript declarations; there is no CommonJS entry.
 
 For an unbundled browser, serve the built `dist/browser.js` from your application and import it as an ES module. It includes the HPKE dependency. Use HTTPS or loopback HTTP and a runtime with WebCrypto, `fetch`, `AbortController` and `structuredClone`.
 
@@ -30,7 +30,7 @@ For an unbundled browser, serve the built `dist/browser.js` from your applicatio
 The following example assumes `trustedAccountFingerprint` was obtained independently from your signed-in trusted app. It must not be the new sender fingerprint printed by `beginLogin`.
 
 ```ts
-import { beginLogin, finishLogin } from '@pushnow/sdk';
+import { beginLogin, finishLogin } from 'pushnow-sdk';
 
 const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
 // Display these two public values for comparison and approval in the app.
@@ -49,7 +49,7 @@ Alternatively supply `confirmIdentity: async ({ fingerprint, userID }) => boolea
 ## Send text and files
 
 ```ts
-import { sendNotification } from '@pushnow/sdk';
+import { sendNotification } from 'pushnow-sdk';
 
 const result = await sendNotification(config, {
   title: 'Build complete',
@@ -83,7 +83,7 @@ Omission preserves default sound. Silent still requests a visible alert; chime r
 ## Prepare and retry
 
 ```ts
-import { recipientsV2, prepareMessageV2, submitMessageV2 } from '@pushnow/sdk';
+import { recipientsV2, prepareMessageV2, submitMessageV2 } from 'pushnow-sdk';
 
 const directory = await recipientsV2(config);
 const prepared = await prepareMessageV2(config, directory, {

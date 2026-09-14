@@ -34,7 +34,7 @@ and integrate PushNow:
 | Repository | Purpose | Install path |
 | --- | --- | --- |
 | `pushnow` | Main product, iOS/Harmony/web/backend source and release docs | Product and platform home |
-| `pushnow-js` | TypeScript SDK for Node.js and browsers | npm package `@pushnow/sdk` |
+| `pushnow-js` | TypeScript SDK for Node.js and browsers | npm package `pushnow-sdk` |
 | `pushnow-python` | Python binding with bundled Node HPKE runtime | PyPI package `pushnow` |
 | `pushnow-go` | Go binding with bundled Node HPKE runtime | Go module `github.com/pushnow-dev/pushnow-go` |
 | `pushnow-java` | Java binding with bundled Node HPKE runtime | Maven artifact `dev.pushnow:pushnow-sdk` |
@@ -61,7 +61,7 @@ ownership.
 TypeScript:
 
 ```sh
-npm install @pushnow/sdk
+npm install pushnow-sdk
 ```
 
 Python:

@@ -6,7 +6,7 @@ Central and Go module release credentials.
 
 | SDK | Required runtime | Start here |
 | --- | --- | --- |
-| TypeScript / npm | Browser Web Crypto or Node.js 22+ | `@pushnow/sdk` / `pushnow-js` |
+| TypeScript / npm | Browser Web Crypto or Node.js 22+ | `pushnow-sdk` / `pushnow-js` |
 | Python | Python 3.10+ and Node.js 22+ | `pushnow` / `pushnow-python` |
 | Go | Go 1.22+ and Node.js 22+ | `github.com/pushnow-dev/pushnow-go` |
 | Java | Java 11+ and Node.js 22+ | `dev.pushnow:pushnow-sdk` / `pushnow-java` |

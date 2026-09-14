@@ -22,7 +22,7 @@ PushNow 适合需要私密通知收件箱、设备选择、定时发送、加密
 | 仓库 | 用途 | 安装入口 |
 | --- | --- | --- |
 | `pushnow` | 主产品、iOS/Harmony/Web/Backend 源码和发布文档 | 产品和平台主库 |
-| `pushnow-js` | Node.js 与浏览器 TypeScript SDK | npm 包 `@pushnow/sdk` |
+| `pushnow-js` | Node.js 与浏览器 TypeScript SDK | npm 包 `pushnow-sdk` |
 | `pushnow-python` | Python SDK，内置 Node HPKE runtime | PyPI 包 `pushnow` |
 | `pushnow-go` | Go SDK，内置 Node HPKE runtime | Go module `github.com/pushnow-dev/pushnow-go` |
 | `pushnow-java` | Java SDK，内置 Node HPKE runtime | Maven 坐标 `dev.pushnow:pushnow-sdk` |
@@ -32,7 +32,7 @@ PushNow 适合需要私密通知收件箱、设备选择、定时发送、加密
 TypeScript:
 
 ```sh
-npm install @pushnow/sdk
+npm install pushnow-sdk
 ```
 
 Python:

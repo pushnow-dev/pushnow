@@ -21,7 +21,7 @@ npm pack
 npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
 ```
 
-本地包名是 `@pushnow/sdk`。这是本地 tarball 安装说明，不代表 `npm install @pushnow/sdk` 已经可以从公开 npm registry 安装。包格式是 ESM，并包含 TypeScript declarations；没有 CommonJS 入口。
+包名是 `pushnow-sdk`。发布后可使用 `npm install pushnow-sdk`，本地开发也可以安装 tarball。包格式是 ESM，并包含 TypeScript declarations；没有 CommonJS 入口。
 
 如果在不打包的浏览器里使用，把构建后的 `dist/browser.js` 作为 ES module 从你的应用里提供。它已经包含 HPKE 依赖。运行环境需要 HTTPS 或 loopback HTTP，并支持 WebCrypto、`fetch`、`AbortController` 和 `structuredClone`。
 
@@ -30,7 +30,7 @@ npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
 下面示例假设 `trustedAccountFingerprint` 已经从已登录的可信 App 独立获取。它不是 `beginLogin` 打印出的新 sender fingerprint。
 
 ```ts
-import { beginLogin, finishLogin } from '@pushnow/sdk';
+import { beginLogin, finishLogin } from 'pushnow-sdk';
 
 const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
 // 展示这两个公开值，让用户在 App 中对比并批准。
@@ -49,7 +49,7 @@ const config = await finishLogin(pending, {
 ## 发送文字和文件
 
 ```ts
-import { sendNotification } from '@pushnow/sdk';
+import { sendNotification } from 'pushnow-sdk';
 
 const result = await sendNotification(config, {
   title: 'Build complete',
@@ -83,7 +83,7 @@ await sendNotification(config, { title: 'Quiet update', body: 'Ready to review.'
 ## Prepare 和重试
 
 ```ts
-import { recipientsV2, prepareMessageV2, submitMessageV2 } from '@pushnow/sdk';
+import { recipientsV2, prepareMessageV2, submitMessageV2 } from 'pushnow-sdk';
 
 const directory = await recipientsV2(config);
 const prepared = await prepareMessageV2(config, directory, {

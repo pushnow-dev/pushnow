@@ -1,0 +1,520 @@
+---
+import { site } from "../data/site";
+import AccountKeysLogs from "./AccountKeysLogs.astro";
+
+const { lang } = Astro.props as { lang: string };
+const isChinese = lang === "zh-Hans";
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
+const account = isChinese
+  ? {
+      eyebrow: "Web 账号",
+      title: "登录后查看你的设备和会员。",
+      intro: "用邮箱验证码或已设置的密码登录。网页版会读取你的账号、已授权设备、当前会员和今日额度。",
+      email: "邮箱地址",
+      password: "密码",
+      code: "验证码",
+      turnstile: "安全验证",
+      codeMode: "验证码登录",
+      passwordMode: "密码登录",
+      sendCode: "发送验证码",
+      verify: "验证码登录",
+      passwordLogin: "密码登录",
+      signedIn: "已登录",
+      signOut: "退出登录",
+      refresh: "刷新",
+      accountTitle: "账号",
+      deviceTitle: "授权设备",
+      memberTitle: "会员",
+      redeemTitle: "兑换会员",
+      redeemCopy: "输入兑换码后可升级或延长会员。兑换接口已在网页保留，后端兑换规则确认后即可接入。",
+      redeemPlaceholder: "输入兑换码",
+      redeemButton: "兑换",
+      emptyDevices: "还没有授权设备。请先在 iPhone App 登录并完成设备授权。",
+      authHint: "验证码会发送到你的邮箱。网页会话只保存在当前浏览器标签页。",
+      needTurnstile: "请先完成安全验证。",
+      turnstileMissing: "安全验证尚未配置，请稍后再试。",
+      turnstileLoading: "安全验证仍在加载，请稍后重试。",
+      planFree: "免费版",
+      planPlus: "Plus",
+      planPro: "Pro",
+      used: "已用",
+      remaining: "剩余",
+      noLimit: "不限次数",
+      sending: "正在发送...",
+      codeSent: "验证码已发送。",
+      signingIn: "正在登录...",
+      pushOn: "推送开启",
+      pushOff: "推送关闭",
+      sessionExpired: "登录已过期",
+      deviceFallback: "设备",
+      coming: "兑换接口待后端启用"
+    }
+  : {
+      eyebrow: "Web account",
+      title: "Sign in to see devices and membership.",
+      intro: "Use an email code or your password. The web dashboard reads your account, trusted devices, membership, and daily quota.",
+      email: "Email address",
+      password: "Password",
+      code: "Verification code",
+      turnstile: "Safety check",
+      codeMode: "Code",
+      passwordMode: "Password",
+      sendCode: "Send code",
+      verify: "Sign in with code",
+      passwordLogin: "Sign in with password",
+      signedIn: "Signed in",
+      signOut: "Sign out",
+      refresh: "Refresh",
+      accountTitle: "Account",
+      deviceTitle: "Authorized devices",
+      memberTitle: "Membership",
+      redeemTitle: "Redeem membership",
+      redeemCopy: "Enter a code to upgrade or extend membership. The web entry is reserved and can be connected once backend redemption rules are confirmed.",
+      redeemPlaceholder: "Enter code",
+      redeemButton: "Redeem",
+      emptyDevices: "No authorized devices yet. Sign in on the iPhone app and approve a device first.",
+      authHint: "The code is sent to your email. Your web session is stored only in this browser tab.",
+      needTurnstile: "Complete the safety check first.",
+      turnstileMissing: "The safety check is not configured yet. Please try again later.",
+      turnstileLoading: "The safety check is still loading. Please try again in a moment.",
+      planFree: "Free",
+      planPlus: "Plus",
+      planPro: "Pro",
+      used: "Used",
+      remaining: "Remaining",
+      noLimit: "Unlimited",
+      sending: "Sending...",
+      codeSent: "Code sent.",
+      signingIn: "Signing in...",
+      pushOn: "Push on",
+      pushOff: "Push off",
+      sessionExpired: "Session expired",
+      deviceFallback: "Device",
+      coming: "Redemption endpoint pending"
+    };
+---
+
+<section class="account-console container" id="account" data-api={site.api} data-lang={lang} data-turnstile-sitekey={turnstileSiteKey}>
+  <div class="console-intro">
+    <p class="eyebrow">{account.eyebrow}</p>
+    <h2 data-console-title>{account.title}</h2>
+    <p>{account.intro}</p>
+  </div>
+
+  <div class="auth-panel" data-auth-panel>
+    <form class="auth-form" data-auth-form>
+      <div class="auth-tabs" role="tablist" aria-label={isChinese ? "登录方式" : "Login method"}>
+        <button class="active" type="button" role="tab" aria-selected="true" data-auth-mode="code">{account.codeMode}</button>
+        <button type="button" role="tab" aria-selected="false" data-auth-mode="password">{account.passwordMode}</button>
+      </div>
+
+      <label>
+        <span>{account.email}</span>
+        <input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="name@example.com" />
+      </label>
+
+      <div class="turnstile-row">
+        <span>{account.turnstile}</span>
+        <div class="turnstile-widget" data-account-turnstile aria-label={account.turnstile}></div>
+      </div>
+
+      <div class="auth-row" data-code-field>
+        <label>
+          <span>{account.code}</span>
+          <input type="text" name="code" autocomplete="one-time-code" inputmode="numeric" placeholder="123456" />
+        </label>
+        <button class="button secondary" type="button" data-send-code>{account.sendCode}</button>
+      </div>
+
+      <label data-password-field hidden>
+        <span>{account.password}</span>
+        <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" />
+      </label>
+
+      <div class="auth-actions">
+        <button class="button primary" type="button" data-verify-code>{account.verify}</button>
+        <button class="button primary" type="button" data-password-login hidden>{account.passwordLogin}</button>
+      </div>
+      <p class="form-hint">{account.authHint}</p>
+      <p class="form-message" data-message role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <div class="dashboard" data-dashboard hidden>
+    <div class="dashboard-bar">
+      <strong>{account.signedIn}</strong>
+      <div>
+        <button class="text-button" type="button" data-refresh>{account.refresh}</button>
+        <button class="text-button" type="button" data-sign-out>{account.signOut}</button>
+      </div>
+    </div>
+    <p class="form-message" data-dashboard-message role="status" aria-live="polite"></p>
+
+    <section class="dashboard-panel" id="account-panel" data-dashboard-panel="account" aria-labelledby="account-panel-title">
+      <div class="dashboard-grid">
+        <article class="dashboard-card">
+          <span>{account.accountTitle}</span>
+          <h3 data-user-email>--</h3>
+          <p data-user-id>--</p>
+        </article>
+
+        <article class="dashboard-card">
+          <span>{account.memberTitle}</span>
+          <h3 data-plan>{account.planFree}</h3>
+          <p><strong data-used>0</strong> {account.used} · <strong data-remaining>50</strong> {account.remaining}</p>
+        </article>
+
+        <article class="dashboard-card redeem-card">
+          <span>{account.redeemTitle}</span>
+          <h3>{account.planPlus} / {account.planPro}</h3>
+          <p>{account.redeemCopy}</p>
+          <div class="redeem-row">
+            <input type="text" data-redeem-code placeholder={account.redeemPlaceholder} />
+            <button class="button secondary" type="button" data-redeem>{account.redeemButton}</button>
+          </div>
+          <p class="form-message" data-redeem-message></p>
+        </article>
+      </div>
+
+      <div class="device-section">
+        <div class="device-section-heading">
+          <div><h3 id="account-panel-title">{isChinese ? "你的设备" : "Your devices"} <span class="device-count" data-device-count>0</span></h3></div>
+          <p>{isChinese ? "选择一台设备，给它发送提醒。" : "Choose a device. Send something its way."}</p>
+        </div>
+        <ul class="device-list" data-device-list>
+          <li>{account.emptyDevices}</li>
+        </ul>
+      </div>
+    </section>
+    <section class="dashboard-panel" id="api-playground-panel" data-dashboard-panel="send" aria-labelledby="api-playground">
+      <slot />
+    </section>
+    <AccountKeysLogs lang={lang} />
+  </div>
+</section>
+
+<script is:inline define:vars={{ accountLabels: account }}>
+  const consoleRoot = document.querySelector(".account-console");
+  const storageKey = "pushnow.web.session";
+  const apiBase = consoleRoot?.dataset.api || "https://api.pushnow.dev";
+  const lang = consoleRoot?.dataset.lang || "en";
+  const turnstileSiteKey = consoleRoot?.dataset.turnstileSitekey || "";
+  const labels = accountLabels;
+  const storage = window.sessionStorage;
+  const authPanel = document.querySelector("[data-auth-panel]");
+  const dashboard = document.querySelector("[data-dashboard]");
+  const form = document.querySelector("[data-auth-form]");
+  const message = document.querySelector("[data-message]");
+  const modeButtons = document.querySelectorAll("[data-auth-mode]");
+  const codeField = document.querySelector("[data-code-field]");
+  const passwordField = document.querySelector("[data-password-field]");
+  const codeLoginButton = document.querySelector("[data-verify-code]");
+  const passwordLoginButton = document.querySelector("[data-password-login]");
+  const turnstileHost = document.querySelector("[data-account-turnstile]");
+  let turnstileWidgetId = null;
+  let dashboardGeneration = 0;
+
+  const setMessage = (text, tone = "") => {
+    if (!message) return;
+    message.textContent = text;
+    message.dataset.tone = tone;
+  };
+
+  const session = () => {
+    try {
+      const saved = JSON.parse(storage.getItem(storageKey) || "null");
+      return saved ? { ...saved, accessToken: saved.access_token ?? saved.accessToken } : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const request = async (path, options = {}) => {
+    if (window.pushnowSession) {
+      return path.startsWith("/v1/auth/")
+        ? window.pushnowSession.publicRequest(apiBase, path, options)
+        : window.pushnowSession.accountRequest(apiBase, path, options);
+    }
+    const response = await fetch(`${apiBase}${path}`, {
+      ...options,
+      headers: {
+        "content-type": "application/json",
+        ...(options.headers || {})
+      }
+    });
+    const data = response.status === 204 ? null : await response.json().catch(() => null);
+    if (!response.ok) throw new Error(data?.message || data?.code || `HTTP ${response.status}`);
+    return data;
+  };
+
+  const formValues = () => {
+    const data = new FormData(form);
+    return {
+      email: String(data.get("email") || "").trim(),
+      code: String(data.get("code") || "").trim(),
+      password: String(data.get("password") || ""),
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"
+    };
+  };
+
+  const renderTurnstile = () => {
+    if (!turnstileHost || !turnstileSiteKey || !window.turnstile || turnstileWidgetId !== null) return;
+    turnstileWidgetId = window.turnstile.render(turnstileHost, {
+      sitekey: turnstileSiteKey,
+      action: "turnstile-spin-v1",
+      theme: "auto",
+      callback: () => setMessage("")
+    });
+  };
+
+  const setupTurnstile = () => {
+    if (!turnstileHost || !turnstileSiteKey) return;
+    const ready = () => window.turnstile?.ready(renderTurnstile);
+    if (window.turnstile) ready();
+    else window.addEventListener("load", ready, { once: true });
+  };
+
+  const resetTurnstile = () => {
+    if (window.turnstile && turnstileWidgetId !== null) window.turnstile.reset(turnstileWidgetId);
+  };
+
+  const requireTurnstile = () => {
+    if (!turnstileSiteKey) {
+      setMessage(labels.turnstileMissing, "error");
+      return "";
+    }
+    if (!window.turnstile) {
+      setMessage(labels.turnstileLoading, "error");
+      return "";
+    }
+    renderTurnstile();
+    const token = turnstileWidgetId !== null ? window.turnstile.getResponse(turnstileWidgetId) : "";
+    if (!token) setMessage(labels.needTurnstile, "error");
+    return token;
+  };
+
+  const signedIn = (enabled) => {
+    document.querySelector("[data-console-title]").textContent = enabled ? "Dashboard" : labels.title;
+    if (authPanel) authPanel.hidden = enabled;
+    if (dashboard) dashboard.hidden = !enabled;
+    document.dispatchEvent(new CustomEvent("pushnow:dashboard", { detail: { enabled } }));
+  };
+
+  const planName = (plan) => {
+    if (plan === "plus") return labels.planPlus;
+    if (plan === "pro") return labels.planPro;
+    return labels.planFree;
+  };
+
+  const renderDevices = (devices) => {
+    const list = document.querySelector("[data-device-list]");
+    const count = document.querySelector("[data-device-count]");
+    if (count) count.textContent = String(devices.length);
+    if (!list) return;
+    list.innerHTML = "";
+    if (!devices.length) {
+      const li = document.createElement("li");
+      li.textContent = labels.emptyDevices;
+      list.append(li);
+      return;
+    }
+    devices.forEach((device) => {
+      const li = document.createElement("li");
+      li.className = "device-card";
+      li.dataset.deviceId = device.id;
+      const top = document.createElement("div"); top.className = "device-card-top";
+      const symbol = document.createElement("span"); symbol.className = "device-symbol"; symbol.setAttribute("aria-hidden", "true");
+      const meta = document.createElement("div"); meta.className = "device-meta";
+      const title = document.createElement("strong");
+      const detail = document.createElement("span");
+      title.textContent = device.name || device.platform || labels.deviceFallback;
+      detail.textContent = [device.model || device.platform, device.system_version && `${device.platform === "ios" ? "iOS" : device.platform || "OS"} ${device.system_version}`, device.app_version && `App ${device.app_version}`].filter(Boolean).join(" · ");
+      meta.append(title, detail); top.append(symbol, meta);
+      const state = document.createElement("span"); state.className = "device-state";
+      state.dataset.enabled = String(!!device.notifications_enabled);
+      state.textContent = device.notifications_enabled ? labels.pushOn : labels.pushOff;
+      const send = document.createElement("button"); send.type = "button"; send.className = "device-send button primary";
+      send.dataset.sendDevice = device.id;
+      send.setAttribute("aria-pressed", "false");
+      send.textContent = lang === "zh-Hans" ? "发送提醒" : "Send a notification";
+      send.addEventListener("click", () => document.dispatchEvent(new CustomEvent("pushnow:select-device", { detail: { id: device.id, name: title.textContent } })));
+      const actions = document.createElement("div"); actions.className = "device-actions"; actions.append(state, send);
+      const settings = document.createElement("details"); settings.className = "device-settings";
+      const summary = document.createElement("summary"); summary.textContent = lang === "zh-Hans" ? "设备详情与名称" : "Device details & name";
+      const id = document.createElement("code"); id.textContent = device.id;
+      const rename = document.createElement("div"); rename.className = "device-rename";
+      const name = document.createElement("input");
+      name.value = device.name || ""; name.maxLength = 80;
+      name.setAttribute("aria-label", lang === "zh-Hans" ? "设备名称" : "Device name");
+      const save = document.createElement("button"); save.type = "button"; save.className = "text-button";
+      save.textContent = lang === "zh-Hans" ? "保存名称" : "Save name";
+      const status = document.createElement("span"); status.setAttribute("role", "status");
+      save.addEventListener("click", async () => {
+        if (!name.value.trim()) return;
+        save.disabled = true;
+        try {
+          await request(`/v1/secure/devices/${encodeURIComponent(device.id)}`, {
+            method: "PATCH", headers: { authorization: `Bearer ${session()?.accessToken}` },
+            body: JSON.stringify({ name: name.value.trim() })
+          });
+          title.textContent = name.value.trim();
+          status.textContent = lang === "zh-Hans" ? "已保存" : "Saved";
+        } catch (error) { status.textContent = error.message; }
+        finally { save.disabled = false; }
+      });
+      rename.append(name, save); settings.append(summary, id, rename, status);
+      li.append(top, actions, settings);
+      list.append(li);
+    });
+    document.dispatchEvent(new CustomEvent("pushnow:devices-rendered"));
+  };
+
+  const loadDashboard = async () => {
+    const version = ++dashboardGeneration;
+    const current = session();
+    if (!current?.accessToken) {
+      signedIn(false);
+      return;
+    }
+
+    const dashboardMessage = document.querySelector("[data-dashboard-message]");
+    if (dashboardMessage) dashboardMessage.textContent = "";
+    try {
+      const headers = { authorization: `Bearer ${current.accessToken}` };
+      const me = await request("/v1/me", { headers });
+      if (version !== dashboardGeneration) return;
+      signedIn(true);
+      document.querySelector("[data-user-email]").textContent = me.user.email;
+      document.querySelector("[data-user-id]").textContent = me.user.id;
+      const [plan, deviceDirectory] = await Promise.all([
+        request("/v1/me/plan", { headers }),
+        request("/v1/secure/devices", { headers })
+      ]);
+      if (version !== dashboardGeneration) return;
+      document.querySelector("[data-plan]").textContent = planName(plan.membership.plan);
+      document.querySelector("[data-used]").textContent = String(plan.membership.used_today ?? plan.membership.usedToday ?? 0);
+      const remaining = plan.membership.remaining_today ?? plan.membership.remainingToday;
+      document.querySelector("[data-remaining]").textContent =
+        plan.membership.remaining_today === null || plan.membership.remainingToday === null ? labels.noLimit : String(remaining ?? 0);
+      renderDevices(deviceDirectory.devices || []);
+    } catch (error) {
+      if (version !== dashboardGeneration) return;
+      if (!session()?.accessToken) {
+        signedIn(false);
+        setMessage(labels.sessionExpired, "error");
+      } else {
+        const hasAccount = document.querySelector("[data-user-id]").textContent !== "--";
+        signedIn(hasAccount);
+        if (hasAccount && dashboardMessage) dashboardMessage.textContent = error.message;
+        else setMessage(error.message, "error");
+      }
+    }
+  };
+
+  const setMode = (mode) => {
+    const codeMode = mode === "code";
+    modeButtons.forEach((button) => {
+      const active = button.dataset.authMode === mode;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+    if (codeField) codeField.hidden = !codeMode;
+    if (passwordField) passwordField.hidden = codeMode;
+    if (codeLoginButton) codeLoginButton.hidden = !codeMode;
+    if (passwordLoginButton) passwordLoginButton.hidden = codeMode;
+    setMessage("");
+  };
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => setMode(button.dataset.authMode || "code"));
+  });
+  form?.addEventListener("submit", event => event.preventDefault());
+  form?.addEventListener("keydown", event => {
+    if (event.key === "Enter" && event.target instanceof HTMLInputElement) {
+      event.preventDefault();
+      (passwordLoginButton.hidden ? codeLoginButton : passwordLoginButton).click();
+    }
+  });
+
+  document.querySelector("[data-send-code]")?.addEventListener("click", async () => {
+    const { email, timezone } = formValues();
+    if (!email) return setMessage(labels.email, "error");
+    const turnstileToken = requireTurnstile();
+    if (!turnstileToken) return;
+    setMessage(labels.sending);
+    try {
+      await request("/v1/auth/email/start", {
+        method: "POST",
+        body: JSON.stringify({ email, locale: lang, timezone, turnstileToken, client: { platform: "web" } })
+      });
+      setMessage(labels.codeSent, "success");
+    } catch (error) {
+      setMessage(error.message, "error");
+    } finally {
+      resetTurnstile();
+    }
+  });
+
+  document.querySelector("[data-verify-code]")?.addEventListener("click", async () => {
+    const { email, code } = formValues();
+    if (!email || !code) return setMessage(labels.code, "error");
+    setMessage(labels.signingIn);
+    try {
+      const auth = await request("/v1/auth/email/verify", {
+        method: "POST",
+        body: JSON.stringify({ email, code, client: { platform: "web" } })
+      });
+      if (window.pushnowSession) window.pushnowSession.saveSession(auth);
+      else storage.setItem(storageKey, JSON.stringify(auth));
+      await loadDashboard();
+    } catch (error) {
+      setMessage(error.message, "error");
+    }
+  });
+
+  document.querySelector("[data-password-login]")?.addEventListener("click", async () => {
+    const { email, password } = formValues();
+    if (!email || !password) return setMessage(labels.password, "error");
+    const turnstileToken = requireTurnstile();
+    if (!turnstileToken) return;
+    setMessage(labels.signingIn);
+    try {
+      const auth = await request("/v1/auth/password/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password, turnstileToken, client: { platform: "web" } })
+      });
+      if (window.pushnowSession) window.pushnowSession.saveSession(auth);
+      else storage.setItem(storageKey, JSON.stringify(auth));
+      await loadDashboard();
+    } catch (error) {
+      setMessage(error.message, "error");
+    } finally {
+      resetTurnstile();
+    }
+  });
+
+  document.querySelector("[data-refresh]")?.addEventListener("click", loadDashboard);
+  document.addEventListener("pushnow:session-updated", loadDashboard);
+  document.addEventListener("pushnow:session-cleared", () => {
+    dashboardGeneration++;
+    signedIn(false);
+    document.querySelector("[data-user-email]").textContent = "--";
+    document.querySelector("[data-user-id]").textContent = "--";
+    document.querySelector("[data-plan]").textContent = "--";
+    document.querySelector("[data-used]").textContent = "--";
+    document.querySelector("[data-remaining]").textContent = "--";
+    renderDevices([]);
+  });
+  document.querySelector("[data-sign-out]")?.addEventListener("click", async () => {
+    try { await window.pushnowSession.signOut(apiBase); }
+    catch (error) { document.querySelector("[data-dashboard-message]").textContent = error.message; }
+  });
+  document.querySelector("[data-redeem]")?.addEventListener("click", () => {
+    const redeemMessage = document.querySelector("[data-redeem-message]");
+    if (redeemMessage) redeemMessage.textContent = labels.coming;
+  });
+
+  setupTurnstile();
+  if (window.pushnowSession) loadDashboard();
+  else document.addEventListener("pushnow:session-ready", loadDashboard, { once: true });
+</script>

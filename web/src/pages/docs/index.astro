@@ -1,0 +1,11 @@
+---
+import DocsShell from "../../components/DocsShell.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { docsFor } from "../../data/docs";
+
+const doc = docsFor("en")[0];
+---
+
+<SiteLayout lang="en" title={`${doc.title} - Pushnow Docs`} description={doc.description} slug="docs">
+  <DocsShell lang="en" doc={doc} />
+</SiteLayout>

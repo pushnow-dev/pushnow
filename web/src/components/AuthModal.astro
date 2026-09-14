@@ -1,0 +1,314 @@
+---
+import { pathFor, site } from "../data/site";
+
+const { lang } = Astro.props as { lang: string };
+const isChinese = lang === "zh-Hans";
+const consoleHref = pathFor(lang, "dashboard");
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
+const copy = isChinese
+  ? {
+      open: "登录",
+      title: "登录即知",
+      intro: "使用邮箱验证码或邮箱密码登录。网页登录会先完成安全验证。",
+      codeMode: "验证码登录",
+      passwordMode: "密码登录",
+      email: "邮箱地址",
+      emailCode: "邮箱验证码",
+      password: "密码",
+      turnstile: "安全验证",
+      sendCode: "发送邮箱验证码",
+      submitCode: "验证码登录",
+      submitPassword: "密码登录",
+      close: "关闭",
+      needTurnstile: "请先完成安全验证。",
+      turnstileMissing: "安全验证尚未配置，请稍后再试。",
+      turnstileLoading: "安全验证仍在加载，请稍后重试。",
+      needEmail: "请输入邮箱地址。",
+      needEmailCode: "请输入邮箱验证码。",
+      needPassword: "请输入密码。",
+      sending: "正在发送...",
+      sent: "邮箱验证码已发送。",
+      signingIn: "正在登录...",
+      success: "登录成功。你可以在控制台查看账号、设备和会员信息。",
+      sessionHint: "会话只保存在当前浏览器标签页，不会写入 URL。",
+      console: "查看控制台"
+    }
+  : {
+      open: "Login",
+      title: "Sign in to PushNow",
+      intro: "Use an email code or email password. Web sign-in runs a safety check first.",
+      codeMode: "Code",
+      passwordMode: "Password",
+      email: "Email address",
+      emailCode: "Email code",
+      password: "Password",
+      turnstile: "Safety check",
+      sendCode: "Send email code",
+      submitCode: "Sign in with code",
+      submitPassword: "Sign in with password",
+      close: "Close",
+      needTurnstile: "Complete the safety check first.",
+      turnstileMissing: "The safety check is not configured yet. Please try again later.",
+      turnstileLoading: "The safety check is still loading. Please try again in a moment.",
+      needEmail: "Enter your email address.",
+      needEmailCode: "Enter the email code.",
+      needPassword: "Enter your password.",
+      sending: "Sending...",
+      sent: "Email code sent.",
+      signingIn: "Signing in...",
+      success: "Signed in. You can review account, devices, and membership in the console.",
+      sessionHint: "The session stays in this browser tab and is never written into the URL.",
+      console: "View console"
+    };
+---
+
+<div class="auth-modal-host" data-login-root data-api={site.api} data-lang={lang} data-turnstile-sitekey={turnstileSiteKey}>
+  <div class="auth-modal-backdrop" data-login-modal hidden>
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <button class="modal-close" type="button" aria-label={copy.close} data-login-close>×</button>
+      <p class="eyebrow">{copy.open}</p>
+      <h2 id="login-title">{copy.title}</h2>
+      <p>{copy.intro}</p>
+
+      <form class="modal-auth-form" data-login-form>
+        <div class="auth-tabs" role="tablist" aria-label={isChinese ? "登录方式" : "Login method"}>
+          <button class="active" type="button" role="tab" aria-selected="true" data-login-mode="code">{copy.codeMode}</button>
+          <button type="button" role="tab" aria-selected="false" data-login-mode="password">{copy.passwordMode}</button>
+        </div>
+
+        <label>
+          <span>{copy.email}</span>
+          <input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="name@example.com" />
+        </label>
+
+        <div class="auth-row" data-login-code-field>
+          <label>
+            <span>{copy.emailCode}</span>
+            <input type="text" name="emailCode" autocomplete="one-time-code" inputmode="numeric" placeholder="123456" />
+          </label>
+          <button class="button secondary" type="button" data-login-send-code>{copy.sendCode}</button>
+        </div>
+
+        <label data-login-password-field hidden>
+          <span>{copy.password}</span>
+          <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+
+        <div class="turnstile-row">
+          <span>{copy.turnstile}</span>
+          <div class="turnstile-widget" data-login-turnstile aria-label={copy.turnstile}></div>
+        </div>
+
+        <button class="button primary" type="button" data-login-submit-code>{copy.submitCode}</button>
+        <button class="button primary" type="button" data-login-submit-password hidden>{copy.submitPassword}</button>
+        <p class="form-hint">{copy.sessionHint}</p>
+        <p class="form-message" data-login-message role="status" aria-live="polite"></p>
+        <a class="text-button console-link" href={consoleHref} data-login-console hidden>{copy.console}</a>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script is:inline define:vars={{ labels: copy }}>
+  document.querySelectorAll("[data-login-root]").forEach((root) => {
+    if (root.parentElement !== document.body) {
+      document.body.append(root);
+    }
+
+    const apiBase = root.dataset.api || "https://api.pushnow.dev";
+    const lang = root.dataset.lang || "en";
+    const storage = window.sessionStorage;
+    const storageKey = "pushnow.web.session";
+    const modal = root.querySelector("[data-login-modal]");
+    const form = root.querySelector("[data-login-form]");
+    const message = root.querySelector("[data-login-message]");
+    const turnstileHost = root.querySelector("[data-login-turnstile]");
+    const turnstileSiteKey = root.dataset.turnstileSitekey || "";
+    const modeButtons = root.querySelectorAll("[data-login-mode]");
+    const codeField = root.querySelector("[data-login-code-field]");
+    const passwordField = root.querySelector("[data-login-password-field]");
+    const codeButton = root.querySelector("[data-login-submit-code]");
+    const passwordButton = root.querySelector("[data-login-submit-password]");
+    const consoleLink = root.querySelector("[data-login-console]");
+    let turnstileWidgetId = null;
+    let requestPending = false;
+
+    const setMessage = (text, tone = "") => {
+      if (!message) return;
+      message.textContent = text;
+      message.dataset.tone = tone;
+    };
+
+    const renderTurnstile = () => {
+      if (!turnstileHost || !turnstileSiteKey || !window.turnstile || turnstileWidgetId !== null) return;
+      turnstileWidgetId = window.turnstile.render(turnstileHost, {
+        sitekey: turnstileSiteKey,
+        action: "turnstile-spin-v1",
+        theme: "auto",
+        callback: () => setMessage("")
+      });
+    };
+
+    const setupTurnstile = () => {
+      if (!turnstileHost || !turnstileSiteKey) return;
+      const ready = () => window.turnstile?.ready(renderTurnstile);
+      if (window.turnstile) ready();
+      else window.addEventListener("load", ready, { once: true });
+    };
+
+    const resetTurnstile = () => {
+      if (window.turnstile && turnstileWidgetId !== null) window.turnstile.reset(turnstileWidgetId);
+    };
+
+    const requireTurnstile = () => {
+      if (!turnstileSiteKey) {
+        setMessage(labels.turnstileMissing, "error");
+        return "";
+      }
+      if (!window.turnstile) {
+        setMessage(labels.turnstileLoading, "error");
+        return "";
+      }
+      renderTurnstile();
+      const token = turnstileWidgetId !== null ? window.turnstile.getResponse(turnstileWidgetId) : "";
+      if (!token) setMessage(labels.needTurnstile, "error");
+      return token;
+    };
+
+    const setMode = (mode) => {
+      const codeMode = mode === "code";
+      modeButtons.forEach((button) => {
+        const active = button.dataset.loginMode === mode;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-selected", String(active));
+      });
+      if (codeField) codeField.hidden = !codeMode;
+      if (passwordField) passwordField.hidden = codeMode;
+      if (codeButton) codeButton.hidden = !codeMode;
+      if (passwordButton) passwordButton.hidden = codeMode;
+      setMessage("");
+    };
+
+    const values = () => {
+      const data = new FormData(form);
+      return {
+        email: String(data.get("email") || "").trim(),
+        emailCode: String(data.get("emailCode") || "").trim(),
+        password: String(data.get("password") || ""),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"
+      };
+    };
+
+    const request = async (path, options = {}) => {
+      if (requestPending) throw new Error(lang === "zh-Hans" ? "请求正在处理中" : "Request in progress");
+      requestPending = true;
+      const actions = root.querySelectorAll("[data-login-send-code], [data-login-submit-code], [data-login-submit-password]");
+      actions.forEach(button => button.disabled = true);
+      try {
+      if (window.pushnowSession) return await window.pushnowSession.publicRequest(apiBase, path, options);
+      const response = await fetch(`${apiBase}${path}`, {
+        ...options,
+        headers: {
+          "content-type": "application/json",
+          ...(options.headers || {})
+        }
+      });
+      const data = response.status === 204 ? null : await response.json().catch(() => null);
+      if (!response.ok) throw new Error(data?.message || data?.code || `HTTP ${response.status}`);
+      return data;
+      } finally { requestPending = false; actions.forEach(button => button.disabled = false); }
+    };
+
+    const saveSession = async (auth) => {
+      if (window.pushnowSession) window.pushnowSession.saveSession(auth);
+      else storage.setItem(storageKey, JSON.stringify(auth));
+      form.reset();
+      setMessage(labels.success, "success");
+      if (consoleLink) consoleLink.hidden = false;
+      document.dispatchEvent(new CustomEvent("pushnow:session-updated"));
+      if (modal) modal.hidden = true;
+      window.location.assign(consoleLink.href);
+    };
+
+    document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element) || !event.target.closest("[data-login-open]")) return;
+        if (modal) modal.hidden = false;
+        setupTurnstile();
+        setTimeout(() => form?.querySelector("input[name='email']")?.focus(), 0);
+    });
+    root.querySelector("[data-login-close]")?.addEventListener("click", () => {
+      if (modal) modal.hidden = true;
+    });
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal) modal.hidden = true;
+    });
+    modeButtons.forEach((button) => button.addEventListener("click", () => setMode(button.dataset.loginMode || "code")));
+    setupTurnstile();
+
+    root.querySelector("[data-login-send-code]")?.addEventListener("click", async () => {
+      const { email, timezone } = values();
+      if (!email) return setMessage(labels.needEmail, "error");
+      const turnstileToken = requireTurnstile();
+      if (!turnstileToken) return;
+      setMessage(labels.sending);
+      try {
+        await request("/v1/auth/email/start", {
+          method: "POST",
+          body: JSON.stringify({ email, locale: lang, timezone, turnstileToken, client: { platform: "web" } })
+        });
+        setMessage(labels.sent, "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      } finally {
+        resetTurnstile();
+      }
+    });
+
+    root.querySelector("[data-login-submit-code]")?.addEventListener("click", async () => {
+      const { email, emailCode } = values();
+      if (!email) return setMessage(labels.needEmail, "error");
+      if (!emailCode) return setMessage(labels.needEmailCode, "error");
+      setMessage(labels.signingIn);
+      try {
+        const auth = await request("/v1/auth/email/verify", {
+          method: "POST",
+          body: JSON.stringify({ email, code: emailCode, client: { platform: "web" } })
+        });
+        await saveSession(auth);
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    root.querySelector("[data-login-submit-password]")?.addEventListener("click", async () => {
+      const { email, password } = values();
+      if (!email) return setMessage(labels.needEmail, "error");
+      if (!password) return setMessage(labels.needPassword, "error");
+      const turnstileToken = requireTurnstile();
+      if (!turnstileToken) return;
+      setMessage(labels.signingIn);
+      try {
+        const auth = await request("/v1/auth/password/login", {
+          method: "POST",
+          body: JSON.stringify({ email, password, turnstileToken, client: { platform: "web" } })
+        });
+        await saveSession(auth);
+      } catch (error) {
+        setMessage(error.message, "error");
+      } finally {
+        resetTurnstile();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal && !modal.hidden) modal.hidden = true;
+    });
+    form.addEventListener("submit", event => event.preventDefault());
+    form.addEventListener("keydown", event => {
+      if (event.key === "Enter" && event.target instanceof HTMLInputElement) {
+        event.preventDefault();
+        if (!requestPending) (passwordButton.hidden ? codeButton : passwordButton).click();
+      }
+    });
+  });
+</script>

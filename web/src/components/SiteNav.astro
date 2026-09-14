@@ -1,0 +1,113 @@
+---
+import "../styles/navigation.css";
+import ThemeToggle from "./ThemeToggle.astro";
+import AuthModal from "./AuthModal.astro";
+import { languages, localizedCopy, pathFor, site } from "../data/site";
+
+const { lang, floating = false } = Astro.props as { lang: string; floating?: boolean };
+const t = localizedCopy(lang);
+const isChinese = lang === "zh-Hans";
+const nav = isChinese
+  ? {
+      product: "产品",
+      account: "控制台",
+      docs: "Docs",
+      pricing: "价格",
+      support: "支持",
+      login: "登录",
+      language: "语言"
+    }
+  : {
+      product: "Product",
+      account: "Console",
+      docs: "Docs",
+      pricing: "Pricing",
+      support: "Support",
+      login: "Login",
+      language: "Language"
+    };
+const langPath = (target: string) => pathFor(target);
+const brandName = isChinese ? "即知" : site.name;
+---
+
+<>
+  <nav class:list={["site-nav", floating && "site-nav-floating"]} aria-label="Primary" data-account-nav data-api={site.api}>
+    <div class="site-nav-inner">
+    <a class="brand" href={pathFor(lang)}>
+      <img src="/assets/jizhi-app-icon.png" alt="" width="36" height="36" />
+      <span class="brand-name">{brandName}</span>
+    </a>
+    <div class="nav-controls">
+      <ThemeToggle lang={lang} />
+      <button class="login-trigger" type="button" data-login-open data-nav-login>{nav.login}</button>
+      <a class="nav-account" href={pathFor(lang, "dashboard")} data-nav-account hidden>
+        <span>{isChinese ? "已登录" : "Signed in"}</span><span data-nav-email></span>
+      </a>
+    </div>
+    <button class="mobile-nav-toggle" type="button" aria-label={isChinese ? "打开菜单" : "Open menu"} aria-expanded="false" aria-controls="primary-nav-links" data-menu-open-label={isChinese ? "打开菜单" : "Open menu"} data-menu-close-label={isChinese ? "关闭菜单" : "Close menu"}><span></span><span></span></button>
+    <div class="nav-links" id="primary-nav-links">
+      <a href={`${pathFor(lang)}#product`}>{nav.product}</a>
+      <a href={pathFor(lang, "dashboard")}>{nav.account}</a>
+      <a href={pathFor(lang, "docs")}>{nav.docs}</a>
+      <a href={pathFor(lang, "api")}>{t.navApi}</a>
+      <a href={`${pathFor(lang)}#pricing`}>{nav.pricing}</a>
+      <a href={pathFor(lang, "support")}>{nav.support}</a>
+      <div class="translate-menu">
+        <button type="button" aria-expanded="false" aria-controls="nav-language-options" data-language-toggle>{nav.language}<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="m1 1 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.2" /></svg></button>
+        <div class="translate-popover" id="nav-language-options" hidden>
+          {languages.map((language) => <a href={langPath(language.code)} lang={language.locale}>{language.label}</a>)}
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+  <AuthModal lang={lang} />
+</>
+<script>
+  import "../scripts/site-account";
+
+  document.querySelectorAll<HTMLElement>(".site-nav").forEach((nav) => {
+    const toggle = nav.querySelector<HTMLButtonElement>(".mobile-nav-toggle")!;
+    const languageToggle = nav.querySelector<HTMLButtonElement>("[data-language-toggle]")!;
+    const languageOptions = nav.querySelector<HTMLElement>(".translate-popover")!;
+    const languageMenu = nav.querySelector<HTMLElement>(".translate-menu")!;
+    const setLanguage = (open: boolean) => {
+      languageToggle.setAttribute("aria-expanded", String(open));
+      languageOptions.hidden = !open;
+    };
+    const setMenu = (open: boolean) => {
+      nav.classList.toggle("is-menu-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", (open ? toggle.dataset.menuCloseLabel : toggle.dataset.menuOpenLabel)!);
+      if (!open) setLanguage(false);
+    };
+    toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+    languageToggle.addEventListener("click", () => setLanguage(languageOptions.hidden));
+    nav.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      if (!languageOptions.hidden) {
+        setLanguage(false);
+        languageToggle.focus();
+      } else if (nav.classList.contains("is-menu-open")) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+    nav.querySelectorAll<HTMLAnchorElement>(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => setMenu(false));
+    });
+    nav.querySelector("[data-login-open]")?.addEventListener("click", () => setMenu(false));
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Node)) return;
+      if (!languageMenu.contains(event.target)) setLanguage(false);
+      if (!nav.contains(event.target)) setMenu(false);
+    });
+    nav.addEventListener("focusout", () => {
+      requestAnimationFrame(() => {
+        if (!languageMenu.contains(document.activeElement)) setLanguage(false);
+        if (!nav.contains(document.activeElement)) setMenu(false);
+      });
+    });
+    window.matchMedia("(min-width: 901px)").addEventListener("change", () => setMenu(false));
+  });
+</script>

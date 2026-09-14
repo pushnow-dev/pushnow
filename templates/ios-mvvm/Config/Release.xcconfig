@@ -1,0 +1,4 @@
+#include "Shared.xcconfig"
+
+SWIFT_OPTIMIZATION_LEVEL = -O
+GCC_OPTIMIZATION_LEVEL = s

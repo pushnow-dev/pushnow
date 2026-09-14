@@ -1,0 +1,9 @@
+---
+const { method, path, description } = Astro.props as { method: string; path: string; description: string };
+---
+
+<div class="endpoint-row">
+  <span>{method}</span>
+  <code>{path}</code>
+  <p>{description}</p>
+</div>

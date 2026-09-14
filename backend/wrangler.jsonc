@@ -1,0 +1,42 @@
+{
+  "name": "jizhi-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-12",
+  "compatibility_flags": ["nodejs_compat"],
+  "triggers": { "crons": ["* * * * *"] },
+  "r2_buckets": [{ "binding": "SECURE_BLOBS", "bucket_name": "pushnow-secure-blobs" }],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "REVENUECAT_ENVIRONMENT": "PRODUCTION",
+    "REVENUECAT_APP_ID": "appfdd73d89a1",
+    "APP_BASE_URL": "https://pushnow.dev",
+    "AUTH_CODE_TTL_SECONDS": "600",
+    "ACCESS_TOKEN_TTL_SECONDS": "900",
+    "REFRESH_TOKEN_TTL_SECONDS": "2592000",
+    "AUTH_EMAIL_FROM": "JiZhi <login@pushnow.dev>",
+    "CORS_ORIGINS": "https://pushnow.dev,http://localhost:3000,http://localhost:4325,http://127.0.0.1:4325,http://localhost:8787",
+    "TURNSTILE_EXPECTED_HOSTNAMES": "pushnow.dev"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "jizhi-production",
+      "database_id": "a0008c14-8542-4e8d-9b0c-d9ec53a46b85"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "api.pushnow.dev/*",
+      "zone_name": "pushnow.dev"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["login@pushnow.dev", "support@pushnow.dev"]
+    }
+  ]
+}

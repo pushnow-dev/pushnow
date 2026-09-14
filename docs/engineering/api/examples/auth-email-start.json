@@ -1,0 +1,10 @@
+{
+  "email": "user@example.com",
+  "locale": "zh-Hans",
+  "timezone": "Asia/Shanghai",
+  "client": {
+    "platform": "ios",
+    "device_id": "simulator-or-installation-id",
+    "app_version": "0.1.0"
+  }
+}

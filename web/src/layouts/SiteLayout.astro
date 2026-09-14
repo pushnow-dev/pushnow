@@ -1,0 +1,121 @@
+---
+import "../styles/site.css";
+import "../styles/editorial.css";
+import { languages, pathFor, site } from "../data/site";
+
+interface Props {
+  lang: string;
+  title: string;
+  description: string;
+  slug?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { lang, title, description, slug = "", jsonLd } = Astro.props;
+const canonical = `${site.domain}${pathFor(lang, slug)}`;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
+const languageRoutes = Object.fromEntries(languages.map((language) => [language.code, language.prefix || ""]));
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline define:vars={{ currentLang: lang, languageRoutes }}>
+      (() => {
+        const languageKey = "pushnow-language";
+        const normalizeLanguage = (value) => {
+          const code = String(value || "").toLowerCase();
+          if (code.startsWith("zh")) return "zh-Hans";
+          if (code.startsWith("ja")) return "ja";
+          if (code.startsWith("ko")) return "ko";
+          if (code.startsWith("es")) return "es";
+          if (code.startsWith("de")) return "de";
+          if (code.startsWith("en")) return "en";
+          return "";
+        };
+        const supportedLanguages = Object.keys(languageRoutes);
+        const languageFromPath = (pathname) => supportedLanguages.find((code) => {
+          const prefix = languageRoutes[code];
+          return prefix && (pathname === `${prefix}/` || pathname.startsWith(`${prefix}/`));
+        }) || "en";
+        const pathForLanguage = (target) => {
+          const currentPrefix = languageRoutes[languageFromPath(location.pathname)] || "";
+          const cleanPath = currentPrefix && location.pathname.startsWith(`${currentPrefix}/`)
+            ? location.pathname.slice(currentPrefix.length)
+            : location.pathname;
+          return `${languageRoutes[target] || ""}${cleanPath}`.replace(/\/{2,}/g, "/") || "/";
+        };
+        try {
+          const stored = normalizeLanguage(localStorage.getItem(languageKey));
+          const detected = stored || (navigator.languages || [navigator.language]).map(normalizeLanguage).find(Boolean) || "en";
+          if (currentLang === "en" && languageFromPath(location.pathname) === "en" && detected !== "en") {
+            location.replace(`${pathForLanguage(detected)}${location.search}${location.hash}`);
+            return;
+          }
+          document.addEventListener("click", (event) => {
+            const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+            if (!link) return;
+            const url = new URL(link.href, location.href);
+            if (url.origin !== location.origin) return;
+            localStorage.setItem(languageKey, languageFromPath(url.pathname));
+          });
+        } catch {}
+
+        let theme;
+        try { theme = localStorage.getItem("pushnow-theme"); } catch {}
+        document.documentElement.dataset.theme = theme === "light" || theme === "dark"
+          ? theme : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {slug === "dashboard" && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:site_name" content={site.name} />
+    <link rel="canonical" href={canonical} />
+    {languages.map((language) => <link rel="alternate" hreflang={language.locale} href={`${site.domain}${pathFor(language.code, slug)}`} />)}
+    <link rel="alternate" hreflang="x-default" href={`${site.domain}${pathFor("en", slug)}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.domain}/assets/jizhi-app-design-board.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.domain}/assets/jizhi-app-design-board.png`} />
+    {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>}
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <div class="viewport-toast" data-viewport-toast role="status" aria-live="polite" hidden>
+      <strong data-toast-title></strong>
+      <span data-toast-body></span>
+    </div>
+    <slot />
+    <script is:inline>
+      (() => {
+        const toast = document.querySelector("[data-viewport-toast]");
+        if (!toast) return;
+        const title = toast.querySelector("[data-toast-title]");
+        const body = toast.querySelector("[data-toast-body]");
+        let timer;
+        document.addEventListener("pushnow:toast", (event) => {
+          const detail = event.detail || {};
+          title.textContent = detail.title || "";
+          body.textContent = detail.body || "";
+          toast.dataset.tone = detail.tone || "success";
+          toast.hidden = false;
+          requestAnimationFrame(() => { toast.dataset.visible = "true"; });
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            toast.dataset.visible = "false";
+            setTimeout(() => { toast.hidden = true; }, 220);
+          }, detail.duration || 3600);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "name": "pushnow-api-sandbox",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-12",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "triggers": {
+    "crons": [
+      "* * * * *"
+    ]
+  },
+  "r2_buckets": [
+    {
+      "binding": "SECURE_BLOBS",
+      "bucket_name": "pushnow-sandbox-secure-blobs"
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "REVENUECAT_ENVIRONMENT": "SANDBOX",
+    "REVENUECAT_APP_ID": "appfdd73d89a1",
+    "APP_BASE_URL": "https://pushnow.dev",
+    "AUTH_CODE_TTL_SECONDS": "600",
+    "ACCESS_TOKEN_TTL_SECONDS": "900",
+    "REFRESH_TOKEN_TTL_SECONDS": "2592000",
+    "AUTH_EMAIL_FROM": "JiZhi <login@pushnow.dev>",
+    "CORS_ORIGINS": "https://pushnow.dev",
+    "TURNSTILE_EXPECTED_HOSTNAMES": "pushnow.dev"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pushnow-sandbox",
+      "database_id": "a4256170-39bf-4a20-90a5-12c3390ac6bf"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "sandbox-api.pushnow.dev",
+      "custom_domain": true
+    }
+  ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": [
+        "login@pushnow.dev",
+        "support@pushnow.dev"
+      ]
+    }
+  ],
+  "workers_dev": true,
+  "preview_urls": false
+}

@@ -1,0 +1,332 @@
+{
+  "string": [
+    {
+      "name": "pn_1d0c220d",
+      "value": "Cuenta"
+    },
+    {
+      "name": "pn_3ff5b7c",
+      "value": "Correo electrónico"
+    },
+    {
+      "name": "pn_8b78a0b2",
+      "value": "Código de verificación"
+    },
+    {
+      "name": "pn_758a6365",
+      "value": "Enviar código"
+    },
+    {
+      "name": "pn_dfb00a48",
+      "value": "Iniciar sesión"
+    },
+    {
+      "name": "pn_4c641ebb",
+      "value": "Contraseña"
+    },
+    {
+      "name": "pn_4c9908dd",
+      "value": "Acceder con contraseña"
+    },
+    {
+      "name": "pn_fa0db2df",
+      "value": "Registrar notificaciones"
+    },
+    {
+      "name": "pn_1651568b",
+      "value": "Cerrar sesión"
+    },
+    {
+      "name": "pn_c03144bd",
+      "value": "Dispositivos"
+    },
+    {
+      "name": "pn_4f1dee84",
+      "value": "Tus dispositivos iOS y HarmonyOS comparten una cuenta. Compara los códigos antes de aprobar un dispositivo nuevo."
+    },
+    {
+      "name": "pn_ae2bcad5",
+      "value": "Vincular este dispositivo"
+    },
+    {
+      "name": "pn_89b3567b",
+      "value": "Comprobar aprobación"
+    },
+    {
+      "name": "pn_97e84468",
+      "value": "Mostrar código"
+    },
+    {
+      "name": "pn_ea9f6ea9",
+      "value": "Aprobar dispositivo"
+    },
+    {
+      "name": "pn_694e66b6",
+      "value": "¿Aprobar dispositivo?"
+    },
+    {
+      "name": "pn_8502a26c",
+      "value": "Confirma que el código coincide con el del dispositivo nuevo."
+    },
+    {
+      "name": "pn_77df1a9a",
+      "value": "Cancelar"
+    },
+    {
+      "name": "pn_ca7a712b",
+      "value": "Los códigos coinciden"
+    },
+    {
+      "name": "pn_7b75c4c8",
+      "value": "Notificaciones"
+    },
+    {
+      "name": "pn_3f808a14",
+      "value": "Permitir acceso al historial"
+    },
+    {
+      "name": "pn_3f879f5",
+      "value": "Nombre del dispositivo"
+    },
+    {
+      "name": "pn_7ef12f2e",
+      "value": "Guardar nombre"
+    },
+    {
+      "name": "pn_91b0235e",
+      "value": "Renombrar"
+    },
+    {
+      "name": "pn_d93bc4be",
+      "value": "Remitentes"
+    },
+    {
+      "name": "pn_f39568f",
+      "value": "Introduce el código del remitente HTTP. Verifica su nombre y clave pública antes de autorizarlo."
+    },
+    {
+      "name": "pn_b3b2c900",
+      "value": "Código de 8 caracteres"
+    },
+    {
+      "name": "pn_30051b39",
+      "value": "Buscar remitente"
+    },
+    {
+      "name": "pn_adef9420",
+      "value": "Autorizar remitente"
+    },
+    {
+      "name": "pn_52331753",
+      "value": "¿Autorizar remitente?"
+    },
+    {
+      "name": "pn_854fddf",
+      "value": "Confirma que el nombre y ambas huellas coinciden con tu remitente HTTP."
+    },
+    {
+      "name": "pn_e1b35694",
+      "value": "Las huellas coinciden"
+    },
+    {
+      "name": "pn_b72ebf8",
+      "value": "No hay remitentes autorizados"
+    },
+    {
+      "name": "pn_38b0fc1e",
+      "value": "Revocar acceso"
+    },
+    {
+      "name": "pn_99a2bd30",
+      "value": "¿Revocar remitente?"
+    },
+    {
+      "name": "pn_91b3faa6",
+      "value": "Revocar"
+    },
+    {
+      "name": "pn_4383266",
+      "value": "Bandeja de entrada"
+    },
+    {
+      "name": "pn_8489da6c",
+      "value": "No hay mensajes descifrados. Actualiza después de aprobar este dispositivo."
+    },
+    {
+      "name": "pn_77a5a763",
+      "value": "Inicia sesión para recibir mensajes cifrados."
+    },
+    {
+      "name": "pn_de2d87cd",
+      "value": "Contraer"
+    },
+    {
+      "name": "pn_259a6a",
+      "value": "Abrir"
+    },
+    {
+      "name": "pn_a2d98a7c",
+      "value": "Confirmar recepción"
+    },
+    {
+      "name": "pn_3bfc9ae9",
+      "value": "Marcar como leído"
+    },
+    {
+      "name": "pn_79cb71cb",
+      "value": "Eliminar"
+    },
+    {
+      "name": "pn_e8c343cd",
+      "value": "¿Eliminar mensaje?"
+    },
+    {
+      "name": "pn_870bc8ab",
+      "value": "Esto elimina el mensaje de todos los dispositivos."
+    },
+    {
+      "name": "pn_50417ba8",
+      "value": "Vista previa"
+    },
+    {
+      "name": "pn_7eedaa1f",
+      "value": "Guardar archivo"
+    },
+    {
+      "name": "pn_a3eb2abb",
+      "value": "Actualizar"
+    },
+    {
+      "name": "pn_e603a60f",
+      "value": "Sin registrar"
+    },
+    {
+      "name": "pn_75cfaa2",
+      "value": "Registrado"
+    },
+    {
+      "name": "pn_bd01ec42",
+      "value": "Vincula este dispositivo y apruébalo desde uno de confianza."
+    },
+    {
+      "name": "pn_18a2be46",
+      "value": "Código enviado"
+    },
+    {
+      "name": "pn_5193a992",
+      "value": "Dispositivo activo"
+    },
+    {
+      "name": "pn_84e6551c",
+      "value": "Compara los códigos en tu dispositivo de confianza antes de aprobar"
+    },
+    {
+      "name": "pn_a4372cd8",
+      "value": "Compara primero el código de este dispositivo"
+    },
+    {
+      "name": "pn_f2720307",
+      "value": "Acceso al historial cifrado concedido"
+    },
+    {
+      "name": "pn_4a1edd43",
+      "value": "Token de notificaciones no disponible"
+    },
+    {
+      "name": "pn_d08e8ad3",
+      "value": "Busca primero un código de autorización"
+    },
+    {
+      "name": "pn_c67a7046",
+      "value": "Remitente autorizado"
+    },
+    {
+      "name": "pn_94b7f8e1",
+      "value": "Recepción confirmada"
+    },
+    {
+      "name": "pn_115a1cf0",
+      "value": "Marcado como leído"
+    },
+    {
+      "name": "pn_410db16e",
+      "value": "Notificaciones Harmony: {0}"
+    },
+    {
+      "name": "pn_6b0549dd",
+      "value": "Código de vinculación: {0}"
+    },
+    {
+      "name": "pn_e04bd1f8",
+      "value": "Este dispositivo"
+    },
+    {
+      "name": "pn_a9471271",
+      "value": "Huella de la cuenta: {0}"
+    },
+    {
+      "name": "pn_e45a4729",
+      "value": "Huella del remitente: {0}"
+    },
+    {
+      "name": "pn_76e2c08e",
+      "value": "Caduca: {0}"
+    },
+    {
+      "name": "pn_79084d90",
+      "value": "¿Detener futuras solicitudes de {0}?"
+    },
+    {
+      "name": "pn_1a794ef1",
+      "value": "{0} · {1} bytes"
+    },
+    {
+      "name": "pn_ab2f7f06",
+      "value": "Activo"
+    },
+    {
+      "name": "pn_d7508997",
+      "value": "Pendiente"
+    },
+    {
+      "name": "pn_4192c29e",
+      "value": "Revocado"
+    },
+    {
+      "name": "pn_b7363949",
+      "value": "Sin comprobar en esta sesión"
+    },
+    {
+      "name": "pn_9bbcb7da",
+      "value": "Inicia sesión para continuar."
+    },
+    {
+      "name": "pn_cd91d642",
+      "value": "Tu sesión ha cambiado. Vuelve a iniciar sesión."
+    },
+    {
+      "name": "pn_86a6a0c5",
+      "value": "Aprueba primero este dispositivo desde uno de confianza."
+    },
+    {
+      "name": "pn_ed01534f",
+      "value": "El acceso al historial está pendiente. Concédelo desde un dispositivo de confianza."
+    },
+    {
+      "name": "pn_fa8cf006",
+      "value": "Esta acción requiere un dispositivo de confianza."
+    },
+    {
+      "name": "pn_93fc5123",
+      "value": "Introduce un código válido de 8 caracteres."
+    },
+    {
+      "name": "pn_636bc0d7",
+      "value": "El código ha caducado. Solicita uno nuevo."
+    },
+    {
+      "name": "pn_4eeb49bc",
+      "value": "Falló la verificación de datos cifrados. Verifica el dispositivo y la cuenta antes de aprobar."
+    }
+  ]
+}

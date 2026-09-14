@@ -1,0 +1,21 @@
+{
+  "synthetic_test_webhook": 200,
+  "sandbox_rejects_production_event": 400,
+  "environment": "SANDBOX",
+  "health": 200,
+  "ready": 200,
+  "password_login": 200,
+  "identity_namespace_verified": true,
+  "membership_status": 200,
+  "membership": {
+    "plan": "free",
+    "display_name": "Free",
+    "daily_notification_limit": 50,
+    "used_today": 0,
+    "remaining_today": 50,
+    "window_start": "2026-09-13T00:00:00.000Z",
+    "window_end": "2026-09-14T00:00:00.000Z"
+  },
+  "production_rejects_sandbox_token": 401,
+  "paid_transaction_verified": false
+}

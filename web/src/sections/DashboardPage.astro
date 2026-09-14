@@ -1,0 +1,31 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import WebAccountConsole from "../components/WebAccountConsole.astro";
+import ApiPlayground from "../components/ApiPlayground.astro";
+import { pathFor } from "../data/site";
+import "../styles/dashboard.css";
+const { lang } = Astro.props;
+const zh = lang === "zh-Hans";
+---
+<SiteLayout lang={lang} title={zh ? "PushNow 控制台" : "PushNow Dashboard"} description={zh ? "管理设备，发送通知，查看消息送达记录。" : "Manage your devices, send notifications, and follow delivery activity."} slug="dashboard">
+  <div class="dashboard-page">
+    <SiteNav lang={lang} />
+    <div class="dashboard-layout" data-dashboard-tabs>
+      <aside class="dashboard-sidebar" role="tablist" aria-label={zh ? "控制台导航" : "Dashboard navigation"}>
+        <strong>{zh ? "控制台" : "Dashboard"}</strong>
+        <button type="button" role="tab" aria-selected="true" data-dashboard-tab="account">{zh ? "账号与设备" : "Account & devices"}</button>
+        <button type="button" role="tab" aria-selected="false" data-dashboard-tab="keys">{zh ? "通知 Token" : "Notification tokens"}</button>
+        <button type="button" role="tab" aria-selected="false" data-dashboard-tab="send">{zh ? "发送通知" : "Send a notification"}</button>
+        <button type="button" role="tab" aria-selected="false" data-dashboard-tab="logs">{zh ? "发送日志" : "Delivery logs"}</button>
+        <a href={pathFor("en", "docs")}>{zh ? "使用文档" : "Documentation"}</a>
+      </aside>
+      <main>
+        <WebAccountConsole lang={lang}><ApiPlayground lang={lang} /></WebAccountConsole>
+      </main>
+    </div>
+  </div>
+  <script>
+    import "../scripts/dashboard-tabs";
+  </script>
+</SiteLayout>

@@ -1,0 +1,50 @@
+{
+  "Your notifications, connected": {
+    "en": "Your notifications, connected",
+    "zh-Hans": "让通知与你保持连接",
+    "ja": "通知をひとつにつなぐ",
+    "ko": "한곳에서 연결되는 알림",
+    "es": "Tus notificaciones, conectadas",
+    "de": "Deine Mitteilungen, verbunden"
+  },
+  "Sign in to keep your messages, devices, and connected sources together.": {
+    "en": "Sign in to keep your messages, devices, and connected sources together.",
+    "zh-Hans": "登录后，在同一个账号中管理消息、设备和已接入的来源。",
+    "ja": "ログインして、メッセージ、デバイス、連携したソースをひとつのアカウントで管理。",
+    "ko": "로그인하여 메시지, 기기, 연결된 소스를 한 계정에서 관리하세요.",
+    "es": "Inicia sesión para gestionar tus mensajes, dispositivos y fuentes conectadas en una cuenta.",
+    "de": "Melde dich an, um Nachrichten, Geräte und verbundene Quellen in einem Konto zu verwalten."
+  },
+  "请输入密码": {
+    "en": "Enter your password",
+    "zh-Hans": "请输入密码",
+    "ja": "パスワードを入力してください",
+    "ko": "비밀번호를 입력하세요",
+    "es": "Introduce tu contraseña",
+    "de": "Gib dein Passwort ein"
+  },
+  "请先验证邮箱": {
+    "en": "Verify your email first",
+    "zh-Hans": "请先验证邮箱",
+    "ja": "先にメールアドレスを確認してください",
+    "ko": "먼저 이메일을 인증하세요",
+    "es": "Primero verifica tu correo electrónico",
+    "de": "Bestätige zuerst deine E-Mail-Adresse"
+  },
+  "Check your internet connection and try again.": {
+    "en": "Check your internet connection and try again.",
+    "zh-Hans": "请检查网络连接后重试。",
+    "ja": "インターネット接続を確認して、もう一度お試しください。",
+    "ko": "인터넷 연결을 확인한 후 다시 시도하세요.",
+    "es": "Comprueba tu conexión a internet e inténtalo de nuevo.",
+    "de": "Prüfe deine Internetverbindung und versuche es erneut."
+  },
+  "Refresh": {
+    "en": "Refresh",
+    "zh-Hans": "刷新",
+    "ja": "更新",
+    "ko": "새로고침",
+    "es": "Actualizar",
+    "de": "Aktualisieren"
+  }
+}

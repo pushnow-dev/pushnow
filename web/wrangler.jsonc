@@ -1,0 +1,11 @@
+{
+  "name": "jizhi-web",
+  "compatibility_date": "2026-09-12",
+  "assets": {
+    "directory": "./dist"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

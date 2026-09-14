@@ -1,0 +1,344 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Pushnow"
+    },
+    {
+      "name": "module_desc",
+      "value": "Pushnow 鸿蒙应用"
+    },
+    {
+      "name": "entry_desc",
+      "value": "Pushnow"
+    },
+    {
+      "name": "pn_1d0c220d",
+      "value": "账户"
+    },
+    {
+      "name": "pn_3ff5b7c",
+      "value": "邮箱"
+    },
+    {
+      "name": "pn_8b78a0b2",
+      "value": "验证码"
+    },
+    {
+      "name": "pn_758a6365",
+      "value": "发送验证码"
+    },
+    {
+      "name": "pn_dfb00a48",
+      "value": "登录"
+    },
+    {
+      "name": "pn_4c641ebb",
+      "value": "密码"
+    },
+    {
+      "name": "pn_4c9908dd",
+      "value": "使用密码登录"
+    },
+    {
+      "name": "pn_fa0db2df",
+      "value": "注册推送通知"
+    },
+    {
+      "name": "pn_1651568b",
+      "value": "退出登录"
+    },
+    {
+      "name": "pn_c03144bd",
+      "value": "设备"
+    },
+    {
+      "name": "pn_4f1dee84",
+      "value": "iOS 和鸿蒙设备使用同一账户。请核对配对码后再批准新设备。"
+    },
+    {
+      "name": "pn_ae2bcad5",
+      "value": "绑定此设备"
+    },
+    {
+      "name": "pn_89b3567b",
+      "value": "检查批准状态"
+    },
+    {
+      "name": "pn_97e84468",
+      "value": "显示配对码"
+    },
+    {
+      "name": "pn_ea9f6ea9",
+      "value": "批准设备"
+    },
+    {
+      "name": "pn_694e66b6",
+      "value": "批准此设备？"
+    },
+    {
+      "name": "pn_8502a26c",
+      "value": "请确认配对码与新设备上的代码一致。"
+    },
+    {
+      "name": "pn_77df1a9a",
+      "value": "取消"
+    },
+    {
+      "name": "pn_ca7a712b",
+      "value": "配对码一致"
+    },
+    {
+      "name": "pn_7b75c4c8",
+      "value": "通知"
+    },
+    {
+      "name": "pn_3f808a14",
+      "value": "授权历史记录访问"
+    },
+    {
+      "name": "pn_3f879f5",
+      "value": "设备名称"
+    },
+    {
+      "name": "pn_7ef12f2e",
+      "value": "保存名称"
+    },
+    {
+      "name": "pn_91b0235e",
+      "value": "重命名"
+    },
+    {
+      "name": "pn_d93bc4be",
+      "value": "发送方"
+    },
+    {
+      "name": "pn_f39568f",
+      "value": "输入 HTTP 发送方显示的授权码。授权前请核对名称和公钥。"
+    },
+    {
+      "name": "pn_b3b2c900",
+      "value": "8 位授权码"
+    },
+    {
+      "name": "pn_30051b39",
+      "value": "查询发送方"
+    },
+    {
+      "name": "pn_adef9420",
+      "value": "授权此发送方"
+    },
+    {
+      "name": "pn_52331753",
+      "value": "授权此发送方？"
+    },
+    {
+      "name": "pn_854fddf",
+      "value": "请确认发送方名称及两个指纹均与 HTTP 发送方显示的一致。"
+    },
+    {
+      "name": "pn_e1b35694",
+      "value": "指纹一致"
+    },
+    {
+      "name": "pn_b72ebf8",
+      "value": "暂无已授权发送方"
+    },
+    {
+      "name": "pn_38b0fc1e",
+      "value": "撤销授权"
+    },
+    {
+      "name": "pn_99a2bd30",
+      "value": "撤销此发送方？"
+    },
+    {
+      "name": "pn_91b3faa6",
+      "value": "撤销"
+    },
+    {
+      "name": "pn_4383266",
+      "value": "收件箱"
+    },
+    {
+      "name": "pn_8489da6c",
+      "value": "暂无可解密消息。设备获批后请刷新。"
+    },
+    {
+      "name": "pn_77a5a763",
+      "value": "登录以接收加密消息。"
+    },
+    {
+      "name": "pn_de2d87cd",
+      "value": "收起"
+    },
+    {
+      "name": "pn_259a6a",
+      "value": "打开"
+    },
+    {
+      "name": "pn_a2d98a7c",
+      "value": "确认收到"
+    },
+    {
+      "name": "pn_3bfc9ae9",
+      "value": "标为已读"
+    },
+    {
+      "name": "pn_79cb71cb",
+      "value": "删除"
+    },
+    {
+      "name": "pn_e8c343cd",
+      "value": "删除此消息？"
+    },
+    {
+      "name": "pn_870bc8ab",
+      "value": "此操作将从所有设备删除该消息。"
+    },
+    {
+      "name": "pn_50417ba8",
+      "value": "预览"
+    },
+    {
+      "name": "pn_7eedaa1f",
+      "value": "保存文件"
+    },
+    {
+      "name": "pn_a3eb2abb",
+      "value": "刷新"
+    },
+    {
+      "name": "pn_e603a60f",
+      "value": "未注册"
+    },
+    {
+      "name": "pn_75cfaa2",
+      "value": "已注册"
+    },
+    {
+      "name": "pn_bd01ec42",
+      "value": "请绑定此设备，然后在受信任设备上批准。"
+    },
+    {
+      "name": "pn_18a2be46",
+      "value": "验证码已发送"
+    },
+    {
+      "name": "pn_5193a992",
+      "value": "设备已启用"
+    },
+    {
+      "name": "pn_84e6551c",
+      "value": "批准前请在受信任设备上核对配对码"
+    },
+    {
+      "name": "pn_a4372cd8",
+      "value": "请先核对此设备的配对码"
+    },
+    {
+      "name": "pn_f2720307",
+      "value": "已授权加密历史记录访问"
+    },
+    {
+      "name": "pn_4a1edd43",
+      "value": "推送令牌不可用"
+    },
+    {
+      "name": "pn_d08e8ad3",
+      "value": "请先查询授权码"
+    },
+    {
+      "name": "pn_c67a7046",
+      "value": "发送方已授权"
+    },
+    {
+      "name": "pn_94b7f8e1",
+      "value": "已确认收到消息"
+    },
+    {
+      "name": "pn_115a1cf0",
+      "value": "已标为已读"
+    },
+    {
+      "name": "pn_410db16e",
+      "value": "鸿蒙推送：{0}"
+    },
+    {
+      "name": "pn_6b0549dd",
+      "value": "配对码：{0}"
+    },
+    {
+      "name": "pn_e04bd1f8",
+      "value": "此设备"
+    },
+    {
+      "name": "pn_a9471271",
+      "value": "账户指纹：{0}"
+    },
+    {
+      "name": "pn_e45a4729",
+      "value": "发送方指纹：{0}"
+    },
+    {
+      "name": "pn_76e2c08e",
+      "value": "到期时间：{0}"
+    },
+    {
+      "name": "pn_79084d90",
+      "value": "停止来自 {0} 的后续请求？"
+    },
+    {
+      "name": "pn_1a794ef1",
+      "value": "{0} · {1} 字节"
+    },
+    {
+      "name": "pn_ab2f7f06",
+      "value": "已启用"
+    },
+    {
+      "name": "pn_d7508997",
+      "value": "待批准"
+    },
+    {
+      "name": "pn_4192c29e",
+      "value": "已撤销"
+    },
+    {
+      "name": "pn_b7363949",
+      "value": "本次会话尚未检查"
+    },
+    {
+      "name": "pn_9bbcb7da",
+      "value": "请先登录。"
+    },
+    {
+      "name": "pn_cd91d642",
+      "value": "账户会话已变更，请重新登录。"
+    },
+    {
+      "name": "pn_86a6a0c5",
+      "value": "请先在受信任设备上批准此设备。"
+    },
+    {
+      "name": "pn_ed01534f",
+      "value": "历史记录访问待授权，请在受信任设备上授权。"
+    },
+    {
+      "name": "pn_fa8cf006",
+      "value": "此操作需要受信任设备。"
+    },
+    {
+      "name": "pn_93fc5123",
+      "value": "请输入有效的 8 位授权码。"
+    },
+    {
+      "name": "pn_636bc0d7",
+      "value": "授权码已过期，请获取新代码。"
+    },
+    {
+      "name": "pn_4eeb49bc",
+      "value": "加密数据验证失败，请核对设备和账户后再批准。"
+    }
+  ]
+}

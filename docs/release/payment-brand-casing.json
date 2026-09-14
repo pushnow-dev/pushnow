@@ -1,0 +1,56 @@
+[
+  {
+    "key": "Pushnow Membership",
+    "locale": "en",
+    "before": "Pushnow Membership",
+    "after": "PushNow Membership"
+  },
+  {
+    "key": "Pushnow Membership",
+    "locale": "zh-Hans",
+    "before": "Pushnow 会员",
+    "after": "PushNow 会员"
+  },
+  {
+    "key": "Pushnow Membership",
+    "locale": "ja",
+    "before": "Pushnow メンバーシップ",
+    "after": "PushNow メンバーシップ"
+  },
+  {
+    "key": "Pushnow Membership",
+    "locale": "ko",
+    "before": "Pushnow 멤버십",
+    "after": "PushNow 멤버십"
+  },
+  {
+    "key": "Pushnow Membership",
+    "locale": "es",
+    "before": "Membresía Pushnow",
+    "after": "Membresía PushNow"
+  },
+  {
+    "key": "Pushnow Membership",
+    "locale": "de",
+    "before": "Pushnow-Mitgliedschaft",
+    "after": "PushNow-Mitgliedschaft"
+  },
+  {
+    "key": "如果邮箱已可用，你会收到一封验证邮件。为了保护隐私，系统不会提示该邮箱是否已注册。",
+    "locale": "en",
+    "before": "If the email is available, you will receive a verification email. To protect privacy, Pushnow does not reveal whether the address is already registered.",
+    "after": "If the email is available, you will receive a verification email. To protect privacy, PushNow does not reveal whether the address is already registered."
+  },
+  {
+    "key": "如果邮箱已可用，你会收到一封验证邮件。为了保护隐私，系统不会提示该邮箱是否已注册。",
+    "locale": "es",
+    "before": "Si el email está disponible, recibirás un mensaje de verificación. Para proteger la privacidad, Pushnow no indica si ya está registrado.",
+    "after": "Si el email está disponible, recibirás un mensaje de verificación. Para proteger la privacidad, PushNow no indica si ya está registrado."
+  },
+  {
+    "key": "如果邮箱已可用，你会收到一封验证邮件。为了保护隐私，系统不会提示该邮箱是否已注册。",
+    "locale": "de",
+    "before": "Wenn die E-Mail verfügbar ist, erhältst du eine Bestätigungs-E-Mail. Aus Datenschutzgründen zeigt Pushnow nicht an, ob sie bereits registriert ist.",
+    "after": "Wenn die E-Mail verfügbar ist, erhältst du eine Bestätigungs-E-Mail. Aus Datenschutzgründen zeigt PushNow nicht an, ob sie bereits registriert ist."
+  }
+]

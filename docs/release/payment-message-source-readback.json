@@ -1,0 +1,51 @@
+{
+  "prod": {
+    "version": "7816da37-6152-4c88-b5bd-1766de09243a",
+    "ready": "200",
+    "source_kind_columns": [
+      {
+        "cid": 19,
+        "name": "source_kind",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 9,
+        "name": "source_kind",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      }
+    ]
+  },
+  "sandbox": {
+    "version": "aa618183-caf3-4291-8db7-683db781b1a1",
+    "ready": "200",
+    "source_kind_columns": [
+      {
+        "cid": 19,
+        "name": "source_kind",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      },
+      {
+        "cid": 9,
+        "name": "source_kind",
+        "type": "TEXT",
+        "notnull": 0,
+        "dflt_value": null,
+        "pk": 0
+      }
+    ]
+  },
+  "web": {
+    "version": "cd768b60-4327-4e56-8710-97118a1b1e6b",
+    "asset": "ApiPlayground.astro_astro_type_script_index_0_lang.BtZ5-lja.js",
+    "asset_sha256_matches": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "entry",
+  "version": "0.1.0",
+  "description": "JiZhi Harmony entry module",
+  "main": "",
+  "author": "CreateITV",
+  "license": "UNLICENSED",
+  "dependencies": {}
+}

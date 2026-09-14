@@ -1,0 +1,9 @@
+---
+import ProductGuidePage from '../../sections/ProductGuidePage.astro';
+import { languages } from '../../data/site';
+export function getStaticPaths() {
+  return languages.filter(language => language.code !== 'en').map(language => ({ params: { lang: language.code } }));
+}
+const { lang } = Astro.params;
+---
+<ProductGuidePage lang={lang} />

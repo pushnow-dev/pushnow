@@ -1,0 +1,344 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Pushnow"
+    },
+    {
+      "name": "module_desc",
+      "value": "Pushnow Harmony app"
+    },
+    {
+      "name": "entry_desc",
+      "value": "Pushnow"
+    },
+    {
+      "name": "pn_1d0c220d",
+      "value": "Account"
+    },
+    {
+      "name": "pn_3ff5b7c",
+      "value": "Email"
+    },
+    {
+      "name": "pn_8b78a0b2",
+      "value": "Verification code"
+    },
+    {
+      "name": "pn_758a6365",
+      "value": "Send code"
+    },
+    {
+      "name": "pn_dfb00a48",
+      "value": "Sign in"
+    },
+    {
+      "name": "pn_4c641ebb",
+      "value": "Password"
+    },
+    {
+      "name": "pn_4c9908dd",
+      "value": "Sign in with password"
+    },
+    {
+      "name": "pn_fa0db2df",
+      "value": "Register push notifications"
+    },
+    {
+      "name": "pn_1651568b",
+      "value": "Sign out"
+    },
+    {
+      "name": "pn_c03144bd",
+      "value": "Devices"
+    },
+    {
+      "name": "pn_4f1dee84",
+      "value": "Your iOS and HarmonyOS devices share one account. Approve new devices only after comparing their pairing codes."
+    },
+    {
+      "name": "pn_ae2bcad5",
+      "value": "Bind this device"
+    },
+    {
+      "name": "pn_89b3567b",
+      "value": "Check approval"
+    },
+    {
+      "name": "pn_97e84468",
+      "value": "Show pairing code"
+    },
+    {
+      "name": "pn_ea9f6ea9",
+      "value": "Approve device"
+    },
+    {
+      "name": "pn_694e66b6",
+      "value": "Approve device?"
+    },
+    {
+      "name": "pn_8502a26c",
+      "value": "Confirm that the pairing code matches the code on the new device."
+    },
+    {
+      "name": "pn_77df1a9a",
+      "value": "Cancel"
+    },
+    {
+      "name": "pn_ca7a712b",
+      "value": "Codes match"
+    },
+    {
+      "name": "pn_7b75c4c8",
+      "value": "Notifications"
+    },
+    {
+      "name": "pn_3f808a14",
+      "value": "Grant history access"
+    },
+    {
+      "name": "pn_3f879f5",
+      "value": "Device name"
+    },
+    {
+      "name": "pn_7ef12f2e",
+      "value": "Save name"
+    },
+    {
+      "name": "pn_91b0235e",
+      "value": "Rename"
+    },
+    {
+      "name": "pn_d93bc4be",
+      "value": "Senders"
+    },
+    {
+      "name": "pn_f39568f",
+      "value": "Enter the authorization code shown by your HTTP sender. Verify its name and public key before granting access."
+    },
+    {
+      "name": "pn_b3b2c900",
+      "value": "8-character authorization code"
+    },
+    {
+      "name": "pn_30051b39",
+      "value": "Look up sender"
+    },
+    {
+      "name": "pn_adef9420",
+      "value": "Authorize this sender"
+    },
+    {
+      "name": "pn_52331753",
+      "value": "Authorize sender?"
+    },
+    {
+      "name": "pn_854fddf",
+      "value": "Confirm the sender name and both fingerprints match your HTTP sender."
+    },
+    {
+      "name": "pn_e1b35694",
+      "value": "Fingerprints match"
+    },
+    {
+      "name": "pn_b72ebf8",
+      "value": "No authorized senders"
+    },
+    {
+      "name": "pn_38b0fc1e",
+      "value": "Revoke access"
+    },
+    {
+      "name": "pn_99a2bd30",
+      "value": "Revoke sender?"
+    },
+    {
+      "name": "pn_91b3faa6",
+      "value": "Revoke"
+    },
+    {
+      "name": "pn_4383266",
+      "value": "Inbox"
+    },
+    {
+      "name": "pn_8489da6c",
+      "value": "No decrypted messages available. Refresh after this device is approved."
+    },
+    {
+      "name": "pn_77a5a763",
+      "value": "Sign in to receive your encrypted messages."
+    },
+    {
+      "name": "pn_de2d87cd",
+      "value": "Collapse"
+    },
+    {
+      "name": "pn_259a6a",
+      "value": "Open"
+    },
+    {
+      "name": "pn_a2d98a7c",
+      "value": "Acknowledge"
+    },
+    {
+      "name": "pn_3bfc9ae9",
+      "value": "Mark read"
+    },
+    {
+      "name": "pn_79cb71cb",
+      "value": "Delete"
+    },
+    {
+      "name": "pn_e8c343cd",
+      "value": "Delete message?"
+    },
+    {
+      "name": "pn_870bc8ab",
+      "value": "This removes the message from all devices."
+    },
+    {
+      "name": "pn_50417ba8",
+      "value": "Preview"
+    },
+    {
+      "name": "pn_7eedaa1f",
+      "value": "Save file"
+    },
+    {
+      "name": "pn_a3eb2abb",
+      "value": "Refresh"
+    },
+    {
+      "name": "pn_e603a60f",
+      "value": "Not registered"
+    },
+    {
+      "name": "pn_75cfaa2",
+      "value": "Registered"
+    },
+    {
+      "name": "pn_bd01ec42",
+      "value": "Bind this device, then approve it from a trusted device."
+    },
+    {
+      "name": "pn_18a2be46",
+      "value": "Verification code sent"
+    },
+    {
+      "name": "pn_5193a992",
+      "value": "Device is active"
+    },
+    {
+      "name": "pn_84e6551c",
+      "value": "Compare pairing codes on your trusted device before approval"
+    },
+    {
+      "name": "pn_a4372cd8",
+      "value": "Compare this device pairing code first"
+    },
+    {
+      "name": "pn_f2720307",
+      "value": "Encrypted history access granted"
+    },
+    {
+      "name": "pn_4a1edd43",
+      "value": "Push token unavailable"
+    },
+    {
+      "name": "pn_d08e8ad3",
+      "value": "Look up an authorization code first"
+    },
+    {
+      "name": "pn_c67a7046",
+      "value": "Sender authorized"
+    },
+    {
+      "name": "pn_94b7f8e1",
+      "value": "Message acknowledged"
+    },
+    {
+      "name": "pn_115a1cf0",
+      "value": "Marked as read"
+    },
+    {
+      "name": "pn_410db16e",
+      "value": "Harmony Push: {0}"
+    },
+    {
+      "name": "pn_6b0549dd",
+      "value": "Pairing code: {0}"
+    },
+    {
+      "name": "pn_e04bd1f8",
+      "value": "This device"
+    },
+    {
+      "name": "pn_a9471271",
+      "value": "Account fingerprint: {0}"
+    },
+    {
+      "name": "pn_e45a4729",
+      "value": "Sender fingerprint: {0}"
+    },
+    {
+      "name": "pn_76e2c08e",
+      "value": "Expires: {0}"
+    },
+    {
+      "name": "pn_79084d90",
+      "value": "Stop future requests from {0}?"
+    },
+    {
+      "name": "pn_1a794ef1",
+      "value": "{0} · {1} bytes"
+    },
+    {
+      "name": "pn_ab2f7f06",
+      "value": "active"
+    },
+    {
+      "name": "pn_d7508997",
+      "value": "pending"
+    },
+    {
+      "name": "pn_4192c29e",
+      "value": "revoked"
+    },
+    {
+      "name": "pn_b7363949",
+      "value": "Not checked in this session"
+    },
+    {
+      "name": "pn_9bbcb7da",
+      "value": "Sign in to continue."
+    },
+    {
+      "name": "pn_cd91d642",
+      "value": "Your account session changed. Sign in again."
+    },
+    {
+      "name": "pn_86a6a0c5",
+      "value": "Approve this device from a trusted device first."
+    },
+    {
+      "name": "pn_ed01534f",
+      "value": "History access is pending. Grant access from a trusted device."
+    },
+    {
+      "name": "pn_fa8cf006",
+      "value": "This action requires a trusted device."
+    },
+    {
+      "name": "pn_93fc5123",
+      "value": "Enter a valid 8-character authorization code."
+    },
+    {
+      "name": "pn_636bc0d7",
+      "value": "The authorization code expired. Request a new code."
+    },
+    {
+      "name": "pn_4eeb49bc",
+      "value": "Encrypted data verification failed. Do not approve until you verify the device and account."
+    }
+  ]
+}

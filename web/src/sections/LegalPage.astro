@@ -1,0 +1,37 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import { localizedLegal, pathFor, site } from "../data/site";
+
+type Kind = "privacy" | "terms" | "support";
+
+const { lang, kind } = Astro.props as { lang: string; kind: Kind };
+const legal = localizedLegal(lang);
+const page = legal[kind];
+const updated = `${legal.updatedPrefix}: ${site.lastUpdated}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: `${page.title} - ${site.name}`,
+  description: page.description,
+  url: `${site.domain}${pathFor(lang, kind)}`
+};
+---
+
+<SiteLayout lang={lang} title={`${page.title} - ${site.name}`} description={page.description} slug={kind} jsonLd={jsonLd}>
+  <main class="legal-shell">
+    <SiteNav lang={lang} floating />
+
+    <article class="legal-article">
+      <p class="app-pill">{updated}</p>
+      <h1>{page.title}</h1>
+      {page.sections.map(([heading, body]) => (
+        <section>
+          <h2>{heading}</h2>
+          <p>{body}</p>
+        </section>
+      ))}
+      <p class="legal-contact"><a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a></p>
+    </article>
+  </main>
+</SiteLayout>

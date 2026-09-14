@@ -1,0 +1,11 @@
+---
+const { title, code } = Astro.props as { title: string; code: string };
+---
+
+<figure class="code-panel">
+  <figcaption>
+    <span aria-hidden="true"></span>
+    {title}
+  </figcaption>
+  <pre><code>{code}</code></pre>
+</figure>

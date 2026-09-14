@@ -1,0 +1,9 @@
+---
+const { heading, body, tone = "neutral" } = Astro.props as { heading: string; body: string; tone?: "neutral" | "ready" | "pending" };
+---
+
+<article class:list={["api-status-card", `tone-${tone}`]}>
+  <span aria-hidden="true"></span>
+  <h3>{heading}</h3>
+  <p>{body}</p>
+</article>

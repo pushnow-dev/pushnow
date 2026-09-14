@@ -1,0 +1,32 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import { productGuides } from '../data/product-guide';
+import { languages, pathFor, site } from '../data/site';
+const { lang = 'en' } = Astro.props;
+const guide = productGuides[lang] ?? productGuides.en;
+const url = `${site.domain}${pathFor(lang, 'guide')}`;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage', '@id': `${url}#faq`,
+  url, name: guide.title, description: guide.description, inLanguage: lang,
+  dateModified: '2026-09-13',
+  mainEntity: guide.faq.map(([question, answer]) => ({
+    '@type': 'Question', name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer }
+  }))
+};
+---
+<SiteLayout lang={lang} title={`${guide.title} | PushNow`} description={guide.description} slug="guide" jsonLd={jsonLd}>
+  <main class="legal-shell">
+    <SiteNav lang={lang} floating />
+    <article class="legal-article">
+      <p class="app-pill"><time datetime="2026-09-13">{guide.updated}</time> · PushNow</p>
+      <h1>{guide.title}</h1>
+      <p>{guide.intro}</p>
+      <section><h2>{guide.stepsTitle}</h2><ol>{guide.steps.map(step => <li><p>{step}</p></li>)}</ol></section>
+      <section id="faq"><h2>{guide.faqTitle}</h2>{guide.faq.map(([question, answer]) => <section><h3>{question}</h3><p>{answer}</p></section>)}</section>
+      <p><a href={pathFor(lang, 'docs')}>{guide.docs}</a> · <a href={pathFor(lang, 'support')}>{guide.support}</a></p>
+      <nav aria-label="Languages">{languages.map(language => <p><a href={pathFor(language.code, 'guide')} lang={language.code}>{language.label}</a></p>)}</nav>
+    </article>
+  </main>
+</SiteLayout>

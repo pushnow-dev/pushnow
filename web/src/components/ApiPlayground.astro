@@ -1,0 +1,113 @@
+---
+import { Send, RotateCcw, Upload, Download, X, RefreshCw } from "@lucide/astro";
+import { pathFor } from "../data/site";
+const { lang } = Astro.props;
+const zh = lang === "zh-Hans";
+const t = (en: string, cn: string) => zh ? cn : en;
+---
+<section id="api-playground" class="api-playground" data-playground data-language={lang}>
+  <header class="playground-heading">
+    <div><p class="composer-eyebrow">{t("A little message. A direct connection.", "一条消息，即刻连接。")}</p><h2>{t("Send a notification", "发送通知")}</h2><p class="composer-description">{t("Choose your devices and send something their way.", "选择已绑定设备，把消息发送到它们。")}</p></div>
+    <a href={pathFor("en", "docs/account-notifications")}>{t("API documentation", "API 文档")} <span aria-hidden="true">↗</span></a>
+  </header>
+  <p class="composer-status" role="status" aria-live="polite" data-playground-status></p>
+  <form data-send-form autocomplete="off">
+    <fieldset class="request-fields" data-send-fields disabled>
+      <div class="field-grid composer-destination">
+        <label>{t("Destination", "目标设备")}<select name="target"><option value="all">{t("All authorized devices", "全部授权设备")}</option><option value="selected">{t("Selected devices", "选择设备")}</option></select></label>
+        <label>{t("Delivery", "通知方式")}<select name="delivery"><option value="push">{t("App notification", "App 推送提醒")}</option><option value="inbox">{t("Inbox only", "仅在 App 内查看")}</option></select></label>
+      </div>
+      <p class="recipient-summary" data-recipient-summary aria-live="polite">{t("All your authorized devices", "全部已授权设备")}</p>
+      <div data-target-devices hidden class="target-devices"></div>
+      <label>{t("Title", "标题")}<input name="title" autocomplete="off" required maxlength="300" placeholder={t("What would you like to share?", "写下通知标题")} /></label>
+      <label>{t("Content", "内容")}<textarea name="body" rows="5" maxlength="100000" placeholder={t("Write your message…", "写下消息内容…")}></textarea></label>
+      <details class="advanced-options">
+        <summary>{t("More options", "更多选项")}<span>{t("Schedule, sound, attachments & integration", "定时、铃声、附件与集成")}</span></summary>
+        <div class="advanced-fields">
+      <div class="field-grid">
+        <label>{t("Schedule", "发送时间")}<select name="schedule"><option value="now">{t("Send now", "立即发送")}</option><option value="later">{t("Schedule for later", "定时发送")}</option></select></label>
+        <label>{t("Local date and time", "本地日期和时间")}<input type="datetime-local" name="scheduledAt" disabled /></label>
+      </div>
+      <div class="field-grid">
+        <label>{t("Notification sound", "通知铃声")}<select name="sound"><option value="default">{t("System default", "系统默认")}</option><option value="silent">{t("No sound", "无声通知")}</option><option value="chime">{t("PushNow chime", "即知提示音")}</option></select></label>
+      </div>
+      <div class="field-grid upload-fields">
+        <label>{t("Notification icon", "通知图标")}
+          <span class="notification-icon-preview"><img src="/assets/jizhi-app-icon.png" width="48" height="48" alt="PushNow" data-icon-preview /><span data-icon-preview-name>{t("PushNow app icon", "PushNow App 图标")}</span></span>
+          <input type="file" name="icon" accept="image/png,image/jpeg,image/webp,image/gif" />
+          <small class="field-hint">{t("Use the app icon, or choose your own image.", "默认使用 App 图标，也可以选择自己的图片。")}</small>
+        </label>
+        <label>{t("Preview image", "预览图片")}<input type="file" name="image" accept="image/png,image/jpeg,image/webp,image/gif" /></label>
+      </div>
+      <label>{t("Files", "附件")}<input type="file" name="files" multiple /></label>
+      <label>{t("Detail links (one URL per line)", "详情链接（每行一个 URL）")}<textarea name="links" rows="2" spellcheck="false" placeholder="https://example.com/report"></textarea></label>
+      <details class="headers-disclosure">
+        <summary>{t("HTTP headers", "HTTP 请求头")}</summary>
+        <label>{t("Additional headers (JSON)", "附加请求头（JSON）")}<textarea name="headers" rows="3" spellcheck="false">{`{}`}</textarea></label>
+      </details>
+        </div>
+      </details>
+      <div class="request-actions">
+        <button type="submit" class="send-command"><Send size={16} />{t("Send notification", "发送通知")}</button>
+        <button type="button" data-retry disabled><RotateCcw size={16} />{t("Retry same request", "重试同一请求")}</button>
+        <button type="button" data-refresh-recipients title={t("Refresh devices", "刷新设备")} aria-label={t("Refresh devices", "刷新设备")}><RefreshCw size={16} /></button>
+      </div>
+    </fieldset>
+  </form>
+  <details class="connection-tools">
+    <summary>{t("Browser connection", "浏览器连接")}<span>{t("Connection & configuration", "连接与配置")}</span></summary>
+  <div class="sender-toolbar">
+    <strong data-sender-status>{t("No sender connected", "未连接发送身份")}</strong>
+    <button type="button" data-authorize>{t("Connect browser", "连接浏览器")}</button>
+    <label class="file-command" title={t("Import sender configuration", "导入发送配置")}>
+      <Upload size={16} /><span>{t("Import", "导入")}</span>
+      <input type="file" accept=".json,application/json" data-import-config />
+    </label>
+    <button type="button" data-export-config disabled title={t("Export sender configuration", "导出发送配置")} aria-label={t("Export sender configuration", "导出发送配置")}><Download size={16} /></button>
+    <button type="button" data-disconnect disabled title={t("Disconnect this browser", "断开此浏览器")} aria-label={t("Disconnect this browser", "断开此浏览器")}><X size={16} /></button>
+  </div>
+  <div data-authorization hidden class="authorization-fields">
+    <p>{t("Your signed-in iPhone completes the encrypted connection automatically. Open the latest app for first-time setup.", "已登录的 iPhone 会自动完成加密连接。首次使用请打开最新版 App。")}</p>
+    <button type="button" data-cancel-authorization>{t("Cancel", "取消")}</button>
+  </div>
+  </details>
+  <details class="http-history">
+    <summary>{t("Delivery activity", "发送记录")}<span>{t("Request details", "请求详情")}</span></summary>
+    <header><h3 id="http-history-title">{t("HTTP activity", "HTTP 请求记录")}</h3>
+      <button type="button" data-clear-http title={t("Clear request history", "清空请求记录")} aria-label={t("Clear request history", "清空请求记录")}><X size={16} /></button></header>
+    <ol data-http-log></ol>
+  </details>
+</section>
+<script>
+  import "../scripts/api-playground";
+  document.querySelectorAll<HTMLFormElement>("[data-send-form]").forEach(form => {
+    const icon = form.querySelector<HTMLInputElement>('[name="icon"]');
+    const preview = form.querySelector<HTMLImageElement>('[data-icon-preview]');
+    const name = form.querySelector<HTMLElement>('[data-icon-preview-name]');
+    if (icon && preview && name) {
+      const defaultName = name.textContent;
+      let objectURL: string | null = null;
+      const restore = () => {
+        if (objectURL) URL.revokeObjectURL(objectURL);
+        objectURL = null; preview.src = "/assets/jizhi-app-icon.png"; preview.alt = "PushNow"; name.textContent = defaultName;
+      };
+      icon.addEventListener("change", () => {
+        restore();
+        const file = icon.files?.[0];
+        if (file && ["image/png", "image/jpeg", "image/webp", "image/gif"].includes(file.type)) {
+          objectURL = URL.createObjectURL(file); preview.src = objectURL; preview.alt = file.name; name.textContent = file.name;
+        }
+      });
+      preview.addEventListener("error", () => { if (objectURL) restore(); });
+      form.addEventListener("reset", restore);
+      window.addEventListener("pagehide", restore);
+    }
+    form.addEventListener("invalid", event => {
+      let parent = (event.target as HTMLElement).parentElement;
+      while (parent && parent !== form) {
+        if (parent instanceof HTMLDetailsElement) parent.open = true;
+        parent = parent.parentElement;
+      }
+    }, true);
+  });
+</script>

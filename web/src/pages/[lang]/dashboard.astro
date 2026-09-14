@@ -1,0 +1,8 @@
+---
+import DashboardPage from "../../sections/DashboardPage.astro";
+import { languages } from "../../data/site";
+export function getStaticPaths() {
+  return languages.filter(lang => lang.code !== "en").map(lang => ({ params: { lang: lang.code } }));
+}
+---
+<DashboardPage lang={Astro.params.lang ?? "en"} />

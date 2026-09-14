@@ -1,0 +1,332 @@
+{
+  "string": [
+    {
+      "name": "pn_1d0c220d",
+      "value": "Konto"
+    },
+    {
+      "name": "pn_3ff5b7c",
+      "value": "E-Mail"
+    },
+    {
+      "name": "pn_8b78a0b2",
+      "value": "Bestätigungscode"
+    },
+    {
+      "name": "pn_758a6365",
+      "value": "Code senden"
+    },
+    {
+      "name": "pn_dfb00a48",
+      "value": "Anmelden"
+    },
+    {
+      "name": "pn_4c641ebb",
+      "value": "Passwort"
+    },
+    {
+      "name": "pn_4c9908dd",
+      "value": "Mit Passwort anmelden"
+    },
+    {
+      "name": "pn_fa0db2df",
+      "value": "Push-Mitteilungen registrieren"
+    },
+    {
+      "name": "pn_1651568b",
+      "value": "Abmelden"
+    },
+    {
+      "name": "pn_c03144bd",
+      "value": "Geräte"
+    },
+    {
+      "name": "pn_4f1dee84",
+      "value": "Deine iOS- und HarmonyOS-Geräte nutzen ein Konto. Vergleiche die Kopplungscodes, bevor du neue Geräte genehmigst."
+    },
+    {
+      "name": "pn_ae2bcad5",
+      "value": "Dieses Gerät verknüpfen"
+    },
+    {
+      "name": "pn_89b3567b",
+      "value": "Genehmigung prüfen"
+    },
+    {
+      "name": "pn_97e84468",
+      "value": "Kopplungscode anzeigen"
+    },
+    {
+      "name": "pn_ea9f6ea9",
+      "value": "Gerät genehmigen"
+    },
+    {
+      "name": "pn_694e66b6",
+      "value": "Gerät genehmigen?"
+    },
+    {
+      "name": "pn_8502a26c",
+      "value": "Bestätige, dass der Code mit dem neuen Gerät übereinstimmt."
+    },
+    {
+      "name": "pn_77df1a9a",
+      "value": "Abbrechen"
+    },
+    {
+      "name": "pn_ca7a712b",
+      "value": "Codes stimmen überein"
+    },
+    {
+      "name": "pn_7b75c4c8",
+      "value": "Mitteilungen"
+    },
+    {
+      "name": "pn_3f808a14",
+      "value": "Zugriff auf Verlauf erlauben"
+    },
+    {
+      "name": "pn_3f879f5",
+      "value": "Gerätename"
+    },
+    {
+      "name": "pn_7ef12f2e",
+      "value": "Namen speichern"
+    },
+    {
+      "name": "pn_91b0235e",
+      "value": "Umbenennen"
+    },
+    {
+      "name": "pn_d93bc4be",
+      "value": "Absender"
+    },
+    {
+      "name": "pn_f39568f",
+      "value": "Gib den Autorisierungscode des HTTP-Absenders ein. Prüfe vor der Freigabe seinen Namen und öffentlichen Schlüssel."
+    },
+    {
+      "name": "pn_b3b2c900",
+      "value": "Autorisierungscode mit 8 Zeichen"
+    },
+    {
+      "name": "pn_30051b39",
+      "value": "Absender suchen"
+    },
+    {
+      "name": "pn_adef9420",
+      "value": "Diesen Absender autorisieren"
+    },
+    {
+      "name": "pn_52331753",
+      "value": "Absender autorisieren?"
+    },
+    {
+      "name": "pn_854fddf",
+      "value": "Bestätige, dass Name und beide Fingerabdrücke mit deinem HTTP-Absender übereinstimmen."
+    },
+    {
+      "name": "pn_e1b35694",
+      "value": "Fingerabdrücke stimmen überein"
+    },
+    {
+      "name": "pn_b72ebf8",
+      "value": "Keine autorisierten Absender"
+    },
+    {
+      "name": "pn_38b0fc1e",
+      "value": "Zugriff widerrufen"
+    },
+    {
+      "name": "pn_99a2bd30",
+      "value": "Absender widerrufen?"
+    },
+    {
+      "name": "pn_91b3faa6",
+      "value": "Widerrufen"
+    },
+    {
+      "name": "pn_4383266",
+      "value": "Posteingang"
+    },
+    {
+      "name": "pn_8489da6c",
+      "value": "Keine entschlüsselten Nachrichten verfügbar. Aktualisiere nach der Gerätegenehmigung."
+    },
+    {
+      "name": "pn_77a5a763",
+      "value": "Melde dich an, um verschlüsselte Nachrichten zu empfangen."
+    },
+    {
+      "name": "pn_de2d87cd",
+      "value": "Einklappen"
+    },
+    {
+      "name": "pn_259a6a",
+      "value": "Öffnen"
+    },
+    {
+      "name": "pn_a2d98a7c",
+      "value": "Empfang bestätigen"
+    },
+    {
+      "name": "pn_3bfc9ae9",
+      "value": "Als gelesen markieren"
+    },
+    {
+      "name": "pn_79cb71cb",
+      "value": "Löschen"
+    },
+    {
+      "name": "pn_e8c343cd",
+      "value": "Nachricht löschen?"
+    },
+    {
+      "name": "pn_870bc8ab",
+      "value": "Dadurch wird die Nachricht von allen Geräten entfernt."
+    },
+    {
+      "name": "pn_50417ba8",
+      "value": "Vorschau"
+    },
+    {
+      "name": "pn_7eedaa1f",
+      "value": "Datei speichern"
+    },
+    {
+      "name": "pn_a3eb2abb",
+      "value": "Aktualisieren"
+    },
+    {
+      "name": "pn_e603a60f",
+      "value": "Nicht registriert"
+    },
+    {
+      "name": "pn_75cfaa2",
+      "value": "Registriert"
+    },
+    {
+      "name": "pn_bd01ec42",
+      "value": "Verknüpfe dieses Gerät und genehmige es von einem vertrauenswürdigen Gerät aus."
+    },
+    {
+      "name": "pn_18a2be46",
+      "value": "Bestätigungscode gesendet"
+    },
+    {
+      "name": "pn_5193a992",
+      "value": "Gerät ist aktiv"
+    },
+    {
+      "name": "pn_84e6551c",
+      "value": "Vergleiche vor der Genehmigung die Codes auf deinem vertrauenswürdigen Gerät"
+    },
+    {
+      "name": "pn_a4372cd8",
+      "value": "Vergleiche zuerst den Kopplungscode dieses Geräts"
+    },
+    {
+      "name": "pn_f2720307",
+      "value": "Zugriff auf verschlüsselten Verlauf gewährt"
+    },
+    {
+      "name": "pn_4a1edd43",
+      "value": "Push-Token nicht verfügbar"
+    },
+    {
+      "name": "pn_d08e8ad3",
+      "value": "Suche zuerst einen Autorisierungscode"
+    },
+    {
+      "name": "pn_c67a7046",
+      "value": "Absender autorisiert"
+    },
+    {
+      "name": "pn_94b7f8e1",
+      "value": "Nachrichtenempfang bestätigt"
+    },
+    {
+      "name": "pn_115a1cf0",
+      "value": "Als gelesen markiert"
+    },
+    {
+      "name": "pn_410db16e",
+      "value": "Harmony Push: {0}"
+    },
+    {
+      "name": "pn_6b0549dd",
+      "value": "Kopplungscode: {0}"
+    },
+    {
+      "name": "pn_e04bd1f8",
+      "value": "Dieses Gerät"
+    },
+    {
+      "name": "pn_a9471271",
+      "value": "Konto-Fingerabdruck: {0}"
+    },
+    {
+      "name": "pn_e45a4729",
+      "value": "Absender-Fingerabdruck: {0}"
+    },
+    {
+      "name": "pn_76e2c08e",
+      "value": "Läuft ab: {0}"
+    },
+    {
+      "name": "pn_79084d90",
+      "value": "Künftige Anfragen von {0} stoppen?"
+    },
+    {
+      "name": "pn_1a794ef1",
+      "value": "{0} · {1} Bytes"
+    },
+    {
+      "name": "pn_ab2f7f06",
+      "value": "Aktiv"
+    },
+    {
+      "name": "pn_d7508997",
+      "value": "Ausstehend"
+    },
+    {
+      "name": "pn_4192c29e",
+      "value": "Widerrufen"
+    },
+    {
+      "name": "pn_b7363949",
+      "value": "In dieser Sitzung nicht geprüft"
+    },
+    {
+      "name": "pn_9bbcb7da",
+      "value": "Melde dich an, um fortzufahren."
+    },
+    {
+      "name": "pn_cd91d642",
+      "value": "Deine Sitzung hat sich geändert. Melde dich erneut an."
+    },
+    {
+      "name": "pn_86a6a0c5",
+      "value": "Genehmige dieses Gerät zuerst von einem vertrauenswürdigen Gerät aus."
+    },
+    {
+      "name": "pn_ed01534f",
+      "value": "Der Verlaufszugriff steht aus. Erlaube ihn von einem vertrauenswürdigen Gerät aus."
+    },
+    {
+      "name": "pn_fa8cf006",
+      "value": "Diese Aktion erfordert ein vertrauenswürdiges Gerät."
+    },
+    {
+      "name": "pn_93fc5123",
+      "value": "Gib einen gültigen Autorisierungscode mit 8 Zeichen ein."
+    },
+    {
+      "name": "pn_636bc0d7",
+      "value": "Der Code ist abgelaufen. Fordere einen neuen an."
+    },
+    {
+      "name": "pn_4eeb49bc",
+      "value": "Die Prüfung verschlüsselter Daten ist fehlgeschlagen. Prüfe Gerät und Konto vor der Genehmigung."
+    }
+  ]
+}

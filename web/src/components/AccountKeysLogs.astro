@@ -1,0 +1,51 @@
+---
+const { lang } = Astro.props;
+const zh = lang === "zh-Hans";
+---
+<div class="keys-logs" data-keys-logs data-language={lang}>
+  <section id="keys-heading" data-dashboard-panel="keys" aria-labelledby="keys-title">
+    <header><div><h3 id="keys-title">{zh ? "通知 Key" : "Notification keys"}</h3><p>{zh ? "HTTP 集成使用 source_key。明文只显示一次，请在生成后立即复制或下载保存。" : "HTTP integrations use source_key. The secret is shown once, so copy or download it after generation."}</p></div><button type="button" data-reload>{zh ? "刷新" : "Refresh"}</button></header>
+    <p class="key-rule">{zh ? "每个发送来源最多保留 2 个有效 Key。删除会立即失效；重新生成会先让旧 Key 失效，再显示一个新的 Key。" : "Each sender can keep at most 2 active keys. Deleting a key invalidates it immediately; regenerating first invalidates the old key, then shows a new one."}</p>
+    <form data-add-key>
+      <label>{zh ? "发送来源" : "Sender"}<select name="source" required aria-label={zh ? "发送来源" : "Sender"}></select></label>
+      <label>{zh ? "有效期" : "Expires"}<select name="expiry"><option value="30">{zh ? "30 天" : "30 days"}</option><option value="90">{zh ? "90 天" : "90 days"}</option><option value="365">{zh ? "1 年" : "1 year"}</option><option value="never">{zh ? "永不过期" : "Never"}</option></select></label>
+      <button type="submit">{zh ? "生成 Key" : "Generate key"}</button>
+    </form>
+    <p data-key-message role="status" aria-live="polite"></p>
+    <div data-secret-panel hidden><strong>{zh ? "请妥善保管，此密钥仅显示一次。" : "Store this key safely. It is shown only once."}</strong><code data-secret></code><button type="button" data-copy>{zh ? "复制" : "Copy"}</button><button type="button" data-download-secret>{zh ? "下载保存" : "Download"}</button><button type="button" data-dismiss>{zh ? "关闭" : "Dismiss"}</button></div>
+    <div data-key-list></div>
+  </section>
+  <section id="logs-heading" data-dashboard-panel="logs" aria-labelledby="logs-title">
+    <header><h3 id="logs-title">{zh ? "通知日志" : "Notification logs"}</h3><label>{zh ? "Key 筛选" : "Filter by key"}<select data-log-filter></select></label></header>
+    <p data-log-message role="status" aria-live="polite"></p>
+    <div data-log-list></div>
+    <button type="button" data-more hidden>{zh ? "加载更多" : "Load more"}</button>
+  </section>
+</div>
+<script>
+  import { initKeysLogs } from "../scripts/account-keys-logs";
+  document.querySelectorAll<HTMLElement>("[data-keys-logs]").forEach(initKeysLogs);
+</script>
+<style>
+  .keys-logs { min-width: 0; margin-top: 32px; }
+	  section { padding: 0; border-top: 0; }
+	  header, form { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; }
+	  header { justify-content: space-between; margin-bottom: 18px; }
+	  header p, .key-rule { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 720px; }
+	  h3 { font-size: 22px; margin: 0; }
+  label { display: grid; gap: 6px; font-size: 13px; flex: 1; min-width: 150px; }
+  header label { flex: 0 1 280px; }
+  button, select, input { font: inherit; color: inherit; background: var(--surface, #7771); border: 1px solid #8888; border-radius: 6px; padding: 9px 12px; min-height: 40px; max-width: 100%; }
+  select { width: 100%; }
+  option { background: #fff; color: #171717; }
+  button { cursor: pointer; }
+  button:disabled { opacity: .5; cursor: wait; }
+	  [data-secret-panel] { padding: 16px; margin: 16px 0; border: 1px solid var(--line, #8886); border-radius: 14px; background: var(--paper-soft, #8881); }
+  code { display: block; overflow-wrap: anywhere; margin: 12px 0; }
+  .keys-logs :global(.entry) { padding: 18px 0; border-bottom: 1px solid #8884; overflow-wrap: anywhere; }
+  .keys-logs :global(.entry p) { font-size: 13px; margin: 6px 0; }
+  .keys-logs :global(.entry-actions) { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+  .keys-logs :global(button), .keys-logs :global(input) { font: inherit; color: inherit; background: #8881; border: 1px solid #8888; border-radius: 6px; padding: 9px 12px; min-height: 40px; max-width: 100%; }
+  .keys-logs :global(.delivery) { margin: 10px 0 0; padding-left: 16px; border-left: 2px solid #8886; }
+  @media(max-width: 600px) { form { align-items: stretch; } form > button { width: 100%; } header { align-items: start; } header label { flex-basis: 100%; } }
+</style>

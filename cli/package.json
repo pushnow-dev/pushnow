@@ -1,0 +1,18 @@
+{
+  "name": "pushnow-secure-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "bin": { "pushnow": "./src/main.js" },
+  "exports": "./src/sdk.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "interop": "node test/interop.js",
+    "test:api": "node test/api-interop.js",
+    "interop:v2": "node test/v2-interop.js",
+    "test:api:v2": "node test/v2-api-interop.js",
+    "test:keychain": "node test/keychain-interop.js"
+  },
+  "dependencies": { "@hpke/core": "1.9.0" }
+}

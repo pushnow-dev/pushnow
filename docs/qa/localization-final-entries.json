@@ -1,0 +1,45 @@
+{
+  "strings": {
+    "Notification delivery failed. Check the device or contact support.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notification delivery failed. Check the device or contact support."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通知投递失败，请检查设备或联系支持。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通知の配信に失敗しました。端末を確認するか、サポートにお問い合わせください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알림 전달에 실패했습니다. 기기를 확인하거나 지원팀에 문의하세요."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La entrega de la notificación ha fallado. Revisa el dispositivo o contacta con soporte."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Benachrichtigung konnte nicht zugestellt werden. Prüfe das Gerät oder kontaktiere den Support."
+          }
+        }
+      }
+    }
+  }
+}

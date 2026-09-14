@@ -1,0 +1,18 @@
+[
+  {
+    "id": "6811365720",
+    "name": "Pushnow Plus Monthly",
+    "productId": "com.createitv.pushnow.plus.monthly",
+    "state": "READY_TO_SUBMIT",
+    "subscriptionPeriod": "ONE_MONTH",
+    "groupLevel": 2
+  },
+  {
+    "id": "6811365836",
+    "name": "Pushnow Pro Monthly",
+    "productId": "com.createitv.pushnow.pro.monthly",
+    "state": "READY_TO_SUBMIT",
+    "subscriptionPeriod": "ONE_MONTH",
+    "groupLevel": 1
+  }
+]

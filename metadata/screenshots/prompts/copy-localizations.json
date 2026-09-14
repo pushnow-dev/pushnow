@@ -1,0 +1,8 @@
+{
+  "en-US": {"inboxTitle":"Your workflows. One inbox.","inboxSubtitle":"Important results, ready to read.","detailTitle":"More context. Less guesswork.","detailSubtitle":"Read the details behind each notification."},
+  "zh-Hans": {"inboxTitle":"自动化结果，一个收件箱。","inboxSubtitle":"重要信息，随时查看。","detailTitle":"不止通知，还有完整详情。","detailSubtitle":"打开消息，了解事情的来龙去脉。"},
+  "ja": {"inboxTitle":"自動化の結果を、ひとつに。","inboxSubtitle":"大切な情報を、いつでも確認。","detailTitle":"通知の先に、詳しい情報。","detailSubtitle":"メッセージを開いて、詳細を確認。"},
+  "ko": {"inboxTitle":"자동화 결과를 한곳에.","inboxSubtitle":"중요한 정보를 언제든 확인하세요.","detailTitle":"알림 너머의 자세한 정보.","detailSubtitle":"메시지를 열어 내용을 확인하세요."},
+  "es-ES": {"inboxTitle":"Sus flujos. Una bandeja.","inboxSubtitle":"Resultados importantes, listos para leer.","detailTitle":"Más contexto en cada aviso.","detailSubtitle":"Abra el mensaje y consulte los detalles."},
+  "de-DE": {"inboxTitle":"Ihre Workflows. Ein Posteingang.","inboxSubtitle":"Wichtige Ergebnisse, jederzeit lesbar.","detailTitle":"Mehr Kontext zu jeder Nachricht.","detailSubtitle":"Öffnen Sie eine Mitteilung für alle Details."}
+}

@@ -1,0 +1,17 @@
+---
+import DocsShell from "../../../components/DocsShell.astro";
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import { docsFor } from "../../../data/docs";
+import { languages } from "../../../data/site";
+
+export function getStaticPaths() {
+  return languages.filter((item) => item.code !== "en").map((item) => ({ params: { lang: item.code } }));
+}
+
+const { lang } = Astro.params;
+const doc = docsFor(lang ?? "en")[0];
+---
+
+<SiteLayout lang={lang ?? "en"} title={`${doc.title} - Pushnow Docs`} description={doc.description} slug="docs">
+  <DocsShell lang={lang ?? "en"} doc={doc} />
+</SiteLayout>

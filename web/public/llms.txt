@@ -1,0 +1,36 @@
+# PushNow
+
+> PushNow is an iOS inbox for results from agents, scripts, and automations. This index links to public product explanations and integration documentation; it does not certify App Store availability, device delivery, or search visibility.
+
+## Product guides
+- [English](https://pushnow.dev/guide/): Setup, notification behavior, privacy boundaries, purchases, and troubleshooting.
+- [简体中文](https://pushnow.dev/zh-Hans/guide/)
+- [日本語](https://pushnow.dev/ja/guide/)
+- [한국어](https://pushnow.dev/ko/guide/)
+- [Español](https://pushnow.dev/es/guide/)
+- [Deutsch](https://pushnow.dev/de/guide/)
+
+## Product summary
+- Product category: iOS notification inbox for AI agent results, automation outputs, monitoring alerts, scheduled reports, and source-key based integrations.
+- Primary audience: builders and operators who want automated systems to send useful results to an iPhone without turning every tool into a separate notification channel.
+- Core use cases: build-complete alerts, monitor events, AI research summaries, scheduled reports, webhook notifications, and in-app-only message storage.
+- Delivery boundary: API acceptance, inbox storage, provider delivery, and a visible device notification are separate events. Always verify the intended device and notification settings.
+- Security boundary: documented v2 message content is encrypted before upload. Routing metadata, source names, timing, ciphertext size, and delivery records remain visible service metadata.
+
+## Pricing and plans
+- [Machine-readable pricing](https://pushnow.dev/pricing.md)
+- Free: CNY 0, 50 notification items per day.
+- Plus: CNY 8 per month, 500 notification items per day.
+- Pro: CNY 18 per month, unlimited daily notification items subject to platform and abuse limits.
+- The App Store purchase sheet is the authority for current local price, billing period, and entitlement status.
+
+## Integration and support
+- [Documentation](https://pushnow.dev/docs/): Consult current guides for supported API flows and constraints.
+- [Sender authorization](https://pushnow.dev/docs/hpke-authorization/): Fingerprint verification and encryption boundaries.
+- [HTTP API](https://pushnow.dev/docs/http-api/): Production API origin, request structure, and sender key behavior.
+- [Send test request](https://pushnow.dev/docs/send-test-request/): Browser console workflow and delivery caveats.
+- [Privacy](https://pushnow.dev/privacy/)
+- [Terms](https://pushnow.dev/terms/)
+- [Support](https://pushnow.dev/support/)
+
+The in-app purchase sheet is the authority for available products and local prices. API acceptance is not proof of a visible device notification. Routing metadata remains visible to the service even when message contents are encrypted.

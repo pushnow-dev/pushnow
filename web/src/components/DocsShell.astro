@@ -1,0 +1,74 @@
+---
+import { docsFor, type DocPage } from "../data/docs";
+import { pathFor, site } from "../data/site";
+import "../styles/docs.css";
+import ThemeToggle from "./ThemeToggle.astro";
+import AuthModal from "./AuthModal.astro";
+const { lang, doc } = Astro.props as { lang: string; doc: DocPage };
+const docs = docsFor(lang);
+const zh = lang === "zh-Hans";
+const headings = doc.headings.filter(heading => heading.depth === 2);
+const index = docs.findIndex(page => page.slug === doc.slug);
+const adjacent = [docs[index - 1], docs[index + 1]];
+---
+<div class="developer-docs" data-docs-lang={lang}>
+  <a class="docs-skip" href="#docs-content">{zh ? "跳转到正文" : "Skip to content"}</a>
+  <header class="docs-topbar" data-account-nav data-api={site.api}>
+    <a class="docs-brand" href={pathFor(lang)}><img src="/assets/jizhi-app-icon.png" width="32" height="32" alt="" />{zh ? "即知" : "PushNow"}<span>Docs</span></a>
+    <nav aria-label={zh ? "主导航" : "Main navigation"}>
+      <a href={pathFor(lang, "api")}>API</a>
+      <a href={zh ? "/docs/" : "/zh-Hans/docs/"} lang={zh ? "en" : "zh-Hans"}>{zh ? "English" : "中文"}</a>
+      <a class="docs-dashboard-link" href={pathFor(lang, "dashboard")}>{zh ? "控制台" : "Dashboard"}</a>
+      <ThemeToggle lang={lang} />
+      <button type="button" data-nav-login data-login-open>{zh ? "登录" : "Sign in"}</button>
+      <a href={pathFor(lang, "dashboard")} data-nav-account hidden><span>{zh ? "已登录" : "Signed in"}</span> <span data-nav-email></span></a>
+    </nav>
+  </header>
+  <div class="docs-workspace">
+    <aside class="docs-navigation" aria-label={zh ? "文档导航" : "Documentation"}>
+      <details open><summary>{zh ? "文档目录" : "Documentation"}</summary>
+        <nav>{docs.map(page => <a href={pathFor(lang, `docs/${page.slug}`)} aria-current={page.slug === doc.slug ? "page" : undefined}>{page.title}</a>)}</nav>
+      </details>
+    </aside>
+    <main id="docs-content" class="docs-content" tabindex="-1">
+      <header class="docs-page-heading"><p>{zh ? "开发者文档" : "Developer documentation"}</p><h1>{doc.title}</h1><p>{doc.description}</p></header>
+      <article class="docs-markdown" set:html={doc.html} />
+      {doc.tryRequest && <section class="docs-request" aria-labelledby="docs-request-title" data-docs-request data-api={site.api} data-method={doc.tryRequest.method} data-path={doc.tryRequest.path}>
+        <h2 id="docs-request-title">{zh ? "测试接口" : "Try this endpoint"}</h2>
+        <code>{doc.tryRequest.method} {doc.tryRequest.path}</code>
+        {doc.tryRequest.auth || doc.tryRequest.method !== "GET" || !["/health", "/healthz"].includes(doc.tryRequest.path) ? <a href={pathFor(lang, "dashboard")}>{zh ? "在控制台测试" : "Test in Dashboard"}</a> : <>
+          <button type="button" data-docs-send>{zh ? "发送请求" : "Send request"}</button>
+          <pre data-docs-response role="status" aria-live="polite">{zh ? "尚未发送" : "No request sent"}</pre>
+        </>}
+      </section>}
+      <nav class="docs-pagination" aria-label={zh ? "相邻文档" : "More documentation"}>
+        {adjacent.map((page, i) => page ? <a href={pathFor(lang, `docs/${page.slug}`)}><small>{i === 0 ? (zh ? "上一篇" : "Previous") : (zh ? "下一篇" : "Next")}</small>{page.title}</a> : <span />)}
+      </nav>
+    </main>
+    <aside class="docs-on-page" aria-label={zh ? "本页目录" : "On this page"}>
+      <strong>{zh ? "本页目录" : "On this page"}</strong>
+      {headings.map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}
+    </aside>
+  </div>
+</div>
+<AuthModal lang={lang} />
+<script>
+  import "../scripts/site-account";
+  document.querySelectorAll<HTMLElement>("[data-docs-request]").forEach(root => {
+    const button = root.querySelector<HTMLButtonElement>("[data-docs-send]");
+    const output = root.querySelector<HTMLElement>("[data-docs-response]");
+    if (!button || !output) return;
+    button.addEventListener("click", async () => {
+      // Authenticated operations belong to Dashboard; this page only runs public health checks.
+      if (root.dataset.method !== "GET" || !["/health", "/healthz"].includes(root.dataset.path || "")) return;
+      button.disabled = true;
+      const start = performance.now();
+      try {
+        const response = await fetch(`${root.dataset.api}${root.dataset.path}`, { redirect: "error", credentials: "omit", signal: AbortSignal.timeout(15000) });
+        const body = await response.json();
+        output.textContent = `GET ${root.dataset.path}\nHTTP ${response.status} · ${Math.round(performance.now() - start)} ms\n${JSON.stringify({ status: body.status ?? body.ok ?? "unknown" }, null, 2)}`;
+      } catch { output.textContent = root.closest<HTMLElement>("[data-docs-lang]")?.dataset.docsLang === "zh-Hans" ? "请求失败，请检查网络后重试。" : "Request unavailable. Check your connection and try again."; }
+      finally { button.disabled = false; }
+    });
+  });
+</script>

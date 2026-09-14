@@ -1,0 +1,26 @@
+{
+  "data": {
+    "type": "subscriptionAppStoreReviewScreenshots",
+    "id": "62587ecc-fad7-44ef-b09c-e66c356850e0",
+    "attributes": {
+      "fileSize": 249204,
+      "fileName": "SOURCE",
+      "sourceFileChecksum": "15c349eba701fd29ce967716477940f4",
+      "assetToken": "b5e7c650-94d1-0f88-8589-31bd0fbbb0c3",
+      "imageAsset": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/LYUMycZFz4rNfp-pFXq6IQ/{w}x{h}bb.{f}",
+        "width": 1242,
+        "height": 2688
+      },
+      "assetDeliveryState": {
+        "state": "COMPLETE"
+      }
+    },
+    "links": {
+      "self": "https://api.appstoreconnect.apple.com/v1/subscriptionAppStoreReviewScreenshots/62587ecc-fad7-44ef-b09c-e66c356850e0"
+    }
+  },
+  "links": {
+    "self": "https://api.appstoreconnect.apple.com/v1/subscriptionAppStoreReviewScreenshots/62587ecc-fad7-44ef-b09c-e66c356850e0"
+  }
+}

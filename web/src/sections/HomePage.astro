@@ -1,0 +1,272 @@
+---
+import { productGuides } from "../data/product-guide";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import HeroVisual from "../components/HeroVisual.astro";
+import SiteNav from "../components/SiteNav.astro";
+import { languages, localizedCopy, pathFor, site } from "../data/site";
+
+const { lang } = Astro.props;
+const t = localizedCopy(lang);
+const isChinese = lang === "zh-Hans";
+const copy = isChinese
+  ? {
+      heroLead: "注意力有限。把它留给值得的事。",
+      heroSub: "世界总有新的声音。你可以决定，何时倾听。",
+      command: "发送一条 P1 构建完成提醒",
+      commandMeta: "push=true · priority=P1 · source=deploy",
+      logos: ["Cloudflare Workers", "D1", "APNs", "RevenueCat", "Markdown Docs"],
+      workTitle: "停止让工具乱发通知。",
+      workIntro: "把 Agent、监控和订阅结果接入同一条收件管线，再由用户自己决定什么值得打断。",
+      workspaceTitle: "一个收件箱，三件事。",
+      workspaceIntro: "捕获上下文、绑定设备、用 Markdown 文档把集成流程讲清楚。",
+      docsTitle: "文档可以直接试。",
+      docsIntro: "Docs 来自本地 Markdown 文件，支持代码块和可点击 API 测试面板。",
+      docsButton: "打开 Docs",
+      apiButton: "查看 API",
+      pricingTitle: "会员权益直接对比。",
+      ctaTitle: "让你的自动化系统开口，但不要吵。",
+      ctaBody: "用邮箱登录、来源密钥和 App 推送，把真正重要的消息送到正确设备。",
+      ctaPrimary: "登录 Web 控制台",
+      ctaSecondary: "阅读文档"
+    }
+  : {
+      heroLead: "Your attention is finite. Give it to what matters.",
+      heroSub: "The world always has something to say. You decide when to listen.",
+      command: "Send a P1 build-finished notification",
+      commandMeta: "push=true · priority=P1 · source=deploy",
+      logos: ["Cloudflare Workers", "D1", "APNs", "RevenueCat", "Markdown Docs"],
+      workTitle: "Stop wiring up tools one notification at a time.",
+      workIntro: "Route agents, monitors, and subscriptions into one inbox pipeline, then let the user decide what deserves interruption.",
+      workspaceTitle: "One inbox. Three things.",
+      workspaceIntro: "Capture context, authorize devices, and document integrations with Markdown.",
+      docsTitle: "Docs you can test from.",
+      docsIntro: "Docs are backed by local Markdown files, with code blocks and clickable API request panels.",
+      docsButton: "Open Docs",
+      apiButton: "View API",
+      pricingTitle: "Membership at a glance.",
+      ctaTitle: "Let your automation speak without shouting.",
+      ctaBody: "Use email login, source keys, and App push to send the right message to the right device.",
+      ctaPrimary: "Sign in to console",
+      ctaSecondary: "Read Docs"
+    };
+
+const pillars = isChinese
+  ? [
+      ["捕获上下文", "标题、正文、优先级、来源、幂等 key 和是否推送都随事项保存。"],
+      ["授权设备", "登录后的 iPhone 设备和 APNs token 绑定到同一用户。"],
+      ["会员额度", "免费 50 次、Plus 500 次、Pro 不限次数，页面直接展示权益。"]
+    ]
+  : [
+      ["Capture context", "Store title, body, priority, source, idempotency key, and push preference with every item."],
+      ["Authorize devices", "Signed-in iPhones and APNs tokens are bound to the verified user."],
+      ["Membership limits", "Free gets 50, Plus gets 500, and Pro gets unlimited daily items with entitlement checks."]
+    ];
+
+const plans = isChinese
+  ? [
+      ["Free", "¥0", "每天 50 次", "适合个人试用和轻量 Agent。"],
+      ["Plus", "¥8/月", "每天 500 次", "适合多个自动化流程和更高频通知。"],
+      ["Pro", "¥18/月", "不限次数", "适合重度工作流，仍受平台和防滥用限制。"]
+    ]
+  : [
+      ["Free", "CNY 0", "50/day", "For personal trials and light agent usage."],
+      ["Plus", "CNY 8/mo", "500/day", "For several workflows and higher notification volume."],
+      ["Pro", "CNY 18/mo", "Unlimited", "For heavy workflows, subject to platform and abuse limits."]
+    ];
+const docsSnippet = `import { sendNotification } from '@pushnow/sdk';
+
+// config: account-approved sender credentials
+await sendNotification(config, {
+  title: 'Build finished',
+  body: 'Ready to review.',
+  links: ['https://example.com/build/42'],
+});`;
+const visualBrand = isChinese ? "即知" : site.name;
+
+const pageURL = `${site.domain}${pathFor(lang)}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.domain}/#organization`,
+      name: "CreateITV",
+      url: site.domain,
+      email: site.supportEmail
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": `${pageURL}#app`,
+      name: site.name,
+      alternateName: site.displayName,
+      operatingSystem: "iOS 18.0 or later",
+      applicationCategory: "ProductivityApplication",
+      description: t.metaDescription,
+      url: pageURL,
+      image: `${site.domain}/assets/jizhi-app-icon.png`,
+      ...(site.appStoreURL ? { downloadUrl: site.appStoreURL } : {}),
+      publisher: { "@id": `${site.domain}/#organization` },
+      offers: plans.map(([name, price, quota, body]) => ({
+        "@type": "Offer",
+        name: `${site.name} ${name}`,
+        price: price.replace(/[^\d.]/g, "") || "0",
+        priceCurrency: "CNY",
+        description: `${quota}. ${body}`,
+        availability: "https://schema.org/InStock"
+      }))
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${pageURL}#faq`,
+      mainEntity: productGuides[lang].faq.slice(0, 6).map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer }
+      }))
+    }
+  ]
+};
+---
+
+<SiteLayout lang={lang} title={t.metaTitle} description={t.metaDescription} jsonLd={jsonLd}>
+  <main class="site-shell">
+    <SiteNav lang={lang} floating />
+
+    <section class="zaro-hero container">
+      <p class="eyebrow">{visualBrand}</p>
+      <h1>{isChinese ? "纷繁之中。" : "Amid the noise."}<span>{isChinese ? "心有所知。" : "Room for meaning."}</span></h1>
+      <p class="hero-lead">{copy.heroLead}</p>
+      <p class="hero-sub">{copy.heroSub}</p>
+      <div class="hero-actions" id="download">
+        <a class="button primary" href={site.appStoreURL || "#download"} aria-disabled={site.appStoreURL ? "false" : "true"}>
+          {site.appStoreURL ? t.download : t.comingSoon}
+        </a>
+        <a class="button secondary" href={pathFor(lang, "dashboard")}>{copy.ctaPrimary}</a>
+      </div>
+
+      <HeroVisual />
+    </section>
+
+    <section class="product-stage" id="product">
+      <div class="container section-heading center">
+        <p class="eyebrow">{isChinese ? "产品界面" : "Product"}</p>
+        <h2>{copy.workTitle}</h2>
+        <p>{copy.workIntro}</p>
+      </div>
+      <div class="container cockpit">
+        <div class="product-preview flat">
+          <img src="/assets/jizhi-app-design-board.png" width="1200" height="1104" alt="Pushnow iOS app screens for inbox, sources, reminders, account, and membership" decoding="async" fetchpriority="high" />
+        </div>
+        <div class="cockpit-rail">
+          {t.features.map(([title, body]) => (
+            <article>
+              <span></span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="container dashboard-entry" id="account">
+      <h2>{isChinese ? "你的通知工作台" : "Your notification dashboard"}</h2>
+      <a class="button primary" href={pathFor(lang, "dashboard")}>{isChinese ? "打开 Dashboard" : "Open dashboard"}</a>
+    </section>
+
+    <section class="workspace-section container">
+      <div class="section-heading center">
+        <p class="eyebrow">{isChinese ? "工作区" : "Workspace"}</p>
+        <h2>{copy.workspaceTitle}</h2>
+        <p>{copy.workspaceIntro}</p>
+      </div>
+      <div class="workspace-grid">
+        {pillars.map(([title, body]) => (
+          <article class="workspace-card">
+            <div class="mini-window">
+              <span></span><span></span><span></span>
+              <div></div>
+            </div>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="pricing-section container" id="pricing">
+      <div class="section-heading">
+        <p class="eyebrow">{isChinese ? "会员计划" : "Plans"}</p>
+        <h2>{copy.pricingTitle}</h2>
+        <p>{t.pricing}</p>
+        <p>{productGuides[lang].faq[4][1]}</p>
+      </div>
+      <div class="plan-grid">
+        {plans.map(([name, price, quota, body]) => (
+          <article class:list={["plan-card", name === "Plus" && "featured"]}>
+            <span>{quota}</span>
+            <h3>{name}</h3>
+            <strong>{price}</strong>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="docs-preview container" id="docs">
+      <div>
+        <p class="eyebrow">Docs</p>
+        <h2>{copy.docsTitle}</h2>
+        <p>{copy.docsIntro}</p>
+        <div class="hero-actions">
+          <a class="button primary" href={pathFor(lang, "docs")}>{copy.docsButton}</a>
+          <a class="button secondary" href={pathFor(lang, "api")}>{copy.apiButton}</a>
+        </div>
+      </div>
+      <div class="markdown-window" aria-label="Markdown documentation preview">
+        <header>send-test-request.md</header>
+        <pre><code>{docsSnippet}</code></pre>
+      </div>
+    </section>
+
+    <section class="container docs-preview" id="guide">
+      <div>
+        <h2>{productGuides[lang].title}</h2>
+        <p>{productGuides[lang].intro}</p>
+        <a class="button secondary" href={pathFor(lang, "guide")}>{productGuides[lang].faqTitle}</a>
+      </div>
+      <div>{productGuides[lang].faq.slice(0, 2).map(([question, answer]) => <article><h3>{question}</h3><p>{answer}</p></article>)}</div>
+    </section>
+
+    <section class="download-section container" aria-labelledby="download-title">
+      <div>
+        <h2 id="download-title">{t.qrTitle}</h2>
+        <p>{t.privacyPromise}</p>
+      </div>
+      <img class="qr" src="/assets/download-qr.svg" width="150" height="150" alt="QR code for the Pushnow download page" loading="lazy" decoding="async" />
+    </section>
+
+    <section class="final-cta">
+      <div class="signal-matrix" aria-hidden="true"></div>
+      <div class="container final-cta-inner">
+        <h2>{copy.ctaTitle}</h2>
+        <p>{copy.ctaBody}</p>
+        <div class="hero-actions">
+          <a class="button light" href={pathFor(lang, "dashboard")}>{copy.ctaPrimary}</a>
+          <a class="button ghost" href={pathFor(lang, "docs")}>{copy.ctaSecondary}</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer container">
+      <div class="footer-brand">
+        <img src="/assets/jizhi-app-icon.png" alt="" width="38" height="38" />
+        <strong>{visualBrand}</strong>
+      </div>
+      <div class="language-links" aria-label="Languages">
+        {languages.map((language) => <a href={pathFor(language.code)}>{language.label}</a>)}
+      </div>
+      <p>© 2026 CreateITV. {t.footerSupport}: <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a></p>
+    </footer>
+  </main>
+</SiteLayout>

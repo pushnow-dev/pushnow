@@ -1,0 +1,113 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -jobs 2 -project JiZhi.xcodeproj -scheme JiZhi -destination "platform=iOS Simulator,id=38EEDBF7-0D38-4496-A62C-1D5CA5D8CCD2" -derivedDataPath /tmp/pushnow-account-auth-build -parallel-testing-enabled NO "-only-testing:JiZhiUITests/AccountFlowUITests/testAutomaticAccountSender" ONLY_ACTIVE_ARCH=YES CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test-without-building
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = -
+    CODE_SIGNING_ALLOWED = YES
+    ONLY_ACTIVE_ARCH = YES
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  RevenueCat: https://github.com/RevenueCat/purchases-ios.git @ 5.89.0
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:38EEDBF7-0D38-4496-A62C-1D5CA5D8CCD2, OS:18.4, name:iPhone 16 Pro }
+{ platform:iOS Simulator, arch:x86_64, id:38EEDBF7-0D38-4496-A62C-1D5CA5D8CCD2, OS:18.4, name:iPhone 16 Pro }
+2026-09-13 12:15:43.638692+0800 JiZhiUITests-Runner[58448:34719587] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-09-13 12:15:45.322.
+Test Suite 'JiZhiUITests.xctest' started at 2026-09-13 12:15:45.356.
+Test Suite 'AccountFlowUITests' started at 2026-09-13 12:15:45.356.
+Test Case '-[JiZhiUITests.AccountFlowUITests testAutomaticAccountSender]' started.
+    t =     0.00s Start Test at 2026-09-13 12:15:45.358
+    t =     0.19s Set Up
+    t =     0.20s     Open com.createitv.pushnow
+    t =     0.20s         Launch com.createitv.pushnow
+2026-09-13 12:15:46.455 xcodebuild[58394:34718944] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-09-13 12:15:46.456 xcodebuild[58394:34718944] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     3.03s             Setting up automation session
+    t =     6.12s             Wait for com.createitv.pushnow to idle
+    t =    10.73s Waiting 30.0s for "Sign in with email" Button to exist
+    t =    11.76s     Checking `Expect predicate `existsNoRetry == 1` for object "Sign in with email" Button`
+    t =    11.76s         Checking existence of `"Sign in with email" Button`
+    t =    12.29s Tap "Sign in with email" Button
+    t =    12.29s     Wait for com.createitv.pushnow to idle
+    t =    12.30s     Find the "Sign in with email" Button
+    t =    12.33s     Check for interrupting elements affecting "Sign in with email" Button
+    t =    12.48s     Synthesize event
+    t =    12.83s     Wait for com.createitv.pushnow to idle
+    t =    13.23s Waiting 15.0s for "auth-email" TextField to exist
+    t =    14.25s     Checking `Expect predicate `existsNoRetry == 1` for object "auth-email" TextField`
+    t =    14.25s         Checking existence of `"auth-email" TextField`
+    t =    14.34s Tap "auth-email" TextField
+    t =    14.34s     Wait for com.createitv.pushnow to idle
+    t =    14.34s     Find the "auth-email" TextField
+    t =    14.36s     Check for interrupting elements affecting "auth-email" TextField
+    t =    14.38s     Synthesize event
+    t =    14.67s     Wait for com.createitv.pushnow to idle
+    t =    15.19s Type 'simulator-account@...' into "auth-email" TextField
+    t =    15.19s     Wait for com.createitv.pushnow to idle
+    t =    15.54s     Find the "auth-email" TextField
+    t =    15.64s     Check for interrupting elements affecting "auth-email" TextField
+    t =    15.70s     Synthesize event
+    t =    16.38s     Wait for com.createitv.pushnow to idle
+    t =    16.38s Waiting 15.0s for "auth-password" SecureTextField to exist
+2026-09-13 12:16:02.095552+0800 JiZhiUITests-Runner[58448:34719743] [connection] nw_protocol_socket_set_no_wake_from_sleep [C1:2] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+2026-09-13 12:16:02.095764+0800 JiZhiUITests-Runner[58448:34719743] [] nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+    t =    17.42s     Checking `Expect predicate `existsNoRetry == 1` for object "auth-password" SecureTextField`
+    t =    17.42s         Checking existence of `"auth-password" SecureTextField`
+    t =    17.48s Tap "auth-password" SecureTextField
+    t =    17.48s     Wait for com.createitv.pushnow to idle
+    t =    17.48s     Find the "auth-password" SecureTextField
+    t =    17.51s     Check for interrupting elements affecting "auth-password" SecureTextField
+    t =    17.54s     Synthesize event
+    t =    17.84s     Wait for com.createitv.pushnow to idle
+    t =    17.85s Type 'Simulator-only-Pas...' into "auth-password" SecureTextField
+    t =    17.85s     Wait for com.createitv.pushnow to idle
+    t =    18.36s     Find the "auth-password" SecureTextField
+    t =    18.42s     Check for interrupting elements affecting "auth-password" SecureTextField
+    t =    18.45s     Synthesize event
+    t =    19.08s     Wait for com.createitv.pushnow to idle
+    t =    19.08s Tap "auth-submit" Button
+    t =    19.08s     Wait for com.createitv.pushnow to idle
+    t =    19.08s     Find the "auth-submit" Button
+    t =    19.11s     Check for interrupting elements affecting "auth-submit" Button
+    t =    19.15s     Synthesize event
+    t =    19.45s     Wait for com.createitv.pushnow to idle
+    t =    19.45s Waiting 30.0s for "home-settings" Button to exist
+    t =    20.47s     Checking `Expect predicate `existsNoRetry == 1` for object "home-settings" Button`
+    t =    20.48s         Checking existence of `"home-settings" Button`
+    t =    20.52s         Capturing element debug description
+    t =    21.45s     Checking `Expect predicate `existsNoRetry == 1` for object "home-settings" Button`
+    t =    21.46s         Checking existence of `"home-settings" Button`
+    t =    21.49s         Capturing element debug description
+    t =    22.52s     Checking `Expect predicate `existsNoRetry == 1` for object "home-settings" Button`
+    t =    22.53s         Checking existence of `"home-settings" Button`
+    t =    22.60s Tap Target Application 'com.createitv.pushnow'
+    t =    22.60s     Wait for com.createitv.pushnow to idle
+    t =    22.60s     Find the Target Application 'com.createitv.pushnow'
+    t =    22.63s     Check for interrupting elements affecting "PushNow" Application
+    t =    22.67s     Synthesize event
+    t =    22.98s     Wait for com.createitv.pushnow to idle
+    t =    35.14s Find the Target Application 'com.createitv.pushnow'
+    t =    35.66s Added attachment named 'automatic-account-sender'
+    t =    35.66s Tear Down
+Test Case '-[JiZhiUITests.AccountFlowUITests testAutomaticAccountSender]' passed (35.908 seconds).
+Test Suite 'AccountFlowUITests' passed at 2026-09-13 12:16:21.267.
+	 Executed 1 test, with 0 failures (0 unexpected) in 35.908 (35.910) seconds
+Test Suite 'JiZhiUITests.xctest' passed at 2026-09-13 12:16:21.268.
+	 Executed 1 test, with 0 failures (0 unexpected) in 35.908 (35.912) seconds
+Test Suite 'Selected tests' passed at 2026-09-13 12:16:21.269.
+	 Executed 1 test, with 0 failures (0 unexpected) in 35.908 (35.947) seconds
+2026-09-13 12:16:21.800 xcodebuild[58394:34718944] [MT] IDETestOperationsObserverDebug: 43.089 elapsed -- Testing started completed.
+2026-09-13 12:16:21.801 xcodebuild[58394:34718944] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-09-13 12:16:21.801 xcodebuild[58394:34718944] [MT] IDETestOperationsObserverDebug: 43.089 sec, +43.089 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/pushnow-account-auth-build/Logs/Test/Test-JiZhi-2026.09.13_12-15-36-+0800.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

@@ -1,0 +1,13 @@
+CREATE TABLE v2_archives(user_id TEXT PRIMARY KEY REFERENCES users(id),id TEXT NOT NULL UNIQUE,public_key TEXT NOT NULL,certificate TEXT NOT NULL,created_at TEXT NOT NULL);
+CREATE TABLE v2_archive_grants(device_id TEXT PRIMARY KEY REFERENCES secure_devices(id),user_id TEXT NOT NULL,enc TEXT NOT NULL,ciphertext TEXT NOT NULL);
+CREATE TABLE v2_authorizations(id TEXT PRIMARY KEY,name TEXT NOT NULL,public_key TEXT NOT NULL,device_code_hash TEXT NOT NULL,user_code TEXT NOT NULL UNIQUE,expires_at TEXT NOT NULL,last_poll_at TEXT,source_id TEXT,grant_enc TEXT,grant_ciphertext TEXT,consumed_at TEXT);
+CREATE TABLE v2_rate_limits(id TEXT PRIMARY KEY,count INTEGER NOT NULL,expires_at TEXT NOT NULL);
+CREATE TABLE v2_storage(user_id TEXT PRIMARY KEY REFERENCES users(id),used_bytes INTEGER NOT NULL DEFAULT 0 CHECK(used_bytes>=0 AND used_bytes<=104857600));
+CREATE TABLE v2_attachments(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),source_id TEXT NOT NULL REFERENCES sources(id),size INTEGER NOT NULL CHECK(size>0 AND size<=20971520),object_key TEXT NOT NULL UNIQUE,read_token_hash TEXT NOT NULL,status TEXT NOT NULL,content_hash TEXT,message_id TEXT,expires_at TEXT NOT NULL);
+CREATE INDEX v2_attachment_expiry ON v2_attachments(status,expires_at);
+CREATE TABLE v2_messages(id TEXT PRIMARY KEY,user_id TEXT NOT NULL REFERENCES users(id),source_id TEXT NOT NULL REFERENCES sources(id),archive_id TEXT NOT NULL,request_hash TEXT NOT NULL,enc TEXT,ciphertext TEXT,preview_enc TEXT,preview_ciphertext TEXT,source_public_key TEXT,source_certificate TEXT,created_at TEXT NOT NULL,read_at TEXT,deleted_at TEXT,quota_remaining INTEGER NOT NULL DEFAULT 0 CHECK(quota_remaining>=0));
+CREATE INDEX v2_message_history ON v2_messages(user_id,created_at,id);
+CREATE INDEX v2_message_deletions ON v2_messages(user_id,deleted_at,id);
+CREATE TABLE v2_deliveries(message_id TEXT NOT NULL REFERENCES v2_messages(id),device_id TEXT NOT NULL REFERENCES secure_devices(id),status TEXT NOT NULL DEFAULT 'pending',attempts INTEGER NOT NULL DEFAULT 0,next_attempt_at TEXT NOT NULL,lease_id TEXT,lease_until TEXT,last_error TEXT,accepted_at TEXT,PRIMARY KEY(message_id,device_id));
+CREATE INDEX v2_delivery_due ON v2_deliveries(status,next_attempt_at);
+CREATE TABLE v2_blob_deletions(object_key TEXT PRIMARY KEY,created_at TEXT NOT NULL);

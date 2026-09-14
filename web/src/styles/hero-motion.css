@@ -1,0 +1,33 @@
+/* A quiet signal emerging from an orbital field. */
+.zaro-hero { position:relative; isolation:isolate; overflow:clip; width:100%; padding:88px 24px 0; }
+.zaro-hero > :not(.hero-art) { position:relative; z-index:2; }
+.zaro-hero h1 { animation:hero-arrive 1s cubic-bezier(.16,1,.3,1) both; }
+.zaro-hero .hero-lead,.zaro-hero .hero-sub,.zaro-hero .hero-actions { animation:hero-arrive 1s .12s cubic-bezier(.16,1,.3,1) both; }
+.hero-art { position:relative; width:min(1000px,120vw); height:390px; margin-top:30px; perspective:900px; transform:rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg)); transition:transform .65s ease-out; pointer-events:none; }
+.hero-aura { position:absolute; inset:-120px -10% -60px; background:radial-gradient(ellipse at 50% 65%,#72c8ff55,transparent 48%),radial-gradient(ellipse at 65% 50%,#c1a1ff33,transparent 40%); filter:blur(25px); animation:aura-breathe 8s ease-in-out infinite alternate; }
+.signal-orbit { position:absolute; left:50%; top:46%; border:1px solid #78bfff60; border-radius:50%; box-shadow:0 0 24px #67b7ff12,inset 0 0 24px #67b7ff12; transform:translate(-50%,-50%) rotate(-18deg); }
+.orbit-wide { width:88%; height:280px; }
+.orbit-near { width:66%; height:215px; transform:translate(-50%,-50%) rotate(16deg); border-color:#b093ff55; }
+.orbit-inner { width:44%; height:150px; }
+.signal-orbit::after { content:""; position:absolute; top:50%; left:-4px; width:7px; height:7px; border-radius:50%; background:#75c7ff; box-shadow:0 0 18px 5px #6cbbff66; }
+.signal-core { position:absolute; left:50%; top:44%; width:138px; height:138px; display:grid; place-items:center; border-radius:34px; transform:translate(-50%,-50%); background:linear-gradient(135deg,#ffffffd9,#d8edff66); border:1px solid #ffffffaa; box-shadow:0 30px 70px #377ecb33,0 0 90px #8dcfff44,inset 0 1px 0 #fff; animation:signal-float 6s ease-in-out infinite; }
+.signal-core img { width:112px; height:112px; border-radius:27px; mix-blend-mode:multiply; }
+.signal-star { position:absolute; width:5px; height:5px; border-radius:50%; background:#86bfff; box-shadow:0 0 16px #389dff; animation:star-glow 4s ease-in-out infinite alternate; }
+.star-one { left:23%; top:30%; }.star-two { right:19%; top:52%; animation-delay:1s; }.star-three { left:36%; top:77%; animation-delay:2s; }
+.horizon-light { position:absolute; bottom:4px; left:12%; right:12%; height:1px; background:linear-gradient(90deg,transparent,#71b9ff99,transparent); box-shadow:0 -10px 60px 20px #69b7ff18; }
+.product-preview { transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s; }
+@media(hover:hover) and (pointer:fine) { .product-preview:hover { transform:translateY(-8px); box-shadow:0 28px 70px #1674cb24; } }
+:where(html[data-theme="dark"]) .hero-aura { background:radial-gradient(ellipse at 50% 65%,#147cdb55,transparent 48%),radial-gradient(ellipse at 65% 50%,#7341b844,transparent 40%); }
+:where(html[data-theme="dark"]) .signal-core { background:linear-gradient(135deg,#f4faff,#cee4ff); box-shadow:0 30px 90px #168bff55,0 0 100px #5075ff33; }
+.motion-paused,.motion-paused * { animation-play-state:paused !important; }
+@keyframes hero-arrive { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes signal-float { 0%,100% { transform:translate(-50%,-50%) translateY(-7px) rotate(-4deg); } 50% { transform:translate(-50%,-50%) translateY(7px) rotate(4deg); } }
+@keyframes aura-breathe { from { opacity:.65; transform:scale(.94); } to { opacity:1; transform:scale(1.06); } }
+@keyframes star-glow { from { opacity:.3; } to { opacity:1; } }
+@media(max-width:600px) { .zaro-hero { padding:64px 22px 0; }.hero-art { height:280px; margin-top:24px; }.orbit-wide { height:175px; }.orbit-near { height:140px; }.orbit-inner { height:100px; }.signal-core { width:98px; height:98px; border-radius:25px; }.signal-core img { width:80px; height:80px; border-radius:20px; } }
+@media(prefers-reduced-motion:reduce) { .hero-art { transform:none; }.hero-art,.hero-art *,.zaro-hero h1,.zaro-hero .hero-lead,.zaro-hero .hero-sub,.zaro-hero .hero-actions,.product-preview { animation:none !important; transition:none !important; }.product-preview:hover { transform:none; } }
+.zaro-hero { grid-template-columns:minmax(0,1fr); }
+.zaro-hero > :not(.hero-art) { min-width:0; max-width:100%; }
+.hero-art { justify-self:center; }
+.zaro-hero .hero-lead { max-width:750px; }
+.zaro-hero .hero-sub { max-width:650px; }

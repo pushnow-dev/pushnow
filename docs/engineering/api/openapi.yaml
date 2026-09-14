@@ -1,0 +1,1046 @@
+openapi: 3.1.0
+info:
+  title: JiZhi API
+  version: 0.1.0
+  description: >-
+    Email authentication and legacy user-data API. The account-bound encrypted
+    notification APIs are specified separately in ../16-e2ee-contract.md (v1)
+    and ../20-v2-wire-contract.md (v2 account archive and sender authorization);
+    legacy plaintext items are not retroactively end-to-end encrypted.
+servers:
+  - url: https://api.pushnow.dev
+    description: Production API
+  - url: http://localhost:8787
+    description: Local Wrangler API
+tags:
+  - name: Auth
+  - name: Me
+  - name: Sources
+  - name: Ingest
+  - name: Inbox
+  - name: Reminders
+  - name: Devices
+paths:
+  /v1/auth/email/start:
+    post:
+      tags: [Auth]
+      summary: Start email login or registration
+      description: Always returns a neutral response so callers cannot learn whether an email is registered.
+      operationId: startEmailAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartEmailAuthRequest'
+      responses:
+        '202':
+          description: Verification email accepted or throttled into a neutral state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartEmailAuthResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /v1/auth/email/verify:
+    post:
+      tags: [Auth]
+      summary: Verify email code and create a session
+      description: Creates the user if needed, marks the email verified, and returns access and refresh tokens.
+      operationId: verifyEmailAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyEmailAuthRequest'
+      responses:
+        '200':
+          description: Email verified and session created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSessionResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /v1/auth/password/login:
+    post:
+      tags: [Auth]
+      summary: Log in with email and password
+      description: Available after the user has verified the email address and set a password.
+      operationId: loginWithPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordLoginRequest'
+      responses:
+        '200':
+          description: Password accepted and session created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSessionResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Rotate refresh token
+      operationId: refreshSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshSessionRequest'
+      responses:
+        '200':
+          description: Session refreshed and refresh token rotated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSessionResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/auth/logout:
+    post:
+      tags: [Auth]
+      summary: Revoke current session
+      operationId: logoutSession
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+      responses:
+        '204':
+          description: Session revoked.
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me:
+    get:
+      tags: [Me]
+      summary: Get current verified user
+      operationId: getMe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me/password:
+    post:
+      tags: [Me]
+      summary: Set password for the verified email account
+      operationId: setAccountPassword
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPasswordRequest'
+      responses:
+        '200':
+          description: Password stored and current user returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me/plan:
+    get:
+      tags: [Me]
+      summary: Get current membership plan and usage quota
+      operationId: getMembershipPlan
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current plan, daily usage, and quota window.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MembershipResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me/email/start-change:
+    post:
+      tags: [Me]
+      summary: Start verified email change
+      operationId: startEmailChange
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartEmailAuthRequest'
+      responses:
+        '202':
+          description: Change verification email accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartEmailAuthResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me/email/verify-change:
+    post:
+      tags: [Me]
+      summary: Verify and apply email change
+      operationId: verifyEmailChange
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyEmailAuthRequest'
+      responses:
+        '200':
+          description: Email changed for the current user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/me/delete-request:
+    post:
+      tags: [Me]
+      summary: Request account deletion
+      description: Revokes sessions and source keys, stops future reminders, and schedules data deletion according to policy.
+      operationId: requestAccountDeletion
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Deletion request accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAccountResponse'
+        '401':
+          $ref: '#/components/responses/AuthFailed'
+  /v1/sources:
+    get:
+      tags: [Sources]
+      summary: List current user's private sources
+      operationId: listSources
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Source list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSourcesResponse'
+    post:
+      tags: [Sources]
+      summary: Create a private Agent or webhook source
+      operationId: createSource
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSourceRequest'
+      responses:
+        '201':
+          description: Source created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceResponse'
+  /v1/sources/{source_id}/keys:
+    post:
+      tags: [Sources]
+      summary: Create a source ingest key
+      description: The raw source key is returned only in this response. The backend stores only a prefix and hash.
+      operationId: createSourceKey
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/SourceID'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSourceKeyRequest'
+      responses:
+        '201':
+          description: Source key created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSourceKeyResponse'
+  /v1/ingest/items:
+    post:
+      tags: [Ingest]
+      summary: Ingest an item from Agent, CLI, or webhook
+      description: Requires a source key and an Idempotency-Key header. Duplicate idempotency keys return the existing item.
+      operationId: ingestItem
+      security:
+        - sourceKeyAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestItemRequest'
+      responses:
+        '201':
+          description: Item created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestItemResponse'
+        '200':
+          description: Duplicate idempotency key; existing item returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestItemResponse'
+  /v1/items:
+    get:
+      tags: [Inbox]
+      summary: List current user's inbox items
+      operationId: listItems
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Inbox items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListItemsResponse'
+  /v1/items/{item_id}:
+    get:
+      tags: [Inbox]
+      summary: Get one current-user item
+      operationId: getItem
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ItemID'
+      responses:
+        '200':
+          description: Item detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemResponse'
+  /v1/items/{item_id}/state:
+    patch:
+      tags: [Inbox]
+      summary: Mark item read, archived, or acknowledged
+      operationId: updateItemState
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ItemID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateItemStateRequest'
+      responses:
+        '200':
+          description: Updated item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemResponse'
+  /v1/items/{item_id}/reminders:
+    post:
+      tags: [Reminders]
+      summary: Create an App push or in-app reminder for an item
+      operationId: createReminder
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/ItemID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReminderInput'
+      responses:
+        '201':
+          description: Reminder created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReminderResponse'
+  /v1/reminders:
+    get:
+      tags: [Reminders]
+      summary: List current user's reminder plans
+      operationId: listReminders
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: Reminder plans.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRemindersResponse'
+  /v1/devices/apns-token:
+    put:
+      tags: [Devices]
+      summary: Bind or refresh the current device APNs token
+      operationId: upsertApnsToken
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertDevicePushTokenRequest'
+      responses:
+        '200':
+          description: Device token accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+    sourceKeyAuth:
+      type: apiKey
+      in: header
+      name: X-JiZhi-Source-Key
+  parameters:
+    SourceID:
+      name: source_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ItemID:
+      name: item_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        maxLength: 160
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  schemas:
+    StartEmailAuthRequest:
+      type: object
+      additionalProperties: false
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        locale:
+          type: string
+          examples: [en, zh-Hans]
+        timezone:
+          type: string
+          examples: [Asia/Shanghai, America/Los_Angeles]
+        turnstileToken:
+          type: string
+          maxLength: 2048
+          description: Required for first-party browser-origin email-code start requests. Native and CLI clients should omit it.
+        client:
+          $ref: '#/components/schemas/AuthClientContext'
+    StartEmailAuthResponse:
+      type: object
+      additionalProperties: false
+      required: [status, expires_in_seconds]
+      properties:
+        status:
+          type: string
+          enum: [verification_sent]
+        expires_in_seconds:
+          type: integer
+          minimum: 60
+          examples: [600]
+    VerifyEmailAuthRequest:
+      type: object
+      additionalProperties: false
+      required: [email, code]
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        code:
+          type: string
+          minLength: 6
+          maxLength: 12
+        client:
+          $ref: '#/components/schemas/AuthClientContext'
+    PasswordLoginRequest:
+      type: object
+      additionalProperties: false
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        password:
+          type: string
+          minLength: 8
+          maxLength: 128
+        turnstileToken:
+          type: string
+          maxLength: 2048
+          description: Required for first-party browser-origin password login requests. Native and CLI clients should omit it.
+        client:
+          $ref: '#/components/schemas/AuthClientContext'
+    SetPasswordRequest:
+      type: object
+      additionalProperties: false
+      required: [password]
+      properties:
+        password:
+          type: string
+          minLength: 8
+          maxLength: 128
+    RefreshSessionRequest:
+      type: object
+      additionalProperties: false
+      required: [refresh_token]
+      properties:
+        refresh_token:
+          type: string
+          minLength: 32
+    LogoutRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        refresh_token:
+          type: string
+          minLength: 32
+    AuthSessionResponse:
+      type: object
+      additionalProperties: false
+      required: [user, access_token, refresh_token, expires_in_seconds]
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in_seconds:
+          type: integer
+          examples: [900]
+    MeResponse:
+      type: object
+      additionalProperties: false
+      required: [user]
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    DeleteAccountResponse:
+      type: object
+      additionalProperties: false
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [deletion_requested]
+    User:
+      type: object
+      additionalProperties: false
+      required: [id, email, email_verified_at, locale, timezone, created_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        email_verified_at:
+          type: string
+          format: date-time
+        locale:
+          type: string
+        timezone:
+          type: string
+        revenuecat_app_user_id:
+          type:
+            - string
+            - 'null'
+        has_password:
+          type: boolean
+        password_set_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    MembershipResponse:
+      type: object
+      additionalProperties: false
+      required: [membership]
+      properties:
+        membership:
+          $ref: '#/components/schemas/MembershipStatus'
+    MembershipStatus:
+      type: object
+      additionalProperties: false
+      required: [plan, display_name, daily_notification_limit, used_today, remaining_today, window_start, window_end]
+      properties:
+        plan:
+          type: string
+          enum: [free, plus, pro]
+        display_name:
+          type: string
+          enum: [Free, Plus, Pro]
+        daily_notification_limit:
+          type:
+            - integer
+            - 'null'
+          minimum: 1
+        used_today:
+          type: integer
+          minimum: 0
+        remaining_today:
+          type:
+            - integer
+            - 'null'
+          minimum: 0
+        window_start:
+          type: string
+          format: date-time
+        window_end:
+          type: string
+          format: date-time
+    AuthClientContext:
+      type: object
+      additionalProperties: false
+      properties:
+        platform:
+          type: string
+          enum: [ios, web, cli]
+        device_id:
+          type: string
+          maxLength: 128
+        app_version:
+          type: string
+          maxLength: 64
+    CreateSourceRequest:
+      type: object
+      additionalProperties: false
+      required: [name]
+      properties:
+        name:
+          type: string
+          maxLength: 80
+        source_type:
+          type: string
+          enum: [agent, cli, webhook, subscription]
+          default: agent
+        default_priority:
+          type: string
+          examples: [normal, important, P0, P1]
+        default_push_enabled:
+          type: boolean
+          description: false means save to App inbox without App push by default.
+    CreateSourceKeyRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        scopes:
+          type: array
+          items:
+            type: string
+            enum: ["items:write", "items:read"]
+    Source:
+      type: object
+      additionalProperties: false
+      required: [id, user_id, name, source_type, default_priority, default_push_enabled, status, created_at, updated_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        source_type:
+          type: string
+        default_priority:
+          type: string
+        default_push_enabled:
+          type: boolean
+        status:
+          type: string
+          enum: [active, paused, revoked]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    SourceResponse:
+      type: object
+      additionalProperties: false
+      required: [source]
+      properties:
+        source:
+          $ref: '#/components/schemas/Source'
+    ListSourcesResponse:
+      type: object
+      additionalProperties: false
+      required: [sources]
+      properties:
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Source'
+    CreateSourceKeyResponse:
+      type: object
+      additionalProperties: false
+      required: [source_key, key]
+      properties:
+        source_key:
+          type: string
+          description: Raw source key; display once only.
+        key:
+          type: object
+          required: [id, source_id, key_prefix, scopes, created_at]
+          properties:
+            id:
+              type: string
+              format: uuid
+            source_id:
+              type: string
+              format: uuid
+            key_prefix:
+              type: string
+            scopes:
+              type: array
+              items:
+                type: string
+            created_at:
+              type: string
+              format: date-time
+    IngestItemRequest:
+      type: object
+      additionalProperties: false
+      required: [title]
+      properties:
+        title:
+          type: string
+          maxLength: 180
+        summary:
+          type: string
+          maxLength: 1000
+        external_id:
+          type: string
+          maxLength: 160
+        priority:
+          type: string
+          examples: [normal, important, P0, P1]
+        push_enabled:
+          type: boolean
+          description: false means in-app only for this item/reminder unless later changed.
+        requires_ack:
+          type: boolean
+        content_blocks:
+          type: array
+          maxItems: 20
+          items:
+            type: object
+            required: [body]
+            properties:
+              type:
+                type: string
+                enum: [markdown, text, json]
+              body: {}
+        reminder:
+          $ref: '#/components/schemas/ReminderInput'
+    Item:
+      type: object
+      additionalProperties: false
+      required: [id, user_id, source_id, idempotency_key, title, status, priority, push_enabled, requires_ack, received_at, created_at, updated_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        source_id:
+          type: string
+          format: uuid
+        external_id:
+          type: [string, 'null']
+        idempotency_key:
+          type: string
+        title:
+          type: string
+        summary:
+          type: [string, 'null']
+        status:
+          type: string
+          enum: [unread, read, archived]
+        priority:
+          type: string
+        push_enabled:
+          type: boolean
+        requires_ack:
+          type: boolean
+        received_at:
+          type: string
+          format: date-time
+        read_at:
+          type: [string, 'null']
+        archived_at:
+          type: [string, 'null']
+        acknowledged_at:
+          type: [string, 'null']
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ItemResponse:
+      type: object
+      additionalProperties: false
+      required: [item]
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+    IngestItemResponse:
+      type: object
+      additionalProperties: false
+      required: [item, deduplicated]
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+        deduplicated:
+          type: boolean
+    ListItemsResponse:
+      type: object
+      additionalProperties: false
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+    UpdateItemStateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [unread, read, archived]
+        acknowledged:
+          type: boolean
+    ReminderInput:
+      type: object
+      additionalProperties: false
+      properties:
+        mode:
+          type: string
+          enum: [now, scheduled, delay, in_app_only]
+        scheduled_at:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        repeat_rule:
+          type: string
+        priority:
+          type: string
+        push_enabled:
+          type: boolean
+        requires_ack:
+          type: boolean
+    Reminder:
+      type: object
+      additionalProperties: false
+      required: [id, user_id, item_id, mode, timezone, priority, push_enabled, requires_ack, status, created_at, updated_at]
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        item_id:
+          type: string
+          format: uuid
+        mode:
+          type: string
+        scheduled_at:
+          type: [string, 'null']
+        timezone:
+          type: string
+        repeat_rule:
+          type: [string, 'null']
+        priority:
+          type: string
+        push_enabled:
+          type: boolean
+        requires_ack:
+          type: boolean
+        status:
+          type: string
+          enum: [scheduled, paused, cancelled, triggered]
+        next_fire_at:
+          type: [string, 'null']
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ReminderResponse:
+      type: object
+      additionalProperties: false
+      required: [reminder]
+      properties:
+        reminder:
+          $ref: '#/components/schemas/Reminder'
+    ListRemindersResponse:
+      type: object
+      additionalProperties: false
+      required: [reminders]
+      properties:
+        reminders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reminder'
+    UpsertDevicePushTokenRequest:
+      type: object
+      additionalProperties: false
+      required: [token]
+      properties:
+        token:
+          type: string
+        platform:
+          type: string
+          enum: [ios]
+        environment:
+          type: string
+          enum: [sandbox, production]
+        app_version:
+          type: string
+    DeviceResponse:
+      type: object
+      additionalProperties: false
+      required: [device]
+      properties:
+        device:
+          type: object
+          required: [id, platform, enabled, updated_at]
+          properties:
+            id:
+              type: string
+              format: uuid
+            platform:
+              type: string
+            enabled:
+              type: boolean
+            updated_at:
+              type: string
+              format: date-time
+    Error:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          examples: [auth_code_expired]
+        message:
+          type: string
+        request_id:
+          type: string
+  responses:
+    ValidationError:
+      description: Invalid request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    AuthFailed:
+      description: Authentication failed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Too many attempts.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

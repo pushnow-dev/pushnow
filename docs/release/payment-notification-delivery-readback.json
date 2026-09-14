@@ -1,0 +1,265 @@
+[
+  {
+    "results": [
+      {
+        "id": "c76719e2-9ca1-46fe-8534-74c19f81d0ce",
+        "created_at": "2026-09-13T04:06:07.534Z",
+        "expires_at": "2026-09-14T04:06:06.808Z",
+        "scheduled_at": "2026-09-13T04:06:07.534Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T04:06:08.211Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "177fa6d1-bb3e-42b3-8893-5929f718c8f7",
+        "created_at": "2026-09-13T04:06:06.574Z",
+        "expires_at": "2026-09-14T04:06:05.809Z",
+        "scheduled_at": "2026-09-13T04:06:06.574Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T04:06:07.179Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "c1dc75f4-4bfd-4c07-94af-a9dce9557093",
+        "created_at": "2026-09-13T04:06:05.498Z",
+        "expires_at": "2026-09-14T04:06:04.702Z",
+        "scheduled_at": "2026-09-13T04:06:05.498Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T04:06:06.084Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "b131931c-c3ca-4be7-8200-b843baf52f2d",
+        "created_at": "2026-09-13T04:06:04.443Z",
+        "expires_at": "2026-09-14T04:06:03.607Z",
+        "scheduled_at": "2026-09-13T04:06:04.443Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T04:06:05.046Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "bd86000f-e80a-449d-a930-95c7b5ce77e9",
+        "created_at": "2026-09-13T03:54:54.215Z",
+        "expires_at": "2026-09-14T03:54:53.812Z",
+        "scheduled_at": "2026-09-13T03:54:54.215Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T03:54:54.627Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "5e5c0be5-07ac-47d4-a48d-a7100467bc0d",
+        "created_at": "2026-09-13T03:54:53.573Z",
+        "expires_at": "2026-09-14T03:54:53.139Z",
+        "scheduled_at": "2026-09-13T03:54:53.573Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T03:54:54.237Z",
+        "acknowledged_at": "2026-09-13T04:00:53.201Z"
+      },
+      {
+        "id": "22661df5-bc51-4986-ae92-104a2fb0a4ab",
+        "created_at": "2026-09-13T03:54:52.949Z",
+        "expires_at": "2026-09-14T03:54:52.366Z",
+        "scheduled_at": "2026-09-13T03:54:52.949Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T03:54:53.575Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "708230e4-42b6-40c0-b56f-f3659458a18a",
+        "created_at": "2026-09-13T03:54:51.878Z",
+        "expires_at": "2026-09-14T03:54:51.195Z",
+        "scheduled_at": "2026-09-13T03:54:51.878Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-13T03:54:52.622Z",
+        "acknowledged_at": null
+      },
+      {
+        "id": "40a13e88-09f3-4aea-a987-2c503a4a1c9c",
+        "created_at": "2026-09-12T23:13:09.394Z",
+        "expires_at": "2026-09-13T23:13:08.909Z",
+        "scheduled_at": "2026-09-12T23:13:09.394Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-12T23:13:09.677Z",
+        "acknowledged_at": "2026-09-12T23:21:54.452Z"
+      },
+      {
+        "id": "fdec5dc9-4f86-455d-b29a-24b104dc2b9b",
+        "created_at": "2026-09-12T14:20:26.538Z",
+        "expires_at": "2026-09-13T14:20:26.150Z",
+        "scheduled_at": "2026-09-12T14:20:26.538Z",
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "accepted",
+        "attempts": 1,
+        "last_error": null,
+        "accepted_at": "2026-09-12T14:20:26.877Z",
+        "acknowledged_at": "2026-09-13T03:25:15.699Z"
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "WNAM",
+      "served_by_colo": "LAX",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.556
+      },
+      "duration": 0.556,
+      "changes": 0,
+      "last_row_id": 3,
+      "changed_db": false,
+      "size_after": 532480,
+      "rows_read": 39,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  },
+  {
+    "results": [
+      {
+        "id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "status": "active",
+        "last_seen_at": "2026-09-13T04:08:29.907Z",
+        "created_at": "2026-09-12T13:46:05.919Z",
+        "notifications_enabled": 1
+      },
+      {
+        "id": "3dcf8d48-ac1a-4bd3-96f2-053a76241c0c",
+        "status": "pending",
+        "last_seen_at": "2026-09-12T23:54:34.475Z",
+        "created_at": "2026-09-12T23:33:07.608Z",
+        "notifications_enabled": 1
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "WNAM",
+      "served_by_colo": "LAX",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.1898
+      },
+      "duration": 0.1898,
+      "changes": 0,
+      "last_row_id": 3,
+      "changed_db": false,
+      "size_after": 532480,
+      "rows_read": 2,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  },
+  {
+    "results": [
+      {
+        "device_id": "443f3c5b-5af6-469c-bc09-1166cb00cc91",
+        "environment": "sandbox",
+        "app_version": "1.0",
+        "updated_at": "2026-09-13T04:08:31.462Z"
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "WNAM",
+      "served_by_colo": "LAX",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.1393
+      },
+      "duration": 0.1393,
+      "changes": 0,
+      "last_row_id": 3,
+      "changed_db": false,
+      "size_after": 532480,
+      "rows_read": 1,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  },
+  {
+    "results": [
+      {
+        "device_id": null,
+        "expires_at": "2026-09-13T04:05:31.037Z",
+        "refresh_expires_at": "2026-10-13T03:11:17.428Z",
+        "revoked_at": null,
+        "created_at": "2026-09-13T03:11:17.428Z"
+      },
+      {
+        "device_id": null,
+        "expires_at": "2026-09-13T03:16:55.718Z",
+        "refresh_expires_at": "2026-10-13T03:01:55.718Z",
+        "revoked_at": null,
+        "created_at": "2026-09-13T03:01:55.718Z"
+      },
+      {
+        "device_id": null,
+        "expires_at": "2026-09-13T02:57:31.406Z",
+        "refresh_expires_at": "2026-10-13T02:42:31.406Z",
+        "revoked_at": null,
+        "created_at": "2026-09-13T02:42:31.406Z"
+      },
+      {
+        "device_id": null,
+        "expires_at": "2026-09-13T01:22:16.220Z",
+        "refresh_expires_at": "2026-10-13T01:07:16.220Z",
+        "revoked_at": null,
+        "created_at": "2026-09-13T01:07:16.220Z"
+      },
+      {
+        "device_id": null,
+        "expires_at": "2026-09-13T01:03:10.508Z",
+        "refresh_expires_at": "2026-10-13T00:48:10.508Z",
+        "revoked_at": "2026-09-13T00:48:46.503Z",
+        "created_at": "2026-09-13T00:48:10.508Z"
+      }
+    ],
+    "success": true,
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "WNAM",
+      "served_by_colo": "LAX",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 0.2008
+      },
+      "duration": 0.2008,
+      "changes": 0,
+      "last_row_id": 3,
+      "changed_db": false,
+      "size_after": 532480,
+      "rows_read": 17,
+      "rows_written": 0,
+      "total_attempts": 1
+    }
+  }
+]

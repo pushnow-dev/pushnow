@@ -1,0 +1,35 @@
+{
+  "legacy_guide_redirects": [
+    {
+      "url": "https://pushnow.dev/guide",
+      "status": 307,
+      "location": "/guide/"
+    },
+    {
+      "url": "https://pushnow.dev/zh-Hans/guide",
+      "status": 307,
+      "location": "/zh-Hans/guide/"
+    },
+    {
+      "url": "https://pushnow.dev/ja/guide",
+      "status": 307,
+      "location": "/ja/guide/"
+    },
+    {
+      "url": "https://pushnow.dev/ko/guide",
+      "status": 307,
+      "location": "/ko/guide/"
+    },
+    {
+      "url": "https://pushnow.dev/es/guide",
+      "status": 307,
+      "location": "/es/guide/"
+    },
+    {
+      "url": "https://pushnow.dev/de/guide",
+      "status": 307,
+      "location": "/de/guide/"
+    }
+  ],
+  "expected_hops": 1
+}

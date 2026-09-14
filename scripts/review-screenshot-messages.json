@@ -1,0 +1,64 @@
+{
+  "batch": "release-2026-09-13",
+  "purpose": "Real release progress and requested preparation reminders, for the existing authorized user inbox.",
+  "messages": [
+    {
+      "id": "website-build",
+      "evidence": "docs/release/aeo-server-environment-2026-09-13.md",
+      "zh-Hans": {
+        "title": "官网构建完成",
+        "subtitle": "网站发布",
+        "body": "PushNow 官网已生成 127 个页面。Astro 检查通过：0 个错误、0 个警告。六语言使用指南和常见问题已纳入本次构建。",
+        "url": "https://pushnow.dev/zh-Hans/docs/"
+      },
+      "en": {
+        "title": "Website build completed",
+        "subtitle": "Website release",
+        "body": "The PushNow website build generated 127 pages. Astro checks passed with 0 errors and 0 warnings. This build includes guides and FAQs in six languages.",
+        "url": "https://pushnow.dev/docs/"
+      }
+    },
+    {
+      "id": "store-localizations",
+      "evidence": "docs/release/payment-catalog-readback.json",
+      "zh-Hans": {
+        "title": "六语言订阅资料已更新",
+        "subtitle": "App Store 准备",
+        "body": "4 个订阅商品和会员分组已补齐英文、简体中文、日文、韩文、西班牙文和德文资料。商品名称已统一为 PushNow；现有月付价格保持不变。"
+      },
+      "en": {
+        "title": "Store details updated in six languages",
+        "subtitle": "App Store preparation",
+        "body": "All four subscriptions and the membership group now have English, Chinese, Japanese, Korean, Spanish and German details. Names use PushNow; existing monthly prices are unchanged."
+      }
+    },
+    {
+      "id": "sandbox-check",
+      "evidence": "docs/release/payment-sandbox-readback.json",
+      "zh-Hans": {
+        "title": "服务健康检查通过",
+        "subtitle": "服务状态",
+        "body": "PushNow 正式服务与独立测试服务的健康检查均已通过。测试账号可以正常登录，正式环境会拒绝测试环境的身份凭据。详细检查结果已归档。"
+      },
+      "en": {
+        "title": "Service health checks passed",
+        "subtitle": "Service status",
+        "body": "Health checks passed for both the live PushNow service and its separate test service. Test account sign-in works, and the live service rejects test credentials. The verification report is ready to review."
+      }
+    },
+    {
+      "id": "capture-reminder",
+      "evidence": "Current user request: complete localization, then capture Chinese and English screens on the physical device.",
+      "zh-Hans": {
+        "title": "提醒：检查中文版界面",
+        "subtitle": "我的提醒",
+        "body": "现在检查中文收件箱、消息详情和会员页面。确认所有按钮、筛选标签和日期都使用中文，再继续准备英文版本。"
+      },
+      "en": {
+        "title": "Reminder: review the English interface",
+        "subtitle": "My reminders",
+        "body": "Review the inbox, message details and membership page in English. Check buttons, filters and dates before preparing the final screenshots."
+      }
+    }
+  ]
+}

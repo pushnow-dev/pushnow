@@ -1,0 +1,15 @@
+{
+  "id": "181b20aa-f11c-41f9-b060-faf030616dd1",
+  "contactSource": "same developer account, current released Mo Layer 1.0.9 review details",
+  "checks": {
+    "contactFirstName": true,
+    "contactLastName": true,
+    "contactEmail": true,
+    "contactPhone": true,
+    "demoAccountRequired": true,
+    "reviewAccountMatches": true,
+    "notesMatchAfterTrailingWhitespaceNormalization": true
+  },
+  "nativeReviewAccountFlowVerified": false,
+  "credentialsPrinted": false
+}

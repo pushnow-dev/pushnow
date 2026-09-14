@@ -1,0 +1,26 @@
+{
+  "sandbox": {
+    "read_at_column": {
+      "cid": 8,
+      "name": "read_at",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    "worker_version": "505565f9-03e6-427c-a0e8-5ef203edc8d3",
+    "ready_status": 200
+  },
+  "prod": {
+    "read_at_column": {
+      "cid": 8,
+      "name": "read_at",
+      "type": "TEXT",
+      "notnull": 0,
+      "dflt_value": null,
+      "pk": 0
+    },
+    "worker_version": "f16661fd-4c84-4cd4-99f7-73de2f1cf161",
+    "ready_status": 200
+  }
+}

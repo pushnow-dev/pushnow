@@ -1,0 +1,10 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dev.pushnow</groupId><artifactId>pushnow-sdk</artifactId><version>0.1.0</version>
+  <name>PushNow Java SDK</name>
+  <description>Java bindings for PushNow v2 encrypted notifications with an explicit Node.js crypto runtime</description>
+  <url>https://github.com/pushnow-dev/pushnow-java</url>
+  <properties><maven.compiler.release>11</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding></properties>
+  <dependencies><dependency><groupId>org.json</groupId><artifactId>json</artifactId><version>20250517</version></dependency></dependencies>
+  <build><plugins><plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.0</version></plugin></plugins></build>
+</project>

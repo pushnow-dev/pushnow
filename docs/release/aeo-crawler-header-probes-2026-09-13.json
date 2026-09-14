@@ -1,0 +1,30 @@
+{
+  "note": "Header-only probes are not actual search engine crawls or verified bot-IP tests.",
+  "results": [
+    {
+      "profile": "browser",
+      "status": 200,
+      "server": "cloudflare",
+      "challenge": null
+    },
+    {
+      "profile": "googlebot_header",
+      "status": 200,
+      "server": "cloudflare",
+      "challenge": null
+    },
+    {
+      "profile": "openai_search_header",
+      "status": 200,
+      "server": "cloudflare",
+      "challenge": null
+    },
+    {
+      "profile": "python_default",
+      "status": 403,
+      "server": "cloudflare",
+      "challenge": null,
+      "body_excerpt": "error code: 1010\n"
+    }
+  ]
+}

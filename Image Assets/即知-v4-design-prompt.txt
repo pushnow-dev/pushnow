@@ -1,0 +1,24 @@
+Use case: ui-mockup
+Asset type: one composite image with six iPhone 15 Pro app screens
+
+Create a high-fidelity v4 design board for the Chinese notification app 「即知」. Visual direction: notification app with GitHub-like neutral information feed. Main tone is graphite black, white, and gray; reminder states use amber. The logo/brand may keep a small blue bell mark, but the UI must not be blue-themed.
+
+Palette: background white #FFFFFF; grouped background #F6F8FA; divider #D1D9E0; main text #1F2328; muted text #59636E; selected/primary #25292E; tiny unread/link blue #0969DA; reminder amber #9A6700 on #FFF8C5; urgent red #D1242F on #FFEBE9; tiny enabled green #1A7F37.
+
+Composition: one single image, six iPhone 15 Pro screens arranged in a clean 3x2 grid. No device bezels. No external page labels. No page numbers. No marketing panel. No text outside the phone screens. iOS 18 style status bar at 9:41. Chinese text must be legible.
+
+Main-page title rule: do not use large page titles occupying a whole row. Inbox must not show big 「信息」. Subscription, Discover, and Reminder screens should use compact centered nav titles or no title.
+
+Screen 1: 收件箱. Top row: left pill 「选择」, center small 「即知」 with tiny blue bell mark, right search and plus icons. Filter chips: selected dark 「全部」, neutral 「未读」「新到结果」「即将提醒」「P0/P1」「来源」. GitHub-like notification list, white rows with thin dividers, monochrome event icons, tiny blue unread dots. Rows: Research Agent / AI 趋势报告, bold 「Q2 竞品分析已完成」, muted 「包含报告、表格和 3 个附件」, time 15:12, amber badge 「5 小时后」; GitHub Bot bold 「v2.1.0 版本已发布」; 监控脚本 bold 「CPU 使用率异常」 with red P0; 每日新闻简报 bold 「今日重要新闻汇总」. Bottom floating tab bar: 「收件箱」「订阅」「发现」「提醒」, active tab uses light gray pill plus dark icon/text, not blue.
+
+Screen 2: 事项详情. Compact nav: back arrow, centered title 「报告已生成」, more icon. Source row Research Agent and time. Amber banner 「今晚 20:00 提醒」 with small outline button 「修改」. Body paragraph. Bordered modules: 「Markdown 报告」「图表与图片」「数据表格」「在线查看完整报告」「完整报告 PDF」 with monochrome icons. Dark primary button 「知道了」. Outline buttons 「稍后提醒」「收藏」.
+
+Screen 3: 安排提醒. Compact centered title. Segmented chips 「仅保存」「立即」「延迟」「指定时间」「循环」 with 「延迟」 dark selected. Picker card showing large 「5 小时后」 and muted adjacent values. Timezone 「北京时间 GMT+8」. Rows: 「App 推送」 on, 「短信」 off, 「电话」 off, 「需要确认收到」 on. Toggles dark/neutral. Bottom dark button 「保存提醒」.
+
+Screen 4: 订阅. Compact centered title 「订阅」. Segmented control: dark selected 「我的来源」, neutral 「发现来源」. Section 「个人接入」 with cells 「HTTP 接入」 and 「CLI 接入」, tiny green dot 「已启用」. Section 「已订阅」 rows: 「AI 每日精选」, 「黄金与白银价格」, 「GitHub 发布提醒」, 「每日新闻简报」, 「产品动态」. Monochrome icons in pale gray circles, no colorful cards.
+
+Screen 5: 发现来源. Compact centered title 「发现来源」. Search field 「搜索频道、关键词或来源」. Neutral chips: selected dark 「平台热榜」, then 「每日精选」「价格信息」「科技」「开发」. Channel list rows: 「微博热搜」「知乎热榜」「AI 每日精选」「每日新闻简报」「黄金与白银价格」. Each row has muted sample, frequency, small status tag, subtle outline 「订阅」 button. Very little color.
+
+Screen 6: 提醒. Compact centered title 「提醒」. Segmented chips: selected dark 「即将提醒」, neutral 「已延后」「循环」「记录」. Timeline rows: 「今天 20:00 查看研究报告」 with amber 「还剩 5 小时」; 「明天 09:30 GitHub 发布提醒」 with red P0; 「周五 18:00 每周学习总结」. Muted 「已取消」 section. Bottom tab active on 提醒 with neutral selected styling.
+
+Avoid: colorful category chips, colorful avatars, gradients, decorative illustrations, blue primary UI, big page titles, garbled Chinese, watermarks, GitHub/Klarna/Mobbin logos.

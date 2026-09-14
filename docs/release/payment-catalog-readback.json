@@ -1,0 +1,1420 @@
+{
+  "operations": [
+    {
+      "command": [
+        "subscriptions",
+        "update",
+        "--id",
+        "6811365720",
+        "--reference-name",
+        "Pushnow Plus Monthly"
+      ],
+      "id": "6811365720"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "21c81af1-65a3-4178-a8c7-e05894f867e7",
+        "--name",
+        "Pushnow Plus Monthly"
+      ],
+      "id": "21c81af1-65a3-4178-a8c7-e05894f867e7"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9",
+        "--name",
+        "Pushnow Plus 月度"
+      ],
+      "id": "d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "update",
+        "--id",
+        "6811365755",
+        "--reference-name",
+        "Pushnow Plus Yearly"
+      ],
+      "id": "6811365755"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "15e5596b-1179-433c-8f4a-5f9d15014aa8",
+        "--name",
+        "Pushnow Plus Yearly"
+      ],
+      "id": "15e5596b-1179-433c-8f4a-5f9d15014aa8"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "9a999e08-2358-49af-95f0-9e48a5ef34ea",
+        "--name",
+        "Pushnow Plus 年度"
+      ],
+      "id": "9a999e08-2358-49af-95f0-9e48a5ef34ea"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "update",
+        "--id",
+        "6811365836",
+        "--reference-name",
+        "Pushnow Pro Monthly"
+      ],
+      "id": "6811365836"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "3f5a1d67-0708-4012-b5bf-839469703492",
+        "--name",
+        "Pushnow Pro Monthly"
+      ],
+      "id": "3f5a1d67-0708-4012-b5bf-839469703492"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "a7b9d295-6217-431f-9b63-87c32ab3dfd1",
+        "--name",
+        "Pushnow Pro 月度"
+      ],
+      "id": "a7b9d295-6217-431f-9b63-87c32ab3dfd1"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "update",
+        "--id",
+        "6811365781",
+        "--reference-name",
+        "Pushnow Pro Yearly"
+      ],
+      "id": "6811365781"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "35f12798-f1c9-4847-a460-36d23f85274a",
+        "--name",
+        "Pushnow Pro Yearly"
+      ],
+      "id": "35f12798-f1c9-4847-a460-36d23f85274a"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "update",
+        "--id",
+        "62492106-534f-4d76-ac91-4909f098c9f4",
+        "--name",
+        "Pushnow Pro 年度"
+      ],
+      "id": "62492106-534f-4d76-ac91-4909f098c9f4"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "update",
+        "--id",
+        "22379561",
+        "--reference-name",
+        "Pushnow Membership"
+      ],
+      "id": "22379561"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "update",
+        "--id",
+        "4063e823-a8d6-4daf-a469-b498a894e890",
+        "--name",
+        "Pushnow Membership",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "4063e823-a8d6-4daf-a469-b498a894e890"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "update",
+        "--id",
+        "b978199b-06a3-4cb0-a16c-191190ac12ee",
+        "--name",
+        "Pushnow 会员",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "b978199b-06a3-4cb0-a16c-191190ac12ee"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "create",
+        "--group-id",
+        "22379561",
+        "--locale",
+        "ja",
+        "--name",
+        "Pushnow メンバーシップ",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "e6ea4ad4-d218-426c-b539-0e4fee6eec56"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "create",
+        "--group-id",
+        "22379561",
+        "--locale",
+        "ko",
+        "--name",
+        "Pushnow 멤버십",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "5dffa285-bf41-40d6-90da-521789822331"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "create",
+        "--group-id",
+        "22379561",
+        "--locale",
+        "es-ES",
+        "--name",
+        "Membresía de Pushnow",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "54879414-d492-465c-894f-bb5c990846dc"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "groups",
+        "localizations",
+        "create",
+        "--group-id",
+        "22379561",
+        "--locale",
+        "de-DE",
+        "--name",
+        "Pushnow Mitgliedschaft",
+        "--custom-app-name",
+        "Pushnow"
+      ],
+      "id": "54a2f935-ff42-45b5-ae41-facb423d486c"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365755",
+        "--locale",
+        "ja",
+        "--name",
+        "Pushnow Plus 年額",
+        "--description",
+        "1日500件の通知。"
+      ],
+      "id": "da9affe4-9eaa-4e96-93ef-21c0c8f68141"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365755",
+        "--locale",
+        "ko",
+        "--name",
+        "Pushnow Plus 연간",
+        "--description",
+        "하루 알림 500개."
+      ],
+      "id": "00835a09-f310-4d65-bae1-c3444664279b"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365755",
+        "--locale",
+        "es-ES",
+        "--name",
+        "Pushnow Plus anual",
+        "--description",
+        "500 notificaciones al día."
+      ],
+      "id": "11b72ee7-636f-4645-9599-9cf12a480828"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365755",
+        "--locale",
+        "de-DE",
+        "--name",
+        "Pushnow Plus Jährlich",
+        "--description",
+        "500 Mitteilungen pro Tag."
+      ],
+      "id": "1b55b327-2e7d-4854-9b4b-adf64cc8568f"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365781",
+        "--locale",
+        "ja",
+        "--name",
+        "Pushnow Pro 年額",
+        "--description",
+        "1日の通知件数の会員上限なし。"
+      ],
+      "id": "d236a6fd-acd0-4730-b938-72c04a90c9a9"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365781",
+        "--locale",
+        "ko",
+        "--name",
+        "Pushnow Pro 연간",
+        "--description",
+        "멤버십 일일 알림 한도 없음."
+      ],
+      "id": "bf69a3e0-61c5-48b7-981b-3bac6116f0d0"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365781",
+        "--locale",
+        "es-ES",
+        "--name",
+        "Pushnow Pro anual",
+        "--description",
+        "Sin límite diario de notificaciones del plan."
+      ],
+      "id": "9ca30f7f-8056-4470-ad77-c715a2c8bf4f"
+    },
+    {
+      "command": [
+        "subscriptions",
+        "localizations",
+        "create",
+        "--subscription-id",
+        "6811365781",
+        "--locale",
+        "de-DE",
+        "--name",
+        "Pushnow Pro Jährlich",
+        "--description",
+        "Kein tägliches Mitteilungslimit im Tarif."
+      ],
+      "id": "00b945fe-468d-4c9b-9b76-b84a2a2505af"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "6811365720",
+      "before": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "21c81af1-65a3-4178-a8c7-e05894f867e7",
+            "attributes": {
+              "name": "JiZhi Plus Monthly",
+              "locale": "en-US",
+              "description": "500 notification items per day.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/21c81af1-65a3-4178-a8c7-e05894f867e7"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "909fd6db-ceb8-4104-ae6a-0fbe6ad3f646",
+            "attributes": {
+              "name": "Pushnow Plus Monatlich",
+              "locale": "de-DE",
+              "description": "500 Mitteilungen pro Tag.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/909fd6db-ceb8-4104-ae6a-0fbe6ad3f646"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "2a62ae86-ff37-4242-8e1f-fa57e96c9462",
+            "attributes": {
+              "name": "Pushnow Plus mensual",
+              "locale": "es-ES",
+              "description": "500 notificaciones al día.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/2a62ae86-ff37-4242-8e1f-fa57e96c9462"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "11176eca-69ce-4f03-abb2-b8009860572d",
+            "attributes": {
+              "name": "Pushnow Plus 月額",
+              "locale": "ja",
+              "description": "1日500件の通知。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/11176eca-69ce-4f03-abb2-b8009860572d"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "6dfa9b0f-15db-4383-bcab-7feb056932bf",
+            "attributes": {
+              "name": "Pushnow Plus 월간",
+              "locale": "ko",
+              "description": "하루 알림 500개.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/6dfa9b0f-15db-4383-bcab-7feb056932bf"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9",
+            "attributes": {
+              "name": "即知 Plus 月度",
+              "locale": "zh-Hans",
+              "description": "每天 500 次通知事项。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9"
+            }
+          }
+        ],
+        "links": {}
+      },
+      "after": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "909fd6db-ceb8-4104-ae6a-0fbe6ad3f646",
+            "attributes": {
+              "name": "Pushnow Plus Monatlich",
+              "locale": "de-DE",
+              "description": "500 Mitteilungen pro Tag.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/909fd6db-ceb8-4104-ae6a-0fbe6ad3f646"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "21c81af1-65a3-4178-a8c7-e05894f867e7",
+            "attributes": {
+              "name": "Pushnow Plus Monthly",
+              "locale": "en-US",
+              "description": "500 notification items per day.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/21c81af1-65a3-4178-a8c7-e05894f867e7"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "2a62ae86-ff37-4242-8e1f-fa57e96c9462",
+            "attributes": {
+              "name": "Pushnow Plus mensual",
+              "locale": "es-ES",
+              "description": "500 notificaciones al día.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/2a62ae86-ff37-4242-8e1f-fa57e96c9462"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9",
+            "attributes": {
+              "name": "Pushnow Plus 月度",
+              "locale": "zh-Hans",
+              "description": "每天 500 次通知事项。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/d5c718c0-73bc-4801-b4c0-aadb6fcdfaa9"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "11176eca-69ce-4f03-abb2-b8009860572d",
+            "attributes": {
+              "name": "Pushnow Plus 月額",
+              "locale": "ja",
+              "description": "1日500件の通知。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/11176eca-69ce-4f03-abb2-b8009860572d"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "6dfa9b0f-15db-4383-bcab-7feb056932bf",
+            "attributes": {
+              "name": "Pushnow Plus 월간",
+              "locale": "ko",
+              "description": "하루 알림 500개.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/6dfa9b0f-15db-4383-bcab-7feb056932bf"
+            }
+          }
+        ],
+        "links": {}
+      }
+    },
+    {
+      "id": "6811365755",
+      "before": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "15e5596b-1179-433c-8f4a-5f9d15014aa8",
+            "attributes": {
+              "name": "JiZhi Plus Yearly",
+              "locale": "en-US",
+              "description": "500 notification items per day with yearly billing.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/15e5596b-1179-433c-8f4a-5f9d15014aa8"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "9a999e08-2358-49af-95f0-9e48a5ef34ea",
+            "attributes": {
+              "name": "即知 Plus 年度",
+              "locale": "zh-Hans",
+              "description": "每天 500 次通知事项，按年订阅。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/9a999e08-2358-49af-95f0-9e48a5ef34ea"
+            }
+          }
+        ],
+        "links": {}
+      },
+      "after": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "1b55b327-2e7d-4854-9b4b-adf64cc8568f",
+            "attributes": {
+              "name": "Pushnow Plus Jährlich",
+              "locale": "de-DE",
+              "description": "500 Mitteilungen pro Tag.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/1b55b327-2e7d-4854-9b4b-adf64cc8568f"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "15e5596b-1179-433c-8f4a-5f9d15014aa8",
+            "attributes": {
+              "name": "Pushnow Plus Yearly",
+              "locale": "en-US",
+              "description": "500 notification items per day with yearly billing.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/15e5596b-1179-433c-8f4a-5f9d15014aa8"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "11b72ee7-636f-4645-9599-9cf12a480828",
+            "attributes": {
+              "name": "Pushnow Plus anual",
+              "locale": "es-ES",
+              "description": "500 notificaciones al día.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/11b72ee7-636f-4645-9599-9cf12a480828"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "9a999e08-2358-49af-95f0-9e48a5ef34ea",
+            "attributes": {
+              "name": "Pushnow Plus 年度",
+              "locale": "zh-Hans",
+              "description": "每天 500 次通知事项，按年订阅。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/9a999e08-2358-49af-95f0-9e48a5ef34ea"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "da9affe4-9eaa-4e96-93ef-21c0c8f68141",
+            "attributes": {
+              "name": "Pushnow Plus 年額",
+              "locale": "ja",
+              "description": "1日500件の通知。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/da9affe4-9eaa-4e96-93ef-21c0c8f68141"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "00835a09-f310-4d65-bae1-c3444664279b",
+            "attributes": {
+              "name": "Pushnow Plus 연간",
+              "locale": "ko",
+              "description": "하루 알림 500개.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/00835a09-f310-4d65-bae1-c3444664279b"
+            }
+          }
+        ],
+        "links": {}
+      }
+    },
+    {
+      "id": "6811365836",
+      "before": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "3f5a1d67-0708-4012-b5bf-839469703492",
+            "attributes": {
+              "name": "JiZhi Pro Monthly",
+              "locale": "en-US",
+              "description": "Unlimited notification items per day.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/3f5a1d67-0708-4012-b5bf-839469703492"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "974eecec-d012-4e4f-81cd-0b53b8c84ce8",
+            "attributes": {
+              "name": "Pushnow Pro Monatlich",
+              "locale": "de-DE",
+              "description": "Mitteilungen ohne Tageslimit. Faire Nutzung gilt.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/974eecec-d012-4e4f-81cd-0b53b8c84ce8"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "011ff13e-5fa9-4a6f-887f-681c292a1057",
+            "attributes": {
+              "name": "Pushnow Pro mensual",
+              "locale": "es-ES",
+              "description": "Notificaciones ilimitadas al día. Sujeto a uso justo.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/011ff13e-5fa9-4a6f-887f-681c292a1057"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "d8e2e037-665e-44e2-b7d8-3b5dc7cf9b24",
+            "attributes": {
+              "name": "Pushnow Pro 月額",
+              "locale": "ja",
+              "description": "1日の通知数は無制限。利用制限と不正利用防止措置が適用されます。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/d8e2e037-665e-44e2-b7d8-3b5dc7cf9b24"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "7155b1f4-67fc-4a0b-80d9-02698ff3ac7a",
+            "attributes": {
+              "name": "Pushnow Pro 월간",
+              "locale": "ko",
+              "description": "일일 알림 무제한. 플랫폼 및 남용 방지 제한이 적용됩니다.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/7155b1f4-67fc-4a0b-80d9-02698ff3ac7a"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "a7b9d295-6217-431f-9b63-87c32ab3dfd1",
+            "attributes": {
+              "name": "即知 Pro 月度",
+              "locale": "zh-Hans",
+              "description": "通知事项不限次数，仍受平台和防滥用限制。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/a7b9d295-6217-431f-9b63-87c32ab3dfd1"
+            }
+          }
+        ],
+        "links": {}
+      },
+      "after": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "974eecec-d012-4e4f-81cd-0b53b8c84ce8",
+            "attributes": {
+              "name": "Pushnow Pro Monatlich",
+              "locale": "de-DE",
+              "description": "Mitteilungen ohne Tageslimit. Faire Nutzung gilt.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/974eecec-d012-4e4f-81cd-0b53b8c84ce8"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "3f5a1d67-0708-4012-b5bf-839469703492",
+            "attributes": {
+              "name": "Pushnow Pro Monthly",
+              "locale": "en-US",
+              "description": "Unlimited notification items per day.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/3f5a1d67-0708-4012-b5bf-839469703492"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "011ff13e-5fa9-4a6f-887f-681c292a1057",
+            "attributes": {
+              "name": "Pushnow Pro mensual",
+              "locale": "es-ES",
+              "description": "Notificaciones ilimitadas al día. Sujeto a uso justo.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/011ff13e-5fa9-4a6f-887f-681c292a1057"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "a7b9d295-6217-431f-9b63-87c32ab3dfd1",
+            "attributes": {
+              "name": "Pushnow Pro 月度",
+              "locale": "zh-Hans",
+              "description": "通知事项不限次数，仍受平台和防滥用限制。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/a7b9d295-6217-431f-9b63-87c32ab3dfd1"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "d8e2e037-665e-44e2-b7d8-3b5dc7cf9b24",
+            "attributes": {
+              "name": "Pushnow Pro 月額",
+              "locale": "ja",
+              "description": "1日の通知数は無制限。利用制限と不正利用防止措置が適用されます。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/d8e2e037-665e-44e2-b7d8-3b5dc7cf9b24"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "7155b1f4-67fc-4a0b-80d9-02698ff3ac7a",
+            "attributes": {
+              "name": "Pushnow Pro 월간",
+              "locale": "ko",
+              "description": "일일 알림 무제한. 플랫폼 및 남용 방지 제한이 적용됩니다.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/7155b1f4-67fc-4a0b-80d9-02698ff3ac7a"
+            }
+          }
+        ],
+        "links": {}
+      }
+    },
+    {
+      "id": "6811365781",
+      "before": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "35f12798-f1c9-4847-a460-36d23f85274a",
+            "attributes": {
+              "name": "JiZhi Pro Yearly",
+              "locale": "en-US",
+              "description": "Unlimited items per day with yearly billing.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/35f12798-f1c9-4847-a460-36d23f85274a"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "62492106-534f-4d76-ac91-4909f098c9f4",
+            "attributes": {
+              "name": "即知 Pro 年度",
+              "locale": "zh-Hans",
+              "description": "通知事项不限次数，按年订阅。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/62492106-534f-4d76-ac91-4909f098c9f4"
+            }
+          }
+        ],
+        "links": {}
+      },
+      "after": {
+        "data": [
+          {
+            "type": "subscriptionLocalizations",
+            "id": "00b945fe-468d-4c9b-9b76-b84a2a2505af",
+            "attributes": {
+              "name": "Pushnow Pro Jährlich",
+              "locale": "de-DE",
+              "description": "Kein tägliches Mitteilungslimit im Tarif.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/00b945fe-468d-4c9b-9b76-b84a2a2505af"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "35f12798-f1c9-4847-a460-36d23f85274a",
+            "attributes": {
+              "name": "Pushnow Pro Yearly",
+              "locale": "en-US",
+              "description": "Unlimited items per day with yearly billing.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/35f12798-f1c9-4847-a460-36d23f85274a"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "9ca30f7f-8056-4470-ad77-c715a2c8bf4f",
+            "attributes": {
+              "name": "Pushnow Pro anual",
+              "locale": "es-ES",
+              "description": "Sin límite diario de notificaciones del plan.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/9ca30f7f-8056-4470-ad77-c715a2c8bf4f"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "62492106-534f-4d76-ac91-4909f098c9f4",
+            "attributes": {
+              "name": "Pushnow Pro 年度",
+              "locale": "zh-Hans",
+              "description": "通知事项不限次数，按年订阅。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/62492106-534f-4d76-ac91-4909f098c9f4"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "d236a6fd-acd0-4730-b938-72c04a90c9a9",
+            "attributes": {
+              "name": "Pushnow Pro 年額",
+              "locale": "ja",
+              "description": "1日の通知件数の会員上限なし。",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/d236a6fd-acd0-4730-b938-72c04a90c9a9"
+            }
+          },
+          {
+            "type": "subscriptionLocalizations",
+            "id": "bf69a3e0-61c5-48b7-981b-3bac6116f0d0",
+            "attributes": {
+              "name": "Pushnow Pro 연간",
+              "locale": "ko",
+              "description": "멤버십 일일 알림 한도 없음.",
+              "state": "PREPARE_FOR_SUBMISSION"
+            },
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptionLocalizations/bf69a3e0-61c5-48b7-981b-3bac6116f0d0"
+            }
+          }
+        ],
+        "links": {}
+      }
+    }
+  ],
+  "group_after": {
+    "data": [
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "54879414-d492-465c-894f-bb5c990846dc",
+        "attributes": {
+          "name": "Membresía de Pushnow",
+          "customAppName": "Pushnow",
+          "locale": "es-ES",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/54879414-d492-465c-894f-bb5c990846dc"
+        }
+      },
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "4063e823-a8d6-4daf-a469-b498a894e890",
+        "attributes": {
+          "name": "Pushnow Membership",
+          "customAppName": "Pushnow",
+          "locale": "en-US",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/4063e823-a8d6-4daf-a469-b498a894e890"
+        }
+      },
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "54a2f935-ff42-45b5-ae41-facb423d486c",
+        "attributes": {
+          "name": "Pushnow Mitgliedschaft",
+          "customAppName": "Pushnow",
+          "locale": "de-DE",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/54a2f935-ff42-45b5-ae41-facb423d486c"
+        }
+      },
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "e6ea4ad4-d218-426c-b539-0e4fee6eec56",
+        "attributes": {
+          "name": "Pushnow メンバーシップ",
+          "customAppName": "Pushnow",
+          "locale": "ja",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/e6ea4ad4-d218-426c-b539-0e4fee6eec56"
+        }
+      },
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "b978199b-06a3-4cb0-a16c-191190ac12ee",
+        "attributes": {
+          "name": "Pushnow 会员",
+          "customAppName": "Pushnow",
+          "locale": "zh-Hans",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/b978199b-06a3-4cb0-a16c-191190ac12ee"
+        }
+      },
+      {
+        "type": "subscriptionGroupLocalizations",
+        "id": "5dffa285-bf41-40d6-90da-521789822331",
+        "attributes": {
+          "name": "Pushnow 멤버십",
+          "customAppName": "Pushnow",
+          "locale": "ko",
+          "state": "PREPARE_FOR_SUBMISSION"
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptionGroupLocalizations/5dffa285-bf41-40d6-90da-521789822331"
+        }
+      }
+    ],
+    "links": {}
+  },
+  "catalog_after": {
+    "data": [
+      {
+        "type": "subscriptions",
+        "id": "6811365720",
+        "attributes": {
+          "name": "Pushnow Plus Monthly",
+          "productId": "com.createitv.pushnow.plus.monthly",
+          "state": "MISSING_METADATA",
+          "subscriptionPeriod": "ONE_MONTH",
+          "groupLevel": 2
+        },
+        "relationships": {
+          "subscriptionLocalizations": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/subscriptionLocalizations",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/subscriptionLocalizations"
+            }
+          },
+          "appStoreReviewScreenshot": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/appStoreReviewScreenshot",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/appStoreReviewScreenshot"
+            }
+          },
+          "introductoryOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/introductoryOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/introductoryOffers"
+            }
+          },
+          "promotionalOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/promotionalOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/promotionalOffers"
+            }
+          },
+          "offerCodes": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/offerCodes",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/offerCodes"
+            }
+          },
+          "prices": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/prices",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/prices"
+            }
+          },
+          "pricePoints": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/pricePoints",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/pricePoints"
+            }
+          },
+          "promotedPurchase": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/promotedPurchase",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/promotedPurchase"
+            }
+          },
+          "subscriptionAvailability": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/subscriptionAvailability",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/subscriptionAvailability"
+            }
+          },
+          "winBackOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/winBackOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/winBackOffers"
+            }
+          },
+          "images": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/images",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/images"
+            }
+          },
+          "planAvailabilities": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/planAvailabilities",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/planAvailabilities"
+            }
+          },
+          "versions": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/relationships/versions",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720/versions"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365720"
+        }
+      },
+      {
+        "type": "subscriptions",
+        "id": "6811365755",
+        "attributes": {
+          "name": "Pushnow Plus Yearly",
+          "productId": "com.createitv.pushnow.plus.yearly",
+          "state": "MISSING_METADATA",
+          "subscriptionPeriod": "ONE_YEAR",
+          "groupLevel": 4
+        },
+        "relationships": {
+          "subscriptionLocalizations": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/subscriptionLocalizations",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/subscriptionLocalizations"
+            }
+          },
+          "appStoreReviewScreenshot": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/appStoreReviewScreenshot",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/appStoreReviewScreenshot"
+            }
+          },
+          "introductoryOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/introductoryOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/introductoryOffers"
+            }
+          },
+          "promotionalOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/promotionalOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/promotionalOffers"
+            }
+          },
+          "offerCodes": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/offerCodes",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/offerCodes"
+            }
+          },
+          "prices": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/prices",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/prices"
+            }
+          },
+          "pricePoints": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/pricePoints",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/pricePoints"
+            }
+          },
+          "promotedPurchase": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/promotedPurchase",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/promotedPurchase"
+            }
+          },
+          "subscriptionAvailability": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/subscriptionAvailability",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/subscriptionAvailability"
+            }
+          },
+          "winBackOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/winBackOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/winBackOffers"
+            }
+          },
+          "images": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/images",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/images"
+            }
+          },
+          "planAvailabilities": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/planAvailabilities",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/planAvailabilities"
+            }
+          },
+          "versions": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/relationships/versions",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755/versions"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365755"
+        }
+      },
+      {
+        "type": "subscriptions",
+        "id": "6811365836",
+        "attributes": {
+          "name": "Pushnow Pro Monthly",
+          "productId": "com.createitv.pushnow.pro.monthly",
+          "state": "MISSING_METADATA",
+          "subscriptionPeriod": "ONE_MONTH",
+          "groupLevel": 1
+        },
+        "relationships": {
+          "subscriptionLocalizations": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/subscriptionLocalizations",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/subscriptionLocalizations"
+            }
+          },
+          "appStoreReviewScreenshot": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/appStoreReviewScreenshot",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/appStoreReviewScreenshot"
+            }
+          },
+          "introductoryOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/introductoryOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/introductoryOffers"
+            }
+          },
+          "promotionalOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/promotionalOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/promotionalOffers"
+            }
+          },
+          "offerCodes": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/offerCodes",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/offerCodes"
+            }
+          },
+          "prices": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/prices",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/prices"
+            }
+          },
+          "pricePoints": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/pricePoints",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/pricePoints"
+            }
+          },
+          "promotedPurchase": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/promotedPurchase",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/promotedPurchase"
+            }
+          },
+          "subscriptionAvailability": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/subscriptionAvailability",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/subscriptionAvailability"
+            }
+          },
+          "winBackOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/winBackOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/winBackOffers"
+            }
+          },
+          "images": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/images",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/images"
+            }
+          },
+          "planAvailabilities": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/planAvailabilities",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/planAvailabilities"
+            }
+          },
+          "versions": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/relationships/versions",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836/versions"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365836"
+        }
+      },
+      {
+        "type": "subscriptions",
+        "id": "6811365781",
+        "attributes": {
+          "name": "Pushnow Pro Yearly",
+          "productId": "com.createitv.pushnow.pro.yearly",
+          "state": "MISSING_METADATA",
+          "subscriptionPeriod": "ONE_YEAR",
+          "groupLevel": 3
+        },
+        "relationships": {
+          "subscriptionLocalizations": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/subscriptionLocalizations",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/subscriptionLocalizations"
+            }
+          },
+          "appStoreReviewScreenshot": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/appStoreReviewScreenshot",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/appStoreReviewScreenshot"
+            }
+          },
+          "introductoryOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/introductoryOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/introductoryOffers"
+            }
+          },
+          "promotionalOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/promotionalOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/promotionalOffers"
+            }
+          },
+          "offerCodes": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/offerCodes",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/offerCodes"
+            }
+          },
+          "prices": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/prices",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/prices"
+            }
+          },
+          "pricePoints": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/pricePoints",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/pricePoints"
+            }
+          },
+          "promotedPurchase": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/promotedPurchase",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/promotedPurchase"
+            }
+          },
+          "subscriptionAvailability": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/subscriptionAvailability",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/subscriptionAvailability"
+            }
+          },
+          "winBackOffers": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/winBackOffers",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/winBackOffers"
+            }
+          },
+          "images": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/images",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/images"
+            }
+          },
+          "planAvailabilities": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/planAvailabilities",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/planAvailabilities"
+            }
+          },
+          "versions": {
+            "links": {
+              "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/relationships/versions",
+              "related": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781/versions"
+            }
+          }
+        },
+        "links": {
+          "self": "https://api.appstoreconnect.apple.com/v1/subscriptions/6811365781"
+        }
+      }
+    ],
+    "links": {}
+  }
+}

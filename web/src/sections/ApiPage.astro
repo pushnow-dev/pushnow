@@ -1,0 +1,54 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { pathFor, site } from "../data/site";
+import "../styles/docs.css";
+const { lang } = Astro.props as { lang: string };
+const zh = lang === "zh-Hans";
+const title = zh ? "加密通知 API" : "Encrypted notification API";
+const description = zh ? "授权发送来源，端到端加密内容，并向你绑定的设备发送通知。" : "Authorize a sender, encrypt content locally and notify your account's devices.";
+const endpoints = [
+  ["GET", "/v1/secure/devices", "Account session", "List your devices"],
+  ["GET", "/v2/keys", "Account session", "List sender Key metadata"],
+  ["GET", "/v2/logs", "Account session", "Inspect notification attempts"],
+  ["GET", "/v2/recipients", "Sender Key", "Read the signed recipient directory"],
+  ["POST", "/v2/messages", "Sender Key", "Submit an encrypted envelope"],
+  ["POST / PUT", "/v2/attachments[/<ID>]", "Sender Key", "Reserve and upload encrypted files"]
+];
+---
+<SiteLayout lang={lang} title={`${title} - PushNow`} description={description} slug="api">
+  <div class="developer-docs">
+    <header class="docs-topbar">
+      <a class="docs-brand" href={pathFor(lang)}><img src="/assets/jizhi-app-icon.png" width="32" height="32" alt="" />{zh ? "即知" : "PushNow"}<span>API</span></a>
+      <nav aria-label="Main navigation"><a href={pathFor(lang, "docs")}>Docs</a><a href={pathFor(lang, "dashboard")}>{zh ? "控制台" : "Dashboard"}</a></nav>
+    </header>
+    <main class="docs-content api-reference">
+      <header class="docs-page-heading"><p>HTTP + HPKE</p><h1>{title}</h1><p>{description}</p></header>
+      <article class="docs-markdown">
+        <h2>{zh ? "开始使用" : "Start with a trusted sender"}</h2>
+        <p>{zh ? "先在 App 验证邮箱并完成设备设置，再使用 CLI 登录并在 iOS 批准发送来源。网页登录或新增 Key 不会替代加密授权。" : "Verify your email and finish device setup in the app. Then log in with the CLI and approve the sender on iOS. Web login or adding a transport Key does not replace encryption authorization."}</p>
+        <pre><code>{`npm --prefix cli ci\nnode cli/src/main.js login --api ${site.api} --name "My automation"\nnode cli/src/main.js send --title "Build complete" --body "Ready for review"`}</code></pre>
+        <p>{zh ? "以上命令从仓库根目录运行，不依赖已发布的 npm 包。" : "Run these commands from the repository root. They do not assume a published npm package."}</p>
+        <h2>{zh ? "接口与凭据" : "Endpoints and credentials"}</h2>
+        <p><code>{site.api}</code></p>
+        <table><thead><tr><th>Method</th><th>Path</th><th>Credential</th><th>Purpose</th></tr></thead><tbody>{endpoints.map(row => <tr>{row.map(cell => <td>{cell}</td>)}</tr>)}</tbody></table>
+        <h2>{zh ? "发送约定" : "Sending contract"}</h2>
+        <p>{zh ? "POST /v2/messages 接收 SDK 生成的加密 envelope，不能直接提交明文标题和正文。Idempotency-Key 必须等于 message_id，重试需复用原始加密内容。" : "POST /v2/messages accepts an SDK-prepared encrypted envelope, not plaintext title and body fields. Idempotency-Key must equal message_id; retries must reuse the original encrypted payload."}</p>
+        <ul>
+          <li>{zh ? "省略 notify_device_ids 默认提醒全部符合条件的设备；空数组仅保存到收件箱。" : "Omit notify_device_ids to alert all eligible devices; use an empty array for inbox-only."}</li>
+          <li>{zh ? "scheduled_at 支持未来 30 天内的提醒，消息会立即出现在历史中。" : "scheduled_at supports reminders within the next 30 days; history is available immediately."}</li>
+          <li>{zh ? "支持加密标题、正文、链接和附件。当前不支持自定义通知声音。" : "Encrypted titles, body text, links and attachments are supported. Custom notification sound is currently unsupported."}</li>
+          <li>{zh ? "accepted 表示服务商已接受，不代表设备已显示通知。" : "accepted means provider accepted, not device delivered."}</li>
+        </ul>
+        <h2>{zh ? "文档和测试" : "Documentation and testing"}</h2>
+        <ul>
+          <li><a href="/docs/http-api/">HTTP request and response reference</a></li>
+          <li><a href="/docs/hpke-authorization/">HPKE authorization and account binding</a></li>
+          <li><a href="/docs/message-content/">Images, icons, files and supported fields</a></li>
+          <li><a href="/docs/sdks/">TypeScript, JavaScript, Python, Go and Java SDKs</a></li>
+          <li><a href={pathFor(lang, "dashboard")}>{zh ? "在控制台测试 API" : "Test APIs in Dashboard"}</a></li>
+        </ul>
+      </article>
+    </main>
+  </div>
+</SiteLayout>
+<style>.api-reference { margin: 0 auto; padding: 40px 24px 80px; max-width: 920px; }</style>

@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+const directory=new URL('../../.secrets/',import.meta.url);
+fs.mkdirSync(directory,{recursive:true,mode:0o700});
+const project=fs.readFileSync(new URL('../../JiZhi.xcodeproj/project.pbxproj',import.meta.url),'utf8');
+const key=project.match(/appl_[A-Za-z0-9]+/)?.[0];
+if(!key)throw new Error('Public subscriber API key unavailable');
+const file=new URL('revenuecat-worker.json',directory);
+if(fs.existsSync(file))throw new Error('Existing credentials preserved; use existing file');
+fs.writeFileSync(file,JSON.stringify({REVENUECAT_SUBSCRIBER_API_KEY:key,REVENUECAT_WEBHOOK_SECRET:crypto.randomBytes(48).toString('base64url')}),{mode:0o600,flag:'wx'});
+console.log('Private Worker configuration prepared; no values printed.');

@@ -1,0 +1,36 @@
+{
+  "plus": {
+    "subscription_id": "6811365720",
+    "screenshot_id": "62587ecc-fad7-44ef-b09c-e66c356850e0",
+    "attributes": {
+      "fileName": "SOURCE",
+      "fileSize": 249204,
+      "sourceFileChecksum": "15c349eba701fd29ce967716477940f4",
+      "imageAsset": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/LYUMycZFz4rNfp-pFXq6IQ/{w}x{h}bb.{f}",
+        "width": 1242,
+        "height": 2688
+      },
+      "assetDeliveryState": {
+        "state": "COMPLETE"
+      }
+    }
+  },
+  "pro": {
+    "subscription_id": "6811365836",
+    "screenshot_id": "6c4f53ab-d4f6-4936-a56e-74dd45d5336a",
+    "attributes": {
+      "fileName": "SOURCE",
+      "fileSize": 249306,
+      "sourceFileChecksum": "3f492002c34da7dd8f2b3e94301f6259",
+      "imageAsset": {
+        "templateUrl": "https://is1-ssl.mzstatic.com/image/thumb/pmbYDgd7gSN6cK8pkWHMAQ/{w}x{h}bb.{f}",
+        "width": 1242,
+        "height": 2688
+      },
+      "assetDeliveryState": {
+        "state": "COMPLETE"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+---
+import ApiPage from "../../sections/ApiPage.astro";
+import { languages } from "../../data/site";
+
+export function getStaticPaths() {
+  return languages.filter((lang) => lang.code !== "en").map((lang) => ({ params: { lang: lang.code } }));
+}
+
+const { lang } = Astro.params;
+---
+
+<ApiPage lang={lang ?? "en"} />

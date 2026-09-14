@@ -1,0 +1,87 @@
+{
+  "version_id": "ff337927-1615-4364-b553-34d92bbf45b1",
+  "version": "1.0",
+  "upload_order": [
+    "zh-Hans",
+    "en-US"
+  ],
+  "device_type": "APP_IPHONE_65",
+  "audit_before": {
+    "zh-Hans": {
+      "sets": []
+    },
+    "en-US": {
+      "sets": []
+    }
+  },
+  "validation": {
+    "files": 4,
+    "ready": 4,
+    "errors": 0,
+    "warnings": 0
+  },
+  "dry_run": {
+    "uploads": 4,
+    "deletes": 0
+  },
+  "locales": {
+    "zh-Hans": {
+      "version_localization_id": "f63160e0-9cff-463f-921b-132fbfe8885e",
+      "screenshots": [
+        {
+          "order": 1,
+          "asset_id": "576c92c0-b116-4850-bdad-1e36a9dc4b23",
+          "file_name": "02-detail.png",
+          "state": "COMPLETE",
+          "width": 1242,
+          "height": 2688,
+          "md5": "5ce75b3db14704b88400d2937dc9f37f",
+          "sha256": "8df39aefb0de969653ede8340e84f66a5f26219aee08e7e35d972b2d8954412d",
+          "bytes": 2016274,
+          "set_id": "f93c1e78-5c85-4a32-9db3-1107168aa080"
+        },
+        {
+          "order": 2,
+          "asset_id": "2b0642a2-243c-4e5b-a30e-6625f21a6153",
+          "file_name": "03-membership.png",
+          "state": "COMPLETE",
+          "width": 1242,
+          "height": 2688,
+          "md5": "c2e724e8662fd83f2c5425c3842ce409",
+          "sha256": "b254ae9c82adce657bddd821456220b60de7a4a062c595d1e5947e054240f885",
+          "bytes": 2086667,
+          "set_id": "f93c1e78-5c85-4a32-9db3-1107168aa080"
+        }
+      ]
+    },
+    "en-US": {
+      "version_localization_id": "f63e773d-e1f1-48ba-a912-2c03a46e2d4a",
+      "screenshots": [
+        {
+          "order": 1,
+          "asset_id": "d6717830-ddc0-4843-b83b-fb54f41c56ff",
+          "file_name": "02-detail.png",
+          "state": "COMPLETE",
+          "width": 1242,
+          "height": 2688,
+          "md5": "b067d02765feb8622f0722d5e4081c35",
+          "sha256": "97949d3003c8f8f9d7b6561ee2aad39bf53cb342590293419e24d29ff87b6332",
+          "bytes": 1984024,
+          "set_id": "7ec695b0-a469-49ed-b953-4c1772a1fee4"
+        },
+        {
+          "order": 2,
+          "asset_id": "0387663b-dd01-4586-b32b-bb58536bd460",
+          "file_name": "03-membership.png",
+          "state": "COMPLETE",
+          "width": 1242,
+          "height": 2688,
+          "md5": "d2ed546fb929ce76fcfb16bedb236303",
+          "sha256": "ba117eddb12c892ffce93e4a0df9fb45df20c60f0b1d5d8959f0ef7e7295bf25",
+          "bytes": 2463066,
+          "set_id": "7ec695b0-a469-49ed-b953-4c1772a1fee4"
+        }
+      ]
+    }
+  }
+}

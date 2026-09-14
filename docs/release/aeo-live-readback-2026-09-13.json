@@ -1,0 +1,101 @@
+{
+  "verified_at": "2026-09-13T04:31:37.445079+00:00",
+  "worker": "jizhi-web",
+  "version_id": "734fcff9-a3e7-4eb1-b277-5358175e3717",
+  "guides": [
+    {
+      "locale": "en",
+      "url": "https://pushnow.dev/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/guide/",
+      "alternate_count": 7,
+      "visible_characters": 4104,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    },
+    {
+      "locale": "zh-Hans",
+      "url": "https://pushnow.dev/zh-Hans/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/zh-Hans/guide/",
+      "alternate_count": 7,
+      "visible_characters": 1399,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    },
+    {
+      "locale": "ja",
+      "url": "https://pushnow.dev/ja/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/ja/guide/",
+      "alternate_count": 7,
+      "visible_characters": 1758,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    },
+    {
+      "locale": "ko",
+      "url": "https://pushnow.dev/ko/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/ko/guide/",
+      "alternate_count": 7,
+      "visible_characters": 1957,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    },
+    {
+      "locale": "es",
+      "url": "https://pushnow.dev/es/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/es/guide/",
+      "alternate_count": 7,
+      "visible_characters": 3708,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    },
+    {
+      "locale": "de",
+      "url": "https://pushnow.dev/de/guide/",
+      "status": 200,
+      "faq_count": 6,
+      "canonical": "https://pushnow.dev/de/guide/",
+      "alternate_count": 7,
+      "visible_characters": 3734,
+      "visible_content_and_metadata_match_local_build": true,
+      "schema_matches_visible_content": true
+    }
+  ],
+  "crawl_files": [
+    {
+      "url": "https://pushnow.dev/robots.txt",
+      "status": 200,
+      "content_type": "text/plain",
+      "matches_local_build": true
+    },
+    {
+      "url": "https://pushnow.dev/sitemap.xml",
+      "status": 200,
+      "content_type": "application/xml",
+      "matches_local_build": true
+    },
+    {
+      "url": "https://pushnow.dev/llms.txt",
+      "status": 200,
+      "content_type": "text/plain",
+      "matches_local_build": true
+    }
+  ],
+  "sitemap_url_count": 121,
+  "sitemap_http_200_count": 121,
+  "sitemap_direct_200_without_redirect": 121,
+  "sitemap_failures": [],
+  "robots_allows_crawling": true,
+  "llms_links_all_six_guides": true,
+  "dashboard_excluded_from_sitemap": true,
+  "edge_transform": "Cloudflare analytics beacon is injected; comparison excludes script text and checks all visible content, JSON-LD, canonical and hreflang."
+}

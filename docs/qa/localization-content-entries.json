@@ -1,0 +1,618 @@
+{
+  "Search channels": {
+    "en": "Search channels",
+    "zh-Hans": "搜索频道",
+    "ja": "チャンネルを検索",
+    "ko": "채널 검색",
+    "es": "Buscar canales",
+    "de": "Kanäle suchen"
+  },
+  "Saved channels": {
+    "en": "Saved channels",
+    "zh-Hans": "已保存频道",
+    "ja": "保存したチャンネル",
+    "ko": "저장한 채널",
+    "es": "Canales guardados",
+    "de": "Gespeicherte Kanäle"
+  },
+  "Save subscription": {
+    "en": "Save subscription",
+    "zh-Hans": "保存订阅",
+    "ja": "購読を保存",
+    "ko": "구독 저장",
+    "es": "Guardar suscripción",
+    "de": "Abonnement speichern"
+  },
+  "Edit subscription": {
+    "en": "Edit subscription",
+    "zh-Hans": "编辑订阅",
+    "ja": "購読を編集",
+    "ko": "구독 수정",
+    "es": "Editar suscripción",
+    "de": "Abonnement bearbeiten"
+  },
+  "Save changes": {
+    "en": "Save changes",
+    "zh-Hans": "保存修改",
+    "ja": "変更を保存",
+    "ko": "변경 사항 저장",
+    "es": "Guardar cambios",
+    "de": "Änderungen speichern"
+  },
+  "Saved locally - pending activation": {
+    "en": "Saved locally - pending activation",
+    "zh-Hans": "已保存到本机，待启用",
+    "ja": "端末に保存済み・有効化待ち",
+    "ko": "기기에 저장됨 · 활성화 대기 중",
+    "es": "Guardado localmente; pendiente de activación",
+    "de": "Lokal gespeichert – Aktivierung ausstehend"
+  },
+  "Delivery is not active. These preferences are saved only on this device for your account.": {
+    "en": "Delivery is not active. These preferences are saved only on this device for your account.",
+    "zh-Hans": "通知尚未启用。这些偏好仅为当前账号保存在本机。",
+    "ja": "通知配信は有効ではありません。この設定は、この端末の現在のアカウントにのみ保存されます。",
+    "ko": "알림 전송이 활성화되지 않았습니다. 이 설정은 현재 계정의 이 기기에만 저장됩니다.",
+    "es": "El envío no está activo. Estas preferencias solo se guardan en este dispositivo para tu cuenta.",
+    "de": "Die Zustellung ist nicht aktiv. Diese Einstellungen werden für dein Konto nur auf diesem Gerät gespeichert."
+  },
+  "Daily notification": {
+    "en": "Daily notification",
+    "zh-Hans": "每日通知",
+    "ja": "毎日の通知",
+    "ko": "매일 알림",
+    "es": "Notificación diaria",
+    "de": "Tägliche Benachrichtigung"
+  },
+  "Daily time": {
+    "en": "Daily time",
+    "zh-Hans": "每日时间",
+    "ja": "毎日の時刻",
+    "ko": "매일 알림 시간",
+    "es": "Hora diaria",
+    "de": "Tägliche Uhrzeit"
+  },
+  "In-app only": {
+    "en": "In-app only",
+    "zh-Hans": "仅在 App 内查看",
+    "ja": "アプリ内のみ",
+    "ko": "앱 내에서만",
+    "es": "Solo en la app",
+    "de": "Nur in der App"
+  },
+  "Search timezones": {
+    "en": "Search timezones",
+    "zh-Hans": "搜索时区",
+    "ja": "タイムゾーンを検索",
+    "ko": "시간대 검색",
+    "es": "Buscar zonas horarias",
+    "de": "Zeitzonen suchen"
+  },
+  "Remove saved subscription?": {
+    "en": "Remove saved subscription?",
+    "zh-Hans": "移除已保存的订阅？",
+    "ja": "保存した購読を削除しますか？",
+    "ko": "저장한 구독을 삭제할까요?",
+    "es": "¿Eliminar la suscripción guardada?",
+    "de": "Gespeichertes Abonnement entfernen?"
+  },
+  "This removes the preference from this device only.": {
+    "en": "This removes the preference from this device only.",
+    "zh-Hans": "此操作仅移除本机保存的偏好。",
+    "ja": "この端末に保存された設定のみが削除されます。",
+    "ko": "이 기기에 저장된 설정만 삭제합니다.",
+    "es": "Esto solo elimina la preferencia de este dispositivo.",
+    "de": "Dadurch wird die Einstellung nur von diesem Gerät entfernt."
+  },
+  "Sign in to save subscriptions": {
+    "en": "Sign in to save subscriptions",
+    "zh-Hans": "登录后保存订阅",
+    "ja": "ログインして購読を保存",
+    "ko": "로그인하여 구독 저장",
+    "es": "Inicia sesión para guardar suscripciones",
+    "de": "Anmelden, um Abonnements zu speichern"
+  },
+  "A verified email account is required.": {
+    "en": "A verified email account is required.",
+    "zh-Hans": "需要已验证的邮箱账号。",
+    "ja": "確認済みのメールアカウントが必要です。",
+    "ko": "인증된 이메일 계정이 필요합니다.",
+    "es": "Se requiere una cuenta con correo verificado.",
+    "de": "Ein Konto mit bestätigter E-Mail-Adresse ist erforderlich."
+  },
+  "Sign in": {
+    "en": "Sign in",
+    "zh-Hans": "登录",
+    "ja": "ログイン",
+    "ko": "로그인",
+    "es": "Iniciar sesión",
+    "de": "Anmelden"
+  },
+  "No saved channels": {
+    "en": "No saved channels",
+    "zh-Hans": "暂无已保存的频道",
+    "ja": "保存したチャンネルはありません",
+    "ko": "저장한 채널이 없습니다",
+    "es": "No hay canales guardados",
+    "de": "Keine gespeicherten Kanäle"
+  },
+  "Your account changed. Reopen this channel.": {
+    "en": "Your account changed. Reopen this channel.",
+    "zh-Hans": "账号已变更，请重新打开此频道。",
+    "ja": "アカウントが変更されました。このチャンネルを開き直してください。",
+    "ko": "계정이 변경되었습니다. 이 채널을 다시 여세요.",
+    "es": "Tu cuenta cambió. Vuelve a abrir este canal.",
+    "de": "Dein Konto wurde geändert. Öffne diesen Kanal erneut."
+  },
+  "Choose a valid time and timezone.": {
+    "en": "Choose a valid time and timezone.",
+    "zh-Hans": "请选择有效的时间和时区。",
+    "ja": "有効な時刻とタイムゾーンを選択してください。",
+    "ko": "유효한 시간과 시간대를 선택하세요.",
+    "es": "Elige una hora y zona horaria válidas.",
+    "de": "Wähle eine gültige Uhrzeit und Zeitzone."
+  },
+  "Local preferences could not be loaded or saved. Try again.": {
+    "en": "Local preferences could not be loaded or saved. Try again.",
+    "zh-Hans": "无法读取或保存本地偏好，请重试。",
+    "ja": "端末の設定を読み込みまたは保存できませんでした。もう一度お試しください。",
+    "ko": "기기 설정을 불러오거나 저장하지 못했습니다. 다시 시도하세요.",
+    "es": "No se pudieron cargar o guardar las preferencias locales. Inténtalo de nuevo.",
+    "de": "Lokale Einstellungen konnten nicht geladen oder gespeichert werden. Versuche es erneut."
+  },
+  "Message": {
+    "en": "Message",
+    "zh-Hans": "消息",
+    "ja": "メッセージ",
+    "ko": "메시지",
+    "es": "Mensaje",
+    "de": "Nachricht"
+  },
+  "Timezone": {
+    "en": "Timezone",
+    "zh-Hans": "时区",
+    "ja": "タイムゾーン",
+    "ko": "시간대",
+    "es": "Zona horaria",
+    "de": "Zeitzone"
+  },
+  "Unsubscribe": {
+    "en": "Unsubscribe",
+    "zh-Hans": "取消订阅",
+    "ja": "購読を解除",
+    "ko": "구독 취소",
+    "es": "Cancelar suscripción",
+    "de": "Abonnement beenden"
+  },
+  "Time not set": {
+    "en": "Time not set",
+    "zh-Hans": "未定时间",
+    "ja": "時刻未設定",
+    "ko": "시간 미설정",
+    "es": "Hora sin definir",
+    "de": "Zeit nicht festgelegt"
+  },
+  "仅 App 内查看": {
+    "en": "In-app only",
+    "zh-Hans": "仅在 App 内查看",
+    "ja": "アプリ内のみ",
+    "ko": "앱 내에서만",
+    "es": "Solo en la app",
+    "de": "Nur in der App"
+  },
+  "不通知时仅 App 内查看": {
+    "en": "View in the app when notifications are off",
+    "zh-Hans": "不通知时仅 App 内查看",
+    "ja": "通知がオフのときはアプリ内で表示",
+    "ko": "알림이 꺼져 있으면 앱에서만 보기",
+    "es": "Ver en la app cuando las notificaciones estén desactivadas",
+    "de": "Bei deaktivierten Benachrichtigungen in der App anzeigen"
+  },
+  "提醒时间": {
+    "en": "Reminder time",
+    "zh-Hans": "提醒时间",
+    "ja": "リマインダー時刻",
+    "ko": "알림 시간",
+    "es": "Hora del recordatorio",
+    "de": "Erinnerungszeit"
+  },
+  "紧急程度": {
+    "en": "Priority",
+    "zh-Hans": "紧急程度",
+    "ja": "優先度",
+    "ko": "우선순위",
+    "es": "Prioridad",
+    "de": "Priorität"
+  },
+  "已取消": {
+    "en": "Cancelled",
+    "zh-Hans": "已取消",
+    "ja": "キャンセル済み",
+    "ko": "취소됨",
+    "es": "Cancelado",
+    "de": "Abgebrochen"
+  },
+  "修改": {
+    "en": "Edit",
+    "zh-Hans": "修改",
+    "ja": "編集",
+    "ko": "수정",
+    "es": "Editar",
+    "de": "Bearbeiten"
+  },
+  "稍后提醒": {
+    "en": "Remind me later",
+    "zh-Hans": "稍后提醒",
+    "ja": "後で通知",
+    "ko": "나중에 알림",
+    "es": "Recordarme más tarde",
+    "de": "Später erinnern"
+  },
+  "收藏": {
+    "en": "Save",
+    "zh-Hans": "收藏",
+    "ja": "保存",
+    "ko": "저장",
+    "es": "Guardar",
+    "de": "Speichern"
+  },
+  "复制密钥": {
+    "en": "Copy key",
+    "zh-Hans": "复制密钥",
+    "ja": "キーをコピー",
+    "ko": "키 복사",
+    "es": "Copiar clave",
+    "de": "Schlüssel kopieren"
+  },
+  "知道了": {
+    "en": "Acknowledge",
+    "zh-Hans": "知道了",
+    "ja": "確認する",
+    "ko": "확인",
+    "es": "Confirmar",
+    "de": "Bestätigen"
+  },
+  "个人接入": {
+    "en": "Personal connections",
+    "zh-Hans": "个人接入",
+    "ja": "個人の接続",
+    "ko": "개인 연결",
+    "es": "Conexiones personales",
+    "de": "Persönliche Verbindungen"
+  },
+  "已订阅": {
+    "en": "Subscribed",
+    "zh-Hans": "已订阅",
+    "ja": "購読済み",
+    "ko": "구독 중",
+    "es": "Suscrito",
+    "de": "Abonniert"
+  },
+  "类型": {
+    "en": "Type",
+    "zh-Hans": "类型",
+    "ja": "種類",
+    "ko": "유형",
+    "es": "Tipo",
+    "de": "Typ"
+  },
+  "默认提醒": {
+    "en": "Default reminder",
+    "zh-Hans": "默认提醒",
+    "ja": "既定のリマインダー",
+    "ko": "기본 알림",
+    "es": "Recordatorio predeterminado",
+    "de": "Standarderinnerung"
+  },
+  "级别": {
+    "en": "Level",
+    "zh-Hans": "级别",
+    "ja": "レベル",
+    "ko": "수준",
+    "es": "Nivel",
+    "de": "Stufe"
+  },
+  "普通": {
+    "en": "Normal",
+    "zh-Hans": "普通",
+    "ja": "通常",
+    "ko": "일반",
+    "es": "Normal",
+    "de": "Normal"
+  },
+  "重要": {
+    "en": "Important",
+    "zh-Hans": "重要",
+    "ja": "重要",
+    "ko": "중요",
+    "es": "Importante",
+    "de": "Wichtig"
+  },
+  "新建来源": {
+    "en": "New source",
+    "zh-Hans": "新建来源",
+    "ja": "新しいソース",
+    "ko": "새 소스",
+    "es": "Nueva fuente",
+    "de": "Neue Quelle"
+  },
+  "取消": {
+    "en": "Cancel",
+    "zh-Hans": "取消",
+    "ja": "キャンセル",
+    "ko": "취소",
+    "es": "Cancelar",
+    "de": "Abbrechen"
+  },
+  "P0": {
+    "en": "P0",
+    "zh-Hans": "P0",
+    "ja": "P0",
+    "ko": "P0",
+    "es": "P0",
+    "de": "P0"
+  },
+  "P1": {
+    "en": "P1",
+    "zh-Hans": "P1",
+    "ja": "P1",
+    "ko": "P1",
+    "es": "P1",
+    "de": "P1"
+  },
+  "订阅": {
+    "en": "Feeds",
+    "zh-Hans": "订阅",
+    "ja": "フィード",
+    "ko": "피드",
+    "es": "Fuentes",
+    "de": "Feeds"
+  },
+  "立即": {
+    "en": "Immediately",
+    "zh-Hans": "立即",
+    "ja": "今すぐ",
+    "ko": "즉시",
+    "es": "Inmediatamente",
+    "de": "Sofort"
+  },
+  "个人来源": {
+    "en": "Personal source",
+    "zh-Hans": "个人来源",
+    "ja": "個人ソース",
+    "ko": "개인 소스",
+    "es": "Fuente personal",
+    "de": "Persönliche Quelle"
+  },
+  "仅保存": {
+    "en": "Save only",
+    "zh-Hans": "仅保存",
+    "ja": "保存のみ",
+    "ko": "저장만",
+    "es": "Solo guardar",
+    "de": "Nur speichern"
+  },
+  "仅查看": {
+    "en": "View only",
+    "zh-Hans": "仅查看",
+    "ja": "表示のみ",
+    "ko": "보기만",
+    "es": "Solo ver",
+    "de": "Nur anzeigen"
+  },
+  "保存提醒": {
+    "en": "Save reminder",
+    "zh-Hans": "保存提醒",
+    "ja": "リマインダーを保存",
+    "ko": "알림 저장",
+    "es": "Guardar recordatorio",
+    "de": "Erinnerung speichern"
+  },
+  "创建": {
+    "en": "Create",
+    "zh-Hans": "创建",
+    "ja": "作成",
+    "ko": "만들기",
+    "es": "Crear",
+    "de": "Erstellen"
+  },
+  "创建中": {
+    "en": "Creating",
+    "zh-Hans": "创建中",
+    "ja": "作成中",
+    "ko": "만드는 중",
+    "es": "Creando",
+    "de": "Wird erstellt"
+  },
+  "发现来源": {
+    "en": "Discover sources",
+    "zh-Hans": "发现来源",
+    "ja": "ソースを探す",
+    "ko": "소스 탐색",
+    "es": "Descubrir fuentes",
+    "de": "Quellen entdecken"
+  },
+  "安排提醒": {
+    "en": "Schedule reminder",
+    "zh-Hans": "安排提醒",
+    "ja": "リマインダーを設定",
+    "ko": "알림 예약",
+    "es": "Programar recordatorio",
+    "de": "Erinnerung planen"
+  },
+  "已保存到 App 内": {
+    "en": "Saved in the app",
+    "zh-Hans": "已保存到 App 内",
+    "ja": "アプリに保存済み",
+    "ko": "앱에 저장됨",
+    "es": "Guardado en la app",
+    "de": "In der App gespeichert"
+  },
+  "已启用": {
+    "en": "Enabled",
+    "zh-Hans": "已启用",
+    "ja": "有効",
+    "ko": "활성화됨",
+    "es": "Activado",
+    "de": "Aktiviert"
+  },
+  "已延后": {
+    "en": "Snoozed",
+    "zh-Hans": "已延后",
+    "ja": "延期済み",
+    "ko": "미뤄짐",
+    "es": "Pospuesto",
+    "de": "Verschoben"
+  },
+  "已暂停": {
+    "en": "Paused",
+    "zh-Hans": "已暂停",
+    "ja": "一時停止中",
+    "ko": "일시 중지됨",
+    "es": "Pausado",
+    "de": "Pausiert"
+  },
+  "延迟": {
+    "en": "Delay",
+    "zh-Hans": "延迟",
+    "ja": "遅延",
+    "ko": "지연",
+    "es": "Retrasar",
+    "de": "Verzögern"
+  },
+  "循环": {
+    "en": "Repeat",
+    "zh-Hans": "循环",
+    "ja": "繰り返し",
+    "ko": "반복",
+    "es": "Repetir",
+    "de": "Wiederholen"
+  },
+  "我的来源": {
+    "en": "My sources",
+    "zh-Hans": "我的来源",
+    "ja": "マイソース",
+    "ko": "내 소스",
+    "es": "Mis fuentes",
+    "de": "Meine Quellen"
+  },
+  "指定时间": {
+    "en": "At a set time",
+    "zh-Hans": "指定时间",
+    "ja": "日時指定",
+    "ko": "지정 시간",
+    "es": "A una hora específica",
+    "de": "Zu einer bestimmten Zeit"
+  },
+  "提醒事项": {
+    "en": "Reminder",
+    "zh-Hans": "提醒事项",
+    "ja": "リマインダー",
+    "ko": "알림",
+    "es": "Recordatorio",
+    "de": "Erinnerung"
+  },
+  "提醒级别": {
+    "en": "Reminder priority",
+    "zh-Hans": "提醒级别",
+    "ja": "リマインダーの優先度",
+    "ko": "알림 우선순위",
+    "es": "Prioridad del recordatorio",
+    "de": "Erinnerungspriorität"
+  },
+  "摘要": {
+    "en": "Summary",
+    "zh-Hans": "摘要",
+    "ja": "概要",
+    "ko": "요약",
+    "es": "Resumen",
+    "de": "Zusammenfassung"
+  },
+  "无需确认": {
+    "en": "No acknowledgment required",
+    "zh-Hans": "无需确认",
+    "ja": "確認不要",
+    "ko": "확인 불필요",
+    "es": "No requiere confirmación",
+    "de": "Keine Bestätigung erforderlich"
+  },
+  "暂无摘要": {
+    "en": "No summary",
+    "zh-Hans": "暂无摘要",
+    "ja": "概要なし",
+    "ko": "요약 없음",
+    "es": "Sin resumen",
+    "de": "Keine Zusammenfassung"
+  },
+  "来源密钥已创建": {
+    "en": "Source key created",
+    "zh-Hans": "来源密钥已创建",
+    "ja": "ソースキーを作成しました",
+    "ko": "소스 키가 생성됨",
+    "es": "Clave de fuente creada",
+    "de": "Quellenschlüssel erstellt"
+  },
+  "正在保存": {
+    "en": "Saving",
+    "zh-Hans": "正在保存",
+    "ja": "保存中",
+    "ko": "저장 중",
+    "es": "Guardando",
+    "de": "Wird gespeichert"
+  },
+  "正在确认": {
+    "en": "Acknowledging",
+    "zh-Hans": "正在确认",
+    "ja": "確認中",
+    "ko": "확인 중",
+    "es": "Confirmando",
+    "de": "Wird bestätigt"
+  },
+  "立即提醒": {
+    "en": "Remind now",
+    "zh-Hans": "立即提醒",
+    "ja": "今すぐ通知",
+    "ko": "지금 알림",
+    "es": "Recordar ahora",
+    "de": "Jetzt erinnern"
+  },
+  "等待查看": {
+    "en": "Waiting to be viewed",
+    "zh-Hans": "等待查看",
+    "ja": "未確認",
+    "ko": "확인 대기 중",
+    "es": "Pendiente de ver",
+    "de": "Noch nicht angesehen"
+  },
+  "紧急": {
+    "en": "Urgent",
+    "zh-Hans": "紧急",
+    "ja": "緊急",
+    "ko": "긴급",
+    "es": "Urgente",
+    "de": "Dringend"
+  },
+  "订阅来源": {
+    "en": "Subscription source",
+    "zh-Hans": "订阅来源",
+    "ja": "購読ソース",
+    "ko": "구독 소스",
+    "es": "Fuente de suscripción",
+    "de": "Abonnementquelle"
+  },
+  "记录": {
+    "en": "History",
+    "zh-Hans": "记录",
+    "ja": "履歴",
+    "ko": "기록",
+    "es": "Historial",
+    "de": "Verlauf"
+  },
+  "需要确认收到": {
+    "en": "Require acknowledgment",
+    "zh-Hans": "需要确认收到",
+    "ja": "受領確認を求める",
+    "ko": "수신 확인 필요",
+    "es": "Requerir confirmación de recepción",
+    "de": "Empfangsbestätigung erforderlich"
+  }
+}

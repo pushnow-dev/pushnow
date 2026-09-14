@@ -2,68 +2,60 @@
 
 [中文说明](README.zh-CN.md)
 
-PushNow is an account-bound, end-to-end encrypted notification platform for
-teams, agents, scripts and personal automations. It lets a CLI, backend service,
-browser dashboard or SDK sender deliver rich notifications to a user's trusted
-iPhone and HarmonyOS devices without exposing message content, attachment names
-or private sender keys to the transport service.
+PushNow is an account-bound, end-to-end encrypted notification platform for AI
+agents, backend jobs, monitoring systems, CI pipelines, scripts, webhooks and
+personal automations. It sends private rich notifications to a user's trusted
+iPhone and HarmonyOS devices while keeping message content, attachment names and
+sender private keys outside of the transport service.
 
-PushNow is designed for AI agents, build systems, monitoring jobs, customer
-operations and personal workflows that need a private notification inbox, device
-targeting, scheduled delivery, encrypted attachments and auditable sender
-authorization.
+Website: <https://pushnow.dev>  
+API base URL: `https://api.pushnow.dev`  
+SDK organization: <https://github.com/pushnow-dev>
 
-## What It Does
+![PushNow download QR code](https://pushnow.dev/assets/download-qr.svg)
 
-- End-to-end encrypted notification content using HPKE Auth and signed account
-  archives.
-- Account-token sender authorization with signed-in App approval.
-- Rich messages with title, body, links, image, icon and file attachments.
-- Device directory checks, selected-device delivery and inbox-only messages.
-- Scheduling, expiry, custom sound routing and durable retry envelopes.
-- iOS app, HarmonyOS client, TypeScript CLI, backend API and multi-language SDKs.
-- Web dashboard and documentation site for account management, API testing and
-  developer onboarding.
+The QR code currently points to the PushNow download page. It is intentionally
+kept in place before the App Store listing is public, so app users and SDK
+developers have a stable scan target.
 
-## Repositories
+## What PushNow Does
 
-The `pushnow-dev` GitHub organization is organized around how developers install
-and integrate PushNow:
+- Sends encrypted push notifications, inbox messages and automation alerts from
+  agents, CLIs, HTTP APIs, webhooks and backend services.
+- Uses account-token sender authorization: a signed-in app or trusted dashboard
+  session approves each SDK sender with an Access Token.
+- Encrypts title, body, links, icon references, image attachments and files
+  before transport.
+- Supports all-device delivery, selected-device delivery and inbox-only messages.
+- Supports scheduled delivery, expiry, custom sound routing and durable encrypted
+  outbox retries.
+- Provides iOS, HarmonyOS, Web Dashboard, TypeScript SDK, Python SDK, Go SDK,
+  Java SDK and backend API source.
+- Keeps API acceptance, APNs provider delivery and device-visible notification
+  receipt as separate verification stages.
+
+## Repository Layout
+
+The `pushnow-dev` GitHub organization is organized by how developers install and
+use PushNow:
 
 | Repository | Purpose | Install path |
 | --- | --- | --- |
-| `pushnow` | Main product, iOS/Harmony/web/backend source and release docs | Product and platform home |
+| `pushnow` | Main product, website, iOS, HarmonyOS, backend, docs and release material | Product and platform home |
 | `pushnow-js` | TypeScript SDK for Node.js and browsers | npm package `pushnow-sdk` |
-| `pushnow-python` | Python binding with bundled Node HPKE runtime | PyPI package `pushnow` |
-| `pushnow-go` | Go binding with bundled Node HPKE runtime | Go module `github.com/pushnow-dev/pushnow-go` |
-| `pushnow-java` | Java binding with bundled Node HPKE runtime | Maven artifact `dev.pushnow:pushnow-sdk` |
+| `pushnow-python` | Python SDK with bundled Node HPKE runtime | PyPI package `pushnow` |
+| `pushnow-go` | Go SDK with bundled Node HPKE runtime | Go module `github.com/pushnow-dev/pushnow-go` |
+| `pushnow-java` | Java SDK with bundled Node HPKE runtime | Maven artifact `dev.pushnow:pushnow-sdk` |
 
-## SDK Status
+## Install SDKs
 
-The SDKs are source-ready and include real local test coverage:
-
-- TypeScript: build, backend Worker fixture, browser import, crypto interop,
-  authorization, attachments, scheduling, sound routing and redacted errors.
-- Python: `unittest` language checks plus runtime tests against CLI-generated
-  HPKE vectors and real local HTTP E2EE requests.
-- Go: `go test ./...` plus runtime tests for vectors, config validation and
-  local HTTP E2EE requests.
-- Java: POSIX setup/test script, pinned JSON dependency checksum, Java 11
-  compilation and runtime bridge tests.
-
-These tests prove local SDK behavior and wire compatibility. They do not prove
-production APNs delivery, App Store release state or third-party package-registry
-ownership.
-
-## Quick Start
-
-TypeScript:
+TypeScript / npm:
 
 ```sh
 npm install pushnow-sdk
 ```
 
-Python:
+Python / PyPI:
 
 ```sh
 pip install pushnow
@@ -75,7 +67,7 @@ Go:
 go get github.com/pushnow-dev/pushnow-go
 ```
 
-Java:
+Java / Maven:
 
 ```xml
 <dependency>
@@ -85,16 +77,181 @@ Java:
 </dependency>
 ```
 
-Each SDK requires an approved sender config and access to the PushNow API.
-Account tokens can start account-bound authorization, but a bearer token alone
-is not enough to encrypt messages.
+## Current Authentication Model
+
+PushNow development SDKs support the Access Token authorization flow only.
+Every SDK sender is approved through an account-bound trusted app or dashboard
+session.
+
+The Access Token is used to create an account-bound sender authorization from a
+signed-in app or trusted dashboard session. It is not enough to encrypt or send
+messages by itself. A working sender needs the approved encrypted sender config,
+which includes the API origin, account binding, source key, sender private key
+and signed account archive record.
+
+High-level SDK flow:
+
+1. User signs in to PushNow on iOS or the trusted Web Dashboard.
+2. The trusted session obtains an account Access Token.
+3. SDK calls the account authorization endpoint with sender name and public key.
+4. User approves the sender in the signed-in app or dashboard.
+5. SDK receives and verifies the encrypted sender grant.
+6. SDK encrypts message content locally and sends ciphertext to the API.
+
+## HTTP API Overview
+
+All authenticated HTTP endpoints use `Authorization: Bearer <token>`.
+
+Account endpoints use the signed-in app or dashboard Access Token. Sender
+endpoints use the approved source key from the sender config. File preview access
+uses a narrow attachment read capability generated by the sender and stored only
+as a hash on the server.
+
+| Method | Endpoint | Token | Purpose |
+| --- | --- | --- | --- |
+| `POST` | `/v1/auth/email/start` | none | Start email sign-in and send a verification code |
+| `POST` | `/v1/auth/email/verify` | none | Verify email code and return access/refresh tokens |
+| `POST` | `/v1/auth/refresh` | refresh token | Rotate a user session |
+| `GET` | `/v1/me` | account Access Token | Read the signed-in account |
+| `PUT` | `/v1/devices/apns-token` | account Access Token | Bind an iOS APNs token to the account |
+| `GET` | `/v2/archive` | account Access Token | Read the account encryption archive |
+| `POST` | `/v2/account-authorizations` | account Access Token | Start Access Token based SDK sender authorization |
+| `POST` | `/v2/account-authorizations/:id/token` | account Access Token | Poll and consume the encrypted sender grant |
+| `GET` | `/v2/recipients` | source Bearer token | Read account devices and archive for encryption |
+| `POST` | `/v2/attachments` | source Bearer token | Reserve encrypted attachment upload |
+| `PUT` | `/v2/attachments/:id` | source Bearer token | Upload encrypted attachment bytes |
+| `POST` | `/v2/messages` | source Bearer token | Submit an encrypted notification message |
+| `GET` | `/v2/messages` | account Access Token | Sync encrypted inbox history |
+| `GET` | `/v2/messages/:id` | account Access Token | Read one encrypted inbox message |
+| `POST` | `/v2/messages/:id/read` | account Access Token | Mark a message as read |
+| `DELETE` | `/v2/messages/:id` | account Access Token | Delete a message and its blobs |
+
+## Send Message Fields
+
+High-level SDK message content:
+
+| Field | Type | Encrypted | Description |
+| --- | --- | --- | --- |
+| `title` | string | yes | Notification title and inbox title |
+| `body` | string | yes | Notification body and full inbox text |
+| `links` | string array | yes | URLs opened from the message detail |
+| `files` | file array | yes | File attachments uploaded as AES-GCM ciphertext |
+| `image` | file object | yes | Image attachment promoted for notification preview when possible |
+| `icon` | file object | yes | Optional icon attachment/reference |
+| `attachments` | descriptor array | yes | Low-level encrypted attachment descriptors |
+| `image_id` | string | yes | Low-level reference to an attachment used as preview image |
+| `icon_id` | string | yes | Low-level reference to an attachment used as icon |
+
+Routing and delivery options:
+
+| Field | Type | Encrypted | Description |
+| --- | --- | --- | --- |
+| `deviceIds` | string array | no | Omitted means all eligible devices; empty array means inbox only |
+| `inboxOnly` | boolean | no | Save to encrypted inbox without sending APNs |
+| `scheduledAt` | ISO datetime | no | Future delivery time, currently bounded to 30 days |
+| `expiresAt` | ISO datetime | no | Expiry after delivery time, currently bounded to 30 days |
+| `sound` | string | no | `default`, `silent` or `chime` routing metadata |
+| `sourceKind` | string | no | Optional sender attribution such as `web`, `cli`, `api` or `subscription` |
+| `Idempotency-Key` | HTTP header | no | Stable message id for safe retries |
+
+Low-level `/v2/messages` request body:
+
+```json
+{
+  "message_id": "uuid",
+  "archive_id": "account-archive-id",
+  "enc": "base64-hpke-encapsulated-key",
+  "ciphertext": "base64-encrypted-full-message",
+  "preview": {
+    "enc": "base64-hpke-encapsulated-key",
+    "ciphertext": "base64-encrypted-preview"
+  },
+  "attachment_ids": ["attachment-id"],
+  "notify_device_ids": ["device-id"],
+  "scheduled_at": "2026-09-14T12:00:00Z",
+  "expires_at": "2026-09-15T12:00:00Z",
+  "sound": "default",
+  "source_kind": "api"
+}
+```
+
+Plaintext inside the encrypted message:
+
+```json
+{
+  "title": "Build completed",
+  "body": "Version 1.2 is ready for review.",
+  "links": ["https://example.com/build/42"],
+  "attachments": [
+    {
+      "id": "attachment-id",
+      "name": "report.pdf",
+      "mime": "application/pdf",
+      "size": 12345,
+      "key": "base64url-aes-key",
+      "nonce": "base64url-aes-gcm-nonce",
+      "sha256": "lowercase-plaintext-sha256",
+      "read_token": "base64url-read-token"
+    }
+  ],
+  "image_id": "attachment-id",
+  "icon_id": "attachment-id"
+}
+```
+
+Attachment names, MIME types, content hashes, AES keys and read tokens are inside
+the encrypted message. The server sees routing metadata, source/account ids,
+attachment ids, encrypted byte counts, schedule/expiry values and ciphertext.
+
+## TypeScript Example
+
+```ts
+import {beginAccountLogin, finishAccountLogin, sendNotification} from 'pushnow-sdk';
+
+const pending = await beginAccountLogin(
+  'https://api.pushnow.dev',
+  accountAccessToken,
+  'CI alerts'
+);
+
+const config = await finishAccountLogin(pending);
+
+await sendNotification(config, {
+  title: 'Build completed',
+  body: 'Version 1.2 is ready for review.',
+  links: ['https://example.com/build/42']
+}, {
+  sound: 'default',
+  sourceKind: 'api'
+});
+```
+
+## SDK Status
+
+The SDKs include real local test coverage:
+
+- TypeScript: build, backend Worker fixture, browser import, crypto interop,
+  account-token authorization, attachments, scheduling, sound routing and
+  redacted errors.
+- Python: `unittest` checks plus runtime tests against CLI-generated HPKE
+  vectors and local HTTP E2EE requests.
+- Go: `go test ./...` plus runtime tests for vectors, config validation and
+  local HTTP E2EE requests.
+- Java: POSIX setup/test script, pinned JSON dependency checksum, Java 11
+  compilation and runtime bridge tests.
+
+These tests prove local SDK behavior and wire compatibility. They do not prove
+production APNs delivery, App Store availability or visible device receipt.
 
 ## SEO Keywords
 
-Encrypted push notifications, E2EE notification SDK, AI agent notifications,
-private automation alerts, secure mobile inbox, HPKE notification API, iOS
-notification automation, HarmonyOS push SDK, encrypted attachment notification,
-scheduled encrypted notifications.
+Encrypted push notification API, E2EE notification SDK, AI agent notification
+inbox, secure webhook notifications, private automation alerts, HTTP push
+notification API, bearer token notification API, access token sender
+authorization, HPKE encrypted notifications, iOS encrypted push notifications,
+HarmonyOS notification SDK, encrypted file attachment notifications, scheduled
+push notifications, CI pipeline alerts, server monitoring alerts, API-driven
+mobile inbox, agent result delivery, private developer notifications.
 
 ## License
 

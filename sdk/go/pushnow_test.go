@@ -6,7 +6,7 @@ import (
 )
 
 func TestNoTokenOnlyDowngrade(t *testing.T) {
-	c := New("runtime/main.js", "0000000000000000000000000000000000000000000000000000000000000000", Object{"source_key": "private"})
+	c := New("runtime/main.js", Object{"source_key": "private"})
 	_, err := c.Recipients(context.Background())
 	if err == nil || err.Error() != "E2EE_CONFIG_REQUIRED" {
 		t.Fatal("token-only request was not rejected")
@@ -16,7 +16,7 @@ func TestNoTokenOnlyDowngrade(t *testing.T) {
 	}
 }
 func TestMissingRuntimeRedacted(t *testing.T) {
-	c := New("runtime/main.js", "", nil)
+	c := New("runtime/main.js", nil)
 	c.Node = "/missing/pushnow-node"
 	_, err := c.Recipients(context.Background())
 	if err == nil || err.Error() != "BRIDGE_RUNTIME_FAILED" {

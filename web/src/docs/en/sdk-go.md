@@ -26,7 +26,7 @@ Import it as `pushnow "github.com/pushnow-dev/pushnow-go"`. Deploy the runtime d
 In your integration, with `context` and the local `pushnow` package imported:
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", nil)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", nil)
 ctx := context.Background()
 pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
 if err != nil { return err }
@@ -37,12 +37,10 @@ if err != nil { return err }
 
 The account token only creates the account-bound authorization. Store `config` securely because it includes the sender private key and source credential. Do not print it or the complete pending authorization.
 
-Manual fingerprint authorization remains available with `New(..., trustedRootFingerprint, nil)`, `BeginAuthorization(...)` and `Authorize(...)` when an account token is not available.
-
 ## Send with an outbox
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", config)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", config)
 enabled := false
 envelope, err := client.Prepare(ctx, pushnow.Notification{
     Title: "Build complete", Body: "Report attached.",
@@ -58,7 +56,7 @@ _ = result // Inspect message_id and deduplicated; do not log private inputs.
 
 `DeviceIDs` is a pointer to a slice: `nil` means all eligible devices, a pointer to an empty slice means inbox-only, and a populated slice selects those IDs. `PushEnabled` is a pointer to a bool and defaults to true when omitted.
 
-`ScheduledAt` and `ExpiresAt` accept timezone-qualified ISO strings. `Images`, `Icon` and `Links` add richer content. Under the finalized contract, `Sound` points to a string containing `default`, `silent` or `chime`; leave it `nil` to preserve default behavior:
+`ScheduledAt` and `ExpiresAt` accept timezone-qualified ISO strings. `Images`, `Icon` and `Links` add richer content. Under the finalized contract, `Sound` points to a string containing `default`, `silent` or `chime`; leave it `nil` to use default behavior:
 
 ```go
 sound := "silent"

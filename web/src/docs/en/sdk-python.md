@@ -36,11 +36,9 @@ config = client.authorize_account(pending)
 
 Approve the sender in the signed-in trusted app. Never print `pending` or `config` in full: they contain private credentials. The supplied `examples/authorize.py` writes a new private configuration file without overwriting an existing file.
 
-Manual fingerprint authorization remains available with `Client(trustedRootFingerprint)`, `begin_authorization(...)` and `authorize(pending)` when an account token is not available.
-
 ## Prepare, save and send
 
-With the returned `config` and trusted fingerprint:
+With the returned `config`:
 
 ```python
 client = Client(config=config,
@@ -68,7 +66,7 @@ Sound is public routing metadata, not encrypted content. Silent still requests a
 
 ## Runnable repository examples
 
-From `sdk/python`, after setting the trusted fingerprint:
+From `sdk/python`, after setting `PUSHNOW_ACCESS_TOKEN`:
 
 ```sh
 python3 examples/authorize.py

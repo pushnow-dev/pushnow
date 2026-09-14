@@ -46,19 +46,6 @@ const config = await finishAccountLogin(pending);
 
 The token is only transport authorization for `/v2/account-authorizations`. A bearer token alone cannot encrypt messages; keep the returned sender config private.
 
-Manual fingerprint authorization remains available when an account token is not available:
-
-```ts
-import { beginLogin, finishLogin } from 'pushnow-sdk';
-
-const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
-const config = await finishLogin(pending, {
-  expectedIdentityFingerprint: trustedAccountFingerprint,
-});
-```
-
-For the manual flow, `trustedAccountFingerprint` must be obtained independently from your signed-in trusted app. Alternatively supply `confirmIdentity: async ({ fingerprint, userID }) => boolean` and require the person to compare it with their phone. Choose exactly one verification mechanism. A mismatch or omitted verification fails closed.
-
 `config` includes secrets. Keep it in memory for a browser session or a secure server-side secret store. Never embed it in public JavaScript, URLs or plaintext browser storage. For Dashboard integration, compare its `user_id` to the signed-in account and its `api_url` to the expected API origin, then call `recipientsV2(config)` to verify the directory. Clear it on logout or account change.
 
 ## Send text and files

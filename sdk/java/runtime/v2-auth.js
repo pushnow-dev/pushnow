@@ -3,17 +3,21 @@ import { validateConfig } from './client.js';
 import { request, authenticated, validateAPIURL, APIError } from './v2-http.js';
 import { fingerprint, generateAgreementKey, openSenderGrant, verifyArchive } from './v2-crypto.js';
 
-export async function beginLogin(apiURL, name, options = {}) {
+export async function beginAccountLogin(apiURL, accessToken, name, options = {}) {
   const api_url = validateAPIURL(apiURL), key = generateAgreementKey();
-  const authorization = await request(api_url, '/v2/authorizations', {
-    ...options, method: 'POST', body: { name, public_key: key.publicKey },
+  if (typeof accessToken !== 'string' || !accessToken) throw new Error('Account access token is required');
+  const authorization = await request(api_url, '/v2/account-authorizations', {
+    ...options, token: accessToken, method: 'POST', body: { name, public_key: key.publicKey },
   });
-  if (!authorization.id || !authorization.device_code || !authorization.user_code ||
-      !Number.isFinite(Date.parse(authorization.expires_at))) throw new Error('Invalid authorization response');
-  return { api_url, key, authorization, fingerprint: fingerprint(key.publicKey) };
+  if (!authorization.id || !authorization.device_code || !authorization.user_code || !authorization.user_id ||
+      !authorization.identity_public_key || !Number.isFinite(Date.parse(authorization.expires_at))) {
+    throw new Error('Invalid account authorization response');
+  }
+  return { api_url, key, authorization, fingerprint: fingerprint(key.publicKey),
+    accountUserID: authorization.user_id, expectedIdentityFingerprint: fingerprint(authorization.identity_public_key) };
 }
 
-export async function finishLogin(pending, { signal, fetcher = fetch, wait = delay, confirmIdentity, expectedIdentityFingerprint } = {}) {
+async function finishApprovedAccountLogin(pending, { signal, fetcher = fetch, wait = delay } = {}) {
   const { authorization, api_url, key } = pending;
   while (Date.now() < Date.parse(authorization.expires_at)) {
     signal?.throwIfAborted();
@@ -31,9 +35,7 @@ export async function finishLogin(pending, { signal, fetcher = fetch, wait = del
       const config = validateConfig({ ...grant, sender_private_key: key.privateKey });
       await verifyArchive(config, config.archive);
       const accountFingerprint = fingerprint(config.identity_public_key);
-      const confirmed = expectedIdentityFingerprint ? expectedIdentityFingerprint.toLowerCase() === accountFingerprint :
-        confirmIdentity && await confirmIdentity({ fingerprint: accountFingerprint, userID: config.user_id });
-      if (!confirmed) {
+      if (pending.expectedIdentityFingerprint.toLowerCase() !== accountFingerprint) {
         throw new Error('Account identity not confirmed; remove this authorization in the app');
       }
       return config;
@@ -44,8 +46,13 @@ export async function finishLogin(pending, { signal, fetcher = fetch, wait = del
   throw new Error('Authorization expired; start login again');
 }
 
+export async function finishAccountLogin(pending, options = {}) {
+  const config = await finishApprovedAccountLogin(pending, options);
+  if (config.user_id !== pending.accountUserID) throw new Error('Authorization account changed');
+  return config;
+}
+
 export async function revokeSender(config, options = {}) {
   try { return await authenticated(config, '/v2/logout', { ...options, method: 'POST', body: {} }); }
   catch (error) { if (error instanceof APIError && error.status === 401) return null; throw error; }
 }
-

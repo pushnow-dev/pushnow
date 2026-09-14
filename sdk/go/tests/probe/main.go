@@ -16,16 +16,16 @@ func must(value pushnow.Object, err error) pushnow.Object {
 func main() {
 	var input struct {
 		APIURL       string               `json:"apiURL"`
-		Root         string               `json:"rootFingerprint"`
+		AccessToken  string               `json:"accessToken"`
 		Notification pushnow.Notification `json:"notification"`
 	}
 	if err := json.NewDecoder(os.Stdin).Decode(&input); err != nil {
 		panic("INVALID_TEST_INPUT")
 	}
 	ctx := context.Background()
-	client := pushnow.New("runtime/main.js", input.Root, nil)
-	pending := must(client.BeginAuthorization(ctx, input.APIURL, "Go integration"))
-	must(client.Authorize(ctx, pending))
+	client := pushnow.New("runtime/main.js", nil)
+	pending := must(client.BeginAccountAuthorization(ctx, input.APIURL, input.AccessToken, "Go integration"))
+	must(client.AuthorizeAccount(ctx, pending))
 	directory := must(client.Recipients(ctx))
 	envelope := must(client.Prepare(ctx, input.Notification))
 	first := must(client.Retry(ctx, envelope))
@@ -33,7 +33,7 @@ func main() {
 	silent, defaultSound := "silent", "default"
 	sent := must(client.Send(ctx, pushnow.Notification{Title: "Immediate Go", Body: "Second message", Sound: &silent}))
 	defaultEnvelope := must(client.Prepare(ctx, pushnow.Notification{Title: "Default sound", Sound: &defaultSound}))
-	legacyEnvelope := must(client.Prepare(ctx, pushnow.Notification{Title: "Legacy sound"}))
+	omittedSoundEnvelope := must(client.Prepare(ctx, pushnow.Notification{Title: "Omitted sound"}))
 	sound := "custom"
 	unknown := []string{"00000000-0000-0000-0000-000000000000"}
 	codes := []string{}
@@ -55,7 +55,7 @@ func main() {
 	}
 	codes = append(codes, err.Error())
 	if err := json.NewEncoder(os.Stdout).Encode(pushnow.Object{"envelope": envelope, "first": first, "second": second, "sent": sent,
-		"defaultEnvelope": defaultEnvelope, "legacyEnvelope": legacyEnvelope,
+		"defaultEnvelope": defaultEnvelope, "omittedSoundEnvelope": omittedSoundEnvelope,
 		"deviceCount": len(directory["devices"].([]any)), "errors": codes, "logs": client.RequestLogs}); err != nil {
 		panic(err)
 	}

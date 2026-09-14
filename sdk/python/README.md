@@ -28,28 +28,33 @@ runtime bridge. Run `npm --prefix pushnow/runtime ci --ignore-scripts` after
 installation or source checkout to install the pinned HPKE dependency beside the
 bridge runtime.
 
-## Authorize
+## Authorize With an Account Token
 
 ```python
 import os
 from pushnow import Client
 
-client = Client(os.environ['PUSHNOW_ROOT_FINGERPRINT'])
-pending = client.begin_authorization('https://api.pushnow.dev', 'Python automation')
+client = Client()
+pending = client.begin_account_authorization(
+    'https://api.pushnow.dev',
+    os.environ['PUSHNOW_ACCESS_TOKEN'],
+    'Python automation',
+)
 print(pending['authorization']['user_code'])  # Public approval code only.
-print(pending['fingerprint'])                 # Compare on your trusted phone.
-config = client.authorize(pending)            # Waits for approval; do not print.
+print(pending['fingerprint'])                 # Sender fingerprint.
+config = client.authorize_account(pending)    # Waits for approval; do not print.
 ```
 
-The root fingerprint must already be trusted. It is not the sender fingerprint
-printed above. Store config securely for reuse. [examples/authorize.py](examples/authorize.py)
-creates a new mode-0600 config file without overwriting an existing one.
+Use an access token from a signed-in PushNow app or trusted dashboard session.
+The token only creates an account-bound authorization; it cannot encrypt
+messages by itself. Store the returned config securely for reuse.
+[examples/authorize.py](examples/authorize.py) creates a new mode-0600 config
+file without overwriting an existing one.
 
 ## Send and Retry
 
 ```python
-client = Client(trusted_root_fingerprint, config,
-                runtime='/absolute/path/to/runtime/main.js')
+client = Client(config, runtime='/absolute/path/to/runtime/main.js')
 devices = client.recipients()['devices']
 outbox = client.prepare(
     title='Build finished', body='The artifact is ready.', sound='chime',
@@ -67,7 +72,7 @@ Omit deviceIds for all eligible devices. `pushEnabled=False` or `deviceIds=[]`
 saves inbox-only. `scheduledAt` and `expiresAt` accept future timezone-qualified
 ISO strings within 30 days. Option names are camelCase, matching the JSON wire
 terminology. `sound='default'`, `sound='silent'` and `sound='chime'` are supported
-public routing options. Omit sound for legacy behavior. `sound=None` and unknown
+public routing options. Omit sound to use the default behavior. `sound=None` and unknown
 values fail with `INVALID_SOUND` before uploads. Silent keeps the visible alert;
 chime maps to the app's `pushnow-chime.wav`. Neither changes inbox-only settings.
 
@@ -83,7 +88,7 @@ saved envelope to resolve an uncertain outcome.
 ## Example Commands
 
 ```sh
-export PUSHNOW_ROOT_FINGERPRINT='your independently verified 64-character root hash'
+export PUSHNOW_ACCESS_TOKEN='your signed-in account access token'
 python3 examples/authorize.py
 python3 examples/send.py
 ```

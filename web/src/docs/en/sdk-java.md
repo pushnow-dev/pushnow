@@ -24,7 +24,7 @@ Use `dev.pushnow.Client`, `java.nio.file.Path`, `org.json.JSONObject` and `org.j
 ```java
 Client client = new Client(
     Path.of("/absolute/path/to/sdk/java/runtime/main.js"),
-    "", null);
+    null);
 JSONObject pending = client.beginAccountAuthorization(
     "https://api.pushnow.dev", accountAccessToken, "Java automation");
 System.out.println(pending.getJSONObject("authorization").getString("user_code"));
@@ -34,14 +34,12 @@ JSONObject config = client.authorizeAccount(pending);
 
 Approve the sender in the signed-in trusted app. The account token only creates the account-bound authorization; it cannot encrypt messages by itself. Save `config` privately and never print the whole object.
 
-Manual fingerprint authorization remains available with `new Client(..., trustedRootFingerprint, null)`, `beginAuthorization(...)` and `authorize(pending)` when an account token is not available.
-
 ## Prepare and retry
 
 ```java
 Client client = new Client(
     Path.of("/absolute/path/to/sdk/java/runtime/main.js"),
-    trustedRootFingerprint, config);
+    config);
 JSONObject notification = new JSONObject()
     .put("title", "Build complete")
     .put("body", "Your report is ready.")

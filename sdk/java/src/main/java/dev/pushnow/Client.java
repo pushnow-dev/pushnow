@@ -14,22 +14,20 @@ import org.json.JSONObject;
 public final class Client {
     private final String node;
     private final Path runtime;
-    private final String rootFingerprint;
     private final Duration timeout;
     private JSONObject config;
     private final JSONArray requestLogs = new JSONArray();
 
-    public Client(Path runtime, String rootFingerprint, JSONObject config) {
-        this(runtime, rootFingerprint, config, "node", Duration.ofSeconds(660));
+    public Client(Path runtime, JSONObject config) {
+        this(runtime, config, "node", Duration.ofSeconds(660));
     }
-    public Client(Path runtime, String rootFingerprint, JSONObject config, String node, Duration timeout) {
-        this.runtime = runtime.toAbsolutePath(); this.rootFingerprint = rootFingerprint;
+    public Client(Path runtime, JSONObject config, String node, Duration timeout) {
+        this.runtime = runtime.toAbsolutePath();
         this.config = config; this.node = node; this.timeout = timeout;
     }
     public JSONArray requestLogs() { return new JSONArray(requestLogs.toString()); }
     private JSONObject call(String operation, JSONObject arguments) {
-        JSONObject input = new JSONObject().put("operation", operation)
-            .put("rootFingerprint", rootFingerprint).put("config", config);
+        JSONObject input = new JSONObject().put("operation", operation).put("config", config);
         for (String key : arguments.keySet()) input.put(key, arguments.get(key));
         Process process = null;
         JSONObject reply;
@@ -59,11 +57,12 @@ public final class Client {
         if (!reply.optBoolean("ok")) throw new IllegalStateException(reply.getJSONObject("error").getString("code"));
         return reply.getJSONObject("data");
     }
-    public JSONObject beginAuthorization(String apiURL, String name) {
-        return call("beginAuthorization", new JSONObject().put("apiURL", apiURL).put("name", name));
+    public JSONObject beginAccountAuthorization(String apiURL, String accessToken, String name) {
+        return call("beginAccountAuthorization", new JSONObject()
+            .put("apiURL", apiURL).put("accessToken", accessToken).put("name", name));
     }
-    public JSONObject authorize(JSONObject pending) {
-        config = call("finishAuthorization", new JSONObject().put("pending", pending)); return config;
+    public JSONObject authorizeAccount(JSONObject pending) {
+        config = call("finishAccountAuthorization", new JSONObject().put("pending", pending)); return config;
     }
     public JSONObject recipients() { return call("recipients", new JSONObject()); }
     public JSONObject prepare(JSONObject notification) { return call("prepare", new JSONObject().put("notification", notification)); }

@@ -46,19 +46,6 @@ const config = await finishAccountLogin(pending);
 
 token 只用于访问 `/v2/account-authorizations` 创建授权。只有 bearer token 不能加密消息；真正发送仍需要返回的 sender config。
 
-没有账号 token 的 CLI 或离线环境，可以继续使用手动账号根指纹流程：
-
-```ts
-import { beginLogin, finishLogin } from 'pushnow-sdk';
-
-const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
-const config = await finishLogin(pending, {
-  expectedIdentityFingerprint: trustedAccountFingerprint,
-});
-```
-
-手动流程里的 `trustedAccountFingerprint` 必须从已登录可信 App 独立获取。也可以传入 `confirmIdentity: async ({ fingerprint, userID }) => boolean`，要求用户把 fingerprint 和手机上的可信账号指纹进行人工对比。两种校验方式只能选择一种。缺少校验或 fingerprint 不匹配都会失败。
-
 `config` 含有私密凭证。浏览器场景只建议保存在当前会话内；服务端场景应放入安全的 secret store。不要把它写进公开 JavaScript、URL、日志或明文浏览器存储。接入 Dashboard 时，应确认 `config.user_id` 等于当前登录账号，`config.api_url` 等于预期 API origin，然后调用 `recipientsV2(config)` 校验设备目录。用户退出登录或切换账号时清理配置。
 
 ## 发送文字和文件

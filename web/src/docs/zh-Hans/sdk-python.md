@@ -36,11 +36,9 @@ config = client.authorize_account(pending)
 
 在已登录的可信 App 中批准 sender。不要完整打印 `pending` 或 `config`：它们包含私钥和 API 凭证。`examples/authorize.py` 会写入新的私有配置文件，并避免覆盖已有配置。
 
-没有账号 token 时，仍可使用 `Client(trustedRootFingerprint)`、`begin_authorization(...)` 和 `authorize(pending)` 走手动账号根指纹流程。
-
 ## Prepare、保存和发送
 
-拿到 `config` 和可信 fingerprint 后：
+拿到 `config` 后：
 
 ```python
 client = Client(config=config,
@@ -68,7 +66,7 @@ envelope = client.prepare(title='Quiet update', body='Ready to review.', sound='
 
 ## 仓库示例
 
-在 `sdk/python` 目录下，设置可信 fingerprint 后运行：
+在 `sdk/python` 目录下，设置 `PUSHNOW_ACCESS_TOKEN` 后运行：
 
 ```sh
 python3 examples/authorize.py

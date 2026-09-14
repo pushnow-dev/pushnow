@@ -20,7 +20,7 @@ Maven 用户也可以运行 `mvn package`。无论哪种方式，部署应用时
 ## 使用账号 Token 授权
 
 ```java
-Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), "", null);
+Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), null);
 JSONObject pending = client.beginAccountAuthorization(
     "https://api.pushnow.dev", accountAccessToken, "Java automation");
 System.out.println(pending.getJSONObject("authorization").getString("user_code"));
@@ -30,12 +30,10 @@ JSONObject config = client.authorizeAccount(pending); // 等待可信手机批�
 
 需要导入 `dev.pushnow.Client`、`java.nio.file.Path`、`org.json.JSONObject` 和 `org.json.JSONArray`。账号 token 只用于创建账号绑定授权，不能单独加密消息。不要完整打印 pending 或 config，它们包含私密凭证。
 
-没有账号 token 时，仍可使用 `new Client(..., trustedRootFingerprint, null)`、`beginAuthorization(...)` 和 `authorize(pending)` 走手动账号根指纹流程。
-
 ## 发送通知
 
 ```java
-Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), trustedRootFingerprint, config);
+Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), config);
 JSONObject notification = new JSONObject()
     .put("title", "Build finished").put("body", "Your report is ready.").put("sound", "chime")
     .put("links", new JSONArray().put("https://example.com/build/123"))

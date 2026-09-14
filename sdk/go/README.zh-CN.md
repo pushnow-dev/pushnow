@@ -20,20 +20,20 @@ go test ./...
 npm --prefix runtime test
 ```
 
-## 授权
+## 使用账号 Token 授权
 
 ```go
-client := pushnow.New("/absolute/path/to/runtime/main.js", trustedRootFingerprint, nil)
-pending, err := client.BeginAuthorization(ctx, "https://api.pushnow.dev", "Go automation")
-config, err := client.Authorize(ctx, pending)
+client := pushnow.New("/absolute/path/to/runtime/main.js", nil)
+pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
+config, err := client.AuthorizeAccount(ctx, pending)
 ```
 
-只展示 `user_code` 和 sender 指纹。账号根指纹必须从可信设备获得，不能从 grant 或 source token 自动信任。
+只展示 `user_code` 和 sender 指纹，并在已登录的可信 App 中批准。账号 access token 只用于创建账号绑定授权，不能单独加密消息。
 
 ## 发送通知
 
 ```go
-client := pushnow.New("/absolute/path/to/runtime/main.js", trustedRootFingerprint, config)
+client := pushnow.New("/absolute/path/to/runtime/main.js", config)
 sound := "chime"
 result, err := client.Send(ctx, pushnow.Notification{
     Title: "Build finished",

@@ -24,28 +24,28 @@ go get github.com/pushnow-dev/pushnow-go
 Keep the runtime folder with your deployed program and pass its absolute main.js
 path. Compiling a Go binary does not embed Node or npm dependencies.
 
-## Authorize
+## Authorize With an Account Token
 
 ```go
-client := pushnow.New("/absolute/path/to/runtime/main.js", trustedRootFingerprint, nil)
+client := pushnow.New("/absolute/path/to/runtime/main.js", nil)
 ctx := context.Background()
-pending, err := client.BeginAuthorization(ctx, "https://api.pushnow.dev", "Go automation")
+pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
 if err != nil { return err }
-// Show only pending["authorization"].(map[string]any)["user_code"]
-// and pending["fingerprint"], then approve on your trusted phone.
-config, err := client.Authorize(ctx, pending)
+// Show only pending["authorization"].(map[string]any)["user_code"] and pending["fingerprint"].
+// Approve on the signed-in trusted phone.
+config, err := client.AuthorizeAccount(ctx, pending)
 if err != nil { return err }
 // Store config securely. It includes the sender private key and API credential.
 ```
 
-Import this package as `pushnow "github.com/pushnow-dev/pushnow-go"`. Root
-fingerprint trust comes from your trusted device, not the grant response or
-source token.
+Import this package as `pushnow "github.com/pushnow-dev/pushnow-go"`. The account
+access token only creates the account-bound authorization; the returned config
+is still required for encryption and sending.
 
 ## Notifications
 
 ```go
-client := pushnow.New("/absolute/path/to/runtime/main.js", trustedRootFingerprint, config)
+client := pushnow.New("/absolute/path/to/runtime/main.js", config)
 enabled := true
 sound := "chime"
 envelope, err := client.Prepare(ctx, pushnow.Notification{
@@ -64,7 +64,7 @@ result, err := client.Retry(ctx, envelope)
 `Notification.DeviceIDs` is `*[]string`: nil means all eligible devices, a pointer
 to an empty slice means inbox-only, and a pointer to a list selects specific IDs.
 `PushEnabled` is `*bool`: nil defaults to true. `ScheduledAt` and `ExpiresAt` are
-optional ISO strings within 30 days. `Sound` is `*string`: nil preserves legacy
+optional ISO strings within 30 days. `Sound` is `*string`: nil uses the default
 behavior; supported values are `default`, `silent` and `chime`. Sound is public
 routing metadata, not encrypted message content. Silent keeps the visible alert,
 and chime maps to `pushnow-chime.wav`. Unknown values fail with `INVALID_SOUND`
@@ -83,7 +83,7 @@ at 30 seconds. Use one client per goroutine; mutable config and logs are not syn
 ## Runnable Example
 
 ```sh
-export PUSHNOW_ROOT_FINGERPRINT='your independently verified 64-character root hash'
+export PUSHNOW_ACCESS_TOKEN='your signed-in account access token'
 go run ./examples authorize
 go run ./examples send
 ```

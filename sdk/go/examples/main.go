@@ -33,15 +33,15 @@ func main() {
 		fmt.Println("Usage: go run ./examples authorize|send")
 		return
 	}
-	c := pushnow.New("runtime/main.js", os.Getenv("PUSHNOW_ROOT_FINGERPRINT"), nil)
+	c := pushnow.New("runtime/main.js", nil)
 	ctx := context.Background()
 	switch os.Args[1] {
 	case "authorize":
-		pending, err := c.BeginAuthorization(ctx, "https://api.pushnow.dev", "Go automation")
+		pending, err := c.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", os.Getenv("PUSHNOW_ACCESS_TOKEN"), "Go automation")
 		check(err)
 		fmt.Println("Approve code:", pending["authorization"].(map[string]any)["user_code"])
-		fmt.Println("Compare sender fingerprint:", pending["fingerprint"])
-		config, err := c.Authorize(ctx, pending)
+		fmt.Println("Sender fingerprint:", pending["fingerprint"])
+		config, err := c.AuthorizeAccount(ctx, pending)
 		check(err)
 		save("private-config.json", config)
 		fmt.Println("Authorized. Private configuration stored locally.")

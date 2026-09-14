@@ -43,7 +43,7 @@ Sender-side discovery uses `GET /v2/recipients` with the sender Key. The SDK che
 
 Authorize a new sender with [CLI login and iOS approval](/docs/hpke-authorization/). In Dashboard, additional transport Keys can be created for an existing source. They work only with that source's existing cryptographic configuration; adding a Key does not create a new encryption identity.
 
-Each source can keep at most two active Keys. Dashboard can delete a Key immediately, or regenerate it by invalidating the old Key first and showing a replacement secret once. Save the generated secret before closing the panel; existing rows show only the prefix and metadata.
+Each source can keep at most three active Keys. Dashboard can delete a Key immediately, or regenerate it by invalidating the old Key first and showing a replacement secret once. Save the generated secret before closing the panel; existing rows show only the prefix and metadata.
 
 | Operation | Account-session endpoint | Result |
 | --- | --- | --- |
@@ -75,7 +75,7 @@ Separate senders should go through separate HPKE approvals. A Key from a differe
 
 Dashboard recognizes the devices linked to your signed-in account. The browser creates its encryption key locally and automatically requests an account-bound sender certificate. For the first connection, open an updated, signed-in trusted iPhone app: it completes the certificate exchange automatically without codes or fingerprint entry. Older apps do not support this automatic exchange. The phone's private identity and archive keys stay on the phone.
 
-The browser remembers its sender configuration in this tab's session storage. Signing out clears it. Revoked or paused credentials are not silently replaced. You can revoke a Key at any time in Dashboard. An account-authorized browser trusts the authenticated service for the initial account public key; the CLI's manual fingerprint flow remains available.
+The browser remembers its sender configuration in this tab's session storage. Signing out clears it. Revoked or paused credentials are not silently replaced. You can revoke a Key at any time in Dashboard. SDK authorization now uses the authenticated account token flow only.
 
 ## Sending protection
 

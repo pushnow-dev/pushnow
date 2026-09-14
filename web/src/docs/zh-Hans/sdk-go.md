@@ -26,7 +26,7 @@ go get github.com/pushnow-dev/pushnow-go
 在你的集成代码中：
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", nil)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", nil)
 ctx := context.Background()
 pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
 if err != nil { return err }
@@ -37,12 +37,10 @@ if err != nil { return err }
 
 账号 token 只用于创建账号绑定授权。`config` 包含私钥和 API 凭证，必须安全保存。不要完整打印 pending 或 config。
 
-没有账号 token 时，仍可使用 `New(..., trustedRootFingerprint, nil)`、`BeginAuthorization(...)` 和 `Authorize(...)` 走手动账号根指纹流程。
-
 ## 使用 outbox 发送
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", config)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", config)
 enabled := false
 envelope, err := client.Prepare(ctx, pushnow.Notification{
     Title: "Build complete", Body: "Report attached.",

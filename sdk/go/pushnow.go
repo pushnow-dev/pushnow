@@ -29,7 +29,7 @@ type Notification struct {
 	PushEnabled *bool     `json:"pushEnabled,omitempty"`
 	ScheduledAt string    `json:"scheduledAt,omitempty"`
 	ExpiresAt   string    `json:"expiresAt,omitempty"`
-	Sound       *string   `json:"sound,omitempty"` // nil preserves legacy behavior; default, silent or chime.
+	Sound       *string   `json:"sound,omitempty"` // nil uses default behavior; default, silent or chime.
 }
 type RequestLog struct {
 	Method    string `json:"method"`
@@ -42,16 +42,15 @@ type RequestLog struct {
 type Client struct {
 	Node            string
 	RuntimePath     string
-	RootFingerprint string
 	Config          Object
 	RequestLogs     []RequestLog
 }
 
-func New(runtimePath, rootFingerprint string, config Object) *Client {
-	return &Client{Node: "node", RuntimePath: runtimePath, RootFingerprint: rootFingerprint, Config: config}
+func New(runtimePath string, config Object) *Client {
+	return &Client{Node: "node", RuntimePath: runtimePath, Config: config}
 }
 func (c *Client) call(ctx context.Context, operation string, arguments Object) (Object, error) {
-	payload := Object{"operation": operation, "rootFingerprint": c.RootFingerprint, "config": c.Config}
+	payload := Object{"operation": operation, "config": c.Config}
 	for k, v := range arguments {
 		payload[k] = v
 	}
@@ -89,11 +88,11 @@ func (c *Client) call(ctx context.Context, operation string, arguments Object) (
 	}
 	return reply.Data, nil
 }
-func (c *Client) BeginAuthorization(ctx context.Context, apiURL, name string) (Object, error) {
-	return c.call(ctx, "beginAuthorization", Object{"apiURL": apiURL, "name": name})
+func (c *Client) BeginAccountAuthorization(ctx context.Context, apiURL, accessToken, name string) (Object, error) {
+	return c.call(ctx, "beginAccountAuthorization", Object{"apiURL": apiURL, "accessToken": accessToken, "name": name})
 }
-func (c *Client) Authorize(ctx context.Context, pending Object) (Object, error) {
-	config, err := c.call(ctx, "finishAuthorization", Object{"pending": pending})
+func (c *Client) AuthorizeAccount(ctx context.Context, pending Object) (Object, error) {
+	config, err := c.call(ctx, "finishAccountAuthorization", Object{"pending": pending})
 	if err == nil {
 		c.Config = config
 	}

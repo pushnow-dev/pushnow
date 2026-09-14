@@ -20,9 +20,8 @@ wire contract without handwritten cryptographic primitives.
 All SDKs support account-token sender authorization, verified recipients,
 encrypted title/body, links, icon, image/file attachments, all-device or selected
 device targeting, inbox-only messages, scheduling, expiry, durable encrypted
-outbox retries and redacted local request logs. Manual pinned-root authorization
-remains available for CLI/offline setups. Scheduled reminders remain active after
-reading.
+outbox retries and redacted local request logs. This development SDK only
+supports Access Token authorization. Scheduled reminders remain active after reading.
 
 Read the complete [trust, encryption and API contract](python/CONTRACT.md), also
 included inside every language folder. A bearer token or source token alone is

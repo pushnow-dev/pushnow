@@ -23,7 +23,7 @@ Sign in and initialize the account in the iOS app first. The SDK's authorization
 
 The recommended flow starts authorization with an account access token from a signed-in app or trusted dashboard session, then completes approval on the trusted phone. The token only authorizes the setup request; it is not enough to encrypt messages.
 
-Manual fingerprint authorization remains available for CLI/offline environments. In that flow, compare the sender fingerprint on both screens and verify the account-root fingerprint independently from your trusted app. Do not calculate an expected fingerprint from the same untrusted grant and automatically accept it.
+SDK authorization now uses the account Access Token flow only. The token starts an account-bound authorization, and the signed-in trusted app still approves the sender before the SDK receives a reusable encrypted config.
 
 The resulting configuration includes `api_url`, `user_id`, `source_id`, `source_key`, `identity_public_key`, `sender_private_key` and the certified archive public record. Keep it secret. A bearer token or source Key alone cannot encrypt a message; it must match the sender configuration's source and account.
 

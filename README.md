@@ -17,8 +17,7 @@ authorization.
 
 - End-to-end encrypted notification content using HPKE Auth and signed account
   archives.
-- Account-token sender authorization with signed-in App approval, plus manual
-  fingerprint verification for CLI/offline setups.
+- Account-token sender authorization with signed-in App approval.
 - Rich messages with title, body, links, image, icon and file attachments.
 - Device directory checks, selected-device delivery and inbox-only messages.
 - Scheduling, expiry, custom sound routing and durable retry envelopes.

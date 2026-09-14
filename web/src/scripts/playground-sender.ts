@@ -1,5 +1,5 @@
-import { beginAccountLogin, finishAccountLogin, validateConfig, recipientsV2 } from "@pushnow/sdk";
-import type { AuthorizedConfig, RecipientDirectory } from "@pushnow/sdk";
+import { beginAccountLogin, finishAccountLogin, validateConfig, recipientsV2 } from "pushnow-sdk";
+import type { AuthorizedConfig, RecipientDirectory } from "pushnow-sdk";
 import { session } from "./account-session";
 import { accountSession } from "./account-session";
 import type { HttpActivity } from "./http-activity";

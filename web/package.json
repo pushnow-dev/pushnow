@@ -12,9 +12,10 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/markdown-satteri": "0.4.1",
     "@lucide/astro": "1.45.0",
-    "@pushnow/sdk": "file:../sdk/typescript",
     "astro": "^7.3.2",
+    "pushnow-sdk": "file:../sdk/typescript",
     "qrcode": "^1.5.4",
+    "swagger-ui-dist": "^5.32.15",
     "typescript": "^5.9.2"
   }
 }

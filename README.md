@@ -17,8 +17,8 @@ authorization.
 
 - End-to-end encrypted notification content using HPKE Auth and signed account
   archives.
-- Account-bound sender authorization with short user codes and fingerprint
-  verification.
+- Account-token sender authorization with signed-in App approval, plus manual
+  fingerprint verification for CLI/offline setups.
 - Rich messages with title, body, links, image, icon and file attachments.
 - Device directory checks, selected-device delivery and inbox-only messages.
 - Scheduling, expiry, custom sound routing and durable retry envelopes.
@@ -86,9 +86,9 @@ Java:
 </dependency>
 ```
 
-Each SDK requires an approved sender config, an independently trusted account
-root fingerprint and access to the PushNow API. A bearer token alone is not
-enough to encrypt messages.
+Each SDK requires an approved sender config and access to the PushNow API.
+Account tokens can start account-bound authorization, but a bearer token alone
+is not enough to encrypt messages.
 
 ## SEO Keywords
 

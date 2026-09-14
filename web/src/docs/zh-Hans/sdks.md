@@ -21,9 +21,11 @@ Python、Go 和 Java 是对内置、锁定版本 JavaScript HPKE runtime 的子�
 
 先在 iOS App 里登录并初始化加密账号。SDK 授权流程不会注册用户，也不会用邮箱密码登录。它会创建一个 sender 密钥对，并请求你的可信设备批准这个 sender。
 
-授权时同时对比网页/终端和手机上的 sender fingerprint。账号 root fingerprint 必须从可信 App 中独立获取。不要用同一份未信任的 grant 计算一个“预期 fingerprint”再自动接受它。
+推荐流程使用已登录 App 或可信 Dashboard 会话里的账号 access token 发起账号绑定授权，再在可信手机上完成批准。token 只用于授权设置请求，不能单独加密消息。
 
-授权完成后的配置包含 `api_url`、`user_id`、`source_id`、`source_key`、`identity_public_key`、`sender_private_key` 和经过认证的 archive public record。它是私密凭证，必须安全保存。单独一个 source key 不能完成加密发送；它必须和 sender 配置里的账号、source、私钥匹配。
+CLI 或离线环境仍可使用手动 fingerprint 授权。该流程需要同时对比网页/终端和手机上的 sender fingerprint，并从可信 App 中独立获取账号 root fingerprint。不要用同一份未信任的 grant 计算一个“预期 fingerprint”再自动接受它。
+
+授权完成后的配置包含 `api_url`、`user_id`、`source_id`、`source_key`、`identity_public_key`、`sender_private_key` 和经过认证的 archive public record。它是私密凭证，必须安全保存。单独一个 bearer token 或 source key 不能完成加密发送；它必须和 sender 配置里的账号、source、私钥匹配。
 
 ## 不同语言的选项差异
 

@@ -15,29 +15,35 @@ npm --prefix runtime ci --ignore-scripts
 
 保持 `pushnow.py` 和 `runtime/` 在一起，或者把 `sdk/python` 加入 Python path。不要假设它已经发布到 pip。可选的 `pip install .` 只安装 Python module；仍然需要保留 runtime，并在需要时传入它的绝对 `main.js` 路径。
 
-## 授权
+## 使用账号 Token 授权
 
-先从可信 App 获取账号 root fingerprint，并通过安全方式设置 `PUSHNOW_ROOT_FINGERPRINT`：
+使用已登录 PushNow App 或可信 Dashboard 会话里的账号 access token：
 
 ```python
 import os
 from pushnow import Client
 
-client = Client(os.environ['PUSHNOW_ROOT_FINGERPRINT'])
-pending = client.begin_authorization('https://api.pushnow.dev', 'Python automation')
+client = Client()
+pending = client.begin_account_authorization(
+    'https://api.pushnow.dev',
+    os.environ['PUSHNOW_ACCESS_TOKEN'],
+    'Python automation',
+)
 print(pending['authorization']['user_code'])
 print(pending['fingerprint'])
-config = client.authorize(pending)
+config = client.authorize_account(pending)
 ```
 
-在 App 中批准 user code 和 sender fingerprint。不要完整打印 `pending` 或 `config`：它们包含私钥和 API 凭证。`examples/authorize.py` 会写入新的私有配置文件，并避免覆盖已有配置。
+在已登录的可信 App 中批准 sender。不要完整打印 `pending` 或 `config`：它们包含私钥和 API 凭证。`examples/authorize.py` 会写入新的私有配置文件，并避免覆盖已有配置。
+
+没有账号 token 时，仍可使用 `Client(trustedRootFingerprint)`、`begin_authorization(...)` 和 `authorize(pending)` 走手动账号根指纹流程。
 
 ## Prepare、保存和发送
 
 拿到 `config` 和可信 fingerprint 后：
 
 ```python
-client = Client(os.environ['PUSHNOW_ROOT_FINGERPRINT'], config,
+client = Client(config=config,
                 runtime='/absolute/path/to/sdk/python/runtime/main.js')
 envelope = client.prepare(
     title='Build complete', body='The report is attached.',

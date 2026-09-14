@@ -15,29 +15,35 @@ npm --prefix runtime ci --ignore-scripts
 
 Keep `pushnow.py` next to `runtime/`, or add `sdk/python` to your Python path. No published pip package is assumed. An optional local `pip install .` installs the module only; retain the runtime separately and pass its absolute `main.js` path.
 
-## Authorize
+## Authorize with an account token
 
-Obtain the account-root fingerprint from your trusted app and set `PUSHNOW_ROOT_FINGERPRINT` securely before running:
+Use an account access token from a signed-in PushNow app or trusted dashboard session:
 
 ```python
 import os
 from pushnow import Client
 
-client = Client(os.environ['PUSHNOW_ROOT_FINGERPRINT'])
-pending = client.begin_authorization('https://api.pushnow.dev', 'Python automation')
+client = Client()
+pending = client.begin_account_authorization(
+    'https://api.pushnow.dev',
+    os.environ['PUSHNOW_ACCESS_TOKEN'],
+    'Python automation',
+)
 print(pending['authorization']['user_code'])
 print(pending['fingerprint'])
-config = client.authorize(pending)
+config = client.authorize_account(pending)
 ```
 
-Approve the code and sender fingerprint in the app. Never print `pending` or `config` in full: they contain private credentials. The supplied `examples/authorize.py` writes a new private configuration file without overwriting an existing file.
+Approve the sender in the signed-in trusted app. Never print `pending` or `config` in full: they contain private credentials. The supplied `examples/authorize.py` writes a new private configuration file without overwriting an existing file.
+
+Manual fingerprint authorization remains available with `Client(trustedRootFingerprint)`, `begin_authorization(...)` and `authorize(pending)` when an account token is not available.
 
 ## Prepare, save and send
 
 With the returned `config` and trusted fingerprint:
 
 ```python
-client = Client(os.environ['PUSHNOW_ROOT_FINGERPRINT'], config,
+client = Client(config=config,
                 runtime='/absolute/path/to/sdk/python/runtime/main.js')
 envelope = client.prepare(
     title='Build complete', body='The report is attached.',

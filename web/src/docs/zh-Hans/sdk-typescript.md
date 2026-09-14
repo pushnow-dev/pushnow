@@ -25,24 +25,39 @@ npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
 
 如果在不打包的浏览器里使用，把构建后的 `dist/browser.js` 作为 ES module 从你的应用里提供。它已经包含 HPKE 依赖。运行环境需要 HTTPS 或 loopback HTTP，并支持 WebCrypto、`fetch`、`AbortController` 和 `structuredClone`。
 
-## 授权一次
+## 使用账号 Token 授权一次
 
-下面示例假设 `trustedAccountFingerprint` 已经从已登录的可信 App 独立获取。它不是 `beginLogin` 打印出的新 sender fingerprint。
+使用已登录 PushNow App 或可信 Dashboard 会话里的账号 access token，创建账号绑定 sender 授权。
+
+```ts
+import { beginAccountLogin, finishAccountLogin } from 'pushnow-sdk';
+
+const pending = await beginAccountLogin(
+  'https://api.pushnow.dev',
+  accountAccessToken,
+  'My integration',
+);
+// 展示这些公开值，并在已登录 App 中批准 sender。
+console.log(pending.authorization.user_code);
+console.log(pending.fingerprint);
+
+const config = await finishAccountLogin(pending);
+```
+
+token 只用于访问 `/v2/account-authorizations` 创建授权。只有 bearer token 不能加密消息；真正发送仍需要返回的 sender config。
+
+没有账号 token 的 CLI 或离线环境，可以继续使用手动账号根指纹流程：
 
 ```ts
 import { beginLogin, finishLogin } from 'pushnow-sdk';
 
 const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
-// 展示这两个公开值，让用户在 App 中对比并批准。
-console.log(pending.authorization.user_code);
-console.log(pending.fingerprint);
-
 const config = await finishLogin(pending, {
   expectedIdentityFingerprint: trustedAccountFingerprint,
 });
 ```
 
-也可以传入 `confirmIdentity: async ({ fingerprint, userID }) => boolean`，要求用户把 fingerprint 和手机上的可信账号指纹进行人工对比。两种校验方式只能选择一种。缺少校验或 fingerprint 不匹配都会失败。
+手动流程里的 `trustedAccountFingerprint` 必须从已登录可信 App 独立获取。也可以传入 `confirmIdentity: async ({ fingerprint, userID }) => boolean`，要求用户把 fingerprint 和手机上的可信账号指纹进行人工对比。两种校验方式只能选择一种。缺少校验或 fingerprint 不匹配都会失败。
 
 `config` 含有私密凭证。浏览器场景只建议保存在当前会话内；服务端场景应放入安全的 secret store。不要把它写进公开 JavaScript、URL、日志或明文浏览器存储。接入 Dashboard 时，应确认 `config.user_id` 等于当前登录账号，`config.api_url` 等于预期 API origin，然后调用 `recipientsV2(config)` 校验设备目录。用户退出登录或切换账号时清理配置。
 

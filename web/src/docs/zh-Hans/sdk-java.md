@@ -17,17 +17,20 @@ sh test.sh
 
 Maven 用户也可以运行 `mvn package`。无论哪种方式，部署应用时都需要把 `runtime/` 放在应用旁边，并单独安装它的 npm 依赖。JAR 不会内置 Node 或 runtime。Windows 上可使用 Maven 编译，并把示例/测试命令中的 classpath 分隔符从 `:` 改成 `;`。
 
-## 授权
+## 使用账号 Token 授权
 
 ```java
-Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), trustedRootFingerprint, null);
-JSONObject pending = client.beginAuthorization("https://api.pushnow.dev", "Java automation");
+Client client = new Client(Path.of("/absolute/path/to/runtime/main.js"), "", null);
+JSONObject pending = client.beginAccountAuthorization(
+    "https://api.pushnow.dev", accountAccessToken, "Java automation");
 System.out.println(pending.getJSONObject("authorization").getString("user_code"));
 System.out.println(pending.getString("fingerprint"));
-JSONObject config = client.authorize(pending); // 等待可信手机批准。
+JSONObject config = client.authorizeAccount(pending); // 等待可信手机批准。
 ```
 
-需要导入 `dev.pushnow.Client`、`java.nio.file.Path`、`org.json.JSONObject` 和 `org.json.JSONArray`。账号 root fingerprint 必须独立获取，不能从未信任的 grant 中计算。不要完整打印 pending 或 config，它们包含私密凭证。
+需要导入 `dev.pushnow.Client`、`java.nio.file.Path`、`org.json.JSONObject` 和 `org.json.JSONArray`。账号 token 只用于创建账号绑定授权，不能单独加密消息。不要完整打印 pending 或 config，它们包含私密凭证。
+
+没有账号 token 时，仍可使用 `new Client(..., trustedRootFingerprint, null)`、`beginAuthorization(...)` 和 `authorize(pending)` 走手动账号根指纹流程。
 
 ## 发送通知
 
@@ -55,7 +58,7 @@ JSONObject result = client.retry(envelope);
 ## 示例命令
 
 ```sh
-export PUSHNOW_ROOT_FINGERPRINT='your independently verified 64-character root hash'
+export PUSHNOW_ACCESS_TOKEN='your signed-in account access token'
 java -cp target/test-classes:json-20250517.jar Example authorize
 java -cp target/test-classes:json-20250517.jar Example send
 ```

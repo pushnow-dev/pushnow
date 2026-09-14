@@ -25,24 +25,39 @@ The package name is `pushnow-sdk`. Use `npm install pushnow-sdk` after publicati
 
 For an unbundled browser, serve the built `dist/browser.js` from your application and import it as an ES module. It includes the HPKE dependency. Use HTTPS or loopback HTTP and a runtime with WebCrypto, `fetch`, `AbortController` and `structuredClone`.
 
-## Authorize once
+## Authorize once with an account token
 
-The following example assumes `trustedAccountFingerprint` was obtained independently from your signed-in trusted app. It must not be the new sender fingerprint printed by `beginLogin`.
+Use an account access token from a signed-in PushNow app or trusted dashboard session to create an account-bound sender authorization.
+
+```ts
+import { beginAccountLogin, finishAccountLogin } from 'pushnow-sdk';
+
+const pending = await beginAccountLogin(
+  'https://api.pushnow.dev',
+  accountAccessToken,
+  'My integration',
+);
+// Display these public values while the signed-in app approves the sender.
+console.log(pending.authorization.user_code);
+console.log(pending.fingerprint);
+
+const config = await finishAccountLogin(pending);
+```
+
+The token is only transport authorization for `/v2/account-authorizations`. A bearer token alone cannot encrypt messages; keep the returned sender config private.
+
+Manual fingerprint authorization remains available when an account token is not available:
 
 ```ts
 import { beginLogin, finishLogin } from 'pushnow-sdk';
 
 const pending = await beginLogin('https://api.pushnow.dev', 'My integration');
-// Display these two public values for comparison and approval in the app.
-console.log(pending.authorization.user_code);
-console.log(pending.fingerprint);
-
 const config = await finishLogin(pending, {
   expectedIdentityFingerprint: trustedAccountFingerprint,
 });
 ```
 
-Alternatively supply `confirmIdentity: async ({ fingerprint, userID }) => boolean` and require the person to compare it with their phone. Choose exactly one verification mechanism. A mismatch or omitted verification fails closed.
+For the manual flow, `trustedAccountFingerprint` must be obtained independently from your signed-in trusted app. Alternatively supply `confirmIdentity: async ({ fingerprint, userID }) => boolean` and require the person to compare it with their phone. Choose exactly one verification mechanism. A mismatch or omitted verification fails closed.
 
 `config` includes secrets. Keep it in memory for a browser session or a secure server-side secret store. Never embed it in public JavaScript, URLs or plaintext browser storage. For Dashboard integration, compare its `user_id` to the signed-in account and its `api_url` to the expected API origin, then call `recipientsV2(config)` to verify the directory. Clear it on logout or account change.
 

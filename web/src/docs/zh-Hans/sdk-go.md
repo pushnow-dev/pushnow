@@ -13,35 +13,36 @@ cd sdk/go
 npm --prefix runtime ci --ignore-scripts
 ```
 
-模块路径 `example.com/pushnow-local` 是本地占位符，不是已发布模块。在其他 Go 项目中使用时添加本地替换：
+模块路径是 `github.com/pushnow-dev/pushnow-go`。在其他 Go 项目中使用时：
 
 ```sh
-go mod edit -require=example.com/pushnow-local@v0.0.0
-go mod edit -replace=example.com/pushnow-local=/absolute/path/to/sdk/go
+go get github.com/pushnow-dev/pushnow-go
 ```
 
-导入时使用 `pushnow "example.com/pushnow-local"`。部署时把 runtime 目录和 npm 依赖一起带上，并传入绝对路径。Go 可执行文件不会内置 Node 或 HPKE 依赖。
+导入时使用 `pushnow "github.com/pushnow-dev/pushnow-go"`。部署时把 runtime 目录和 npm 依赖一起带上，并传入绝对路径。Go 可执行文件不会内置 Node 或 HPKE 依赖。
 
-## 授权
+## 使用账号 Token 授权
 
 在你的集成代码中：
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", trustedRootFingerprint, nil)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", nil)
 ctx := context.Background()
-pending, err := client.BeginAuthorization(ctx, "https://api.pushnow.dev", "Go automation")
+pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
 if err != nil { return err }
-// 只展示 user_code 和 sender fingerprint，然后在手机上批准。
-config, err := client.Authorize(ctx, pending)
+// 只展示 user_code 和 sender fingerprint，并在已登录 App 中批准。
+config, err := client.AuthorizeAccount(ctx, pending)
 if err != nil { return err }
 ```
 
-`trustedRootFingerprint` 必须从可信设备独立获取。`config` 包含私钥和 API 凭证，必须安全保存。不要完整打印 pending 或 config。
+账号 token 只用于创建账号绑定授权。`config` 包含私钥和 API 凭证，必须安全保存。不要完整打印 pending 或 config。
+
+没有账号 token 时，仍可使用 `New(..., trustedRootFingerprint, nil)`、`BeginAuthorization(...)` 和 `Authorize(...)` 走手动账号根指纹流程。
 
 ## 使用 outbox 发送
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", trustedRootFingerprint, config)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", config)
 enabled := false
 envelope, err := client.Prepare(ctx, pushnow.Notification{
     Title: "Build complete", Body: "Report attached.",
@@ -70,7 +71,7 @@ notification := pushnow.Notification{
 
 ## 示例和取消
 
-设置可信 fingerprint 后，在 `sdk/go` 目录运行：
+设置 `PUSHNOW_ACCESS_TOKEN` 后，在 `sdk/go` 目录运行：
 
 ```sh
 go run ./examples authorize

@@ -1,7 +1,39 @@
-import { prepareMessageV2, recipientsV2, submitMessageV2, uploadAttachment } from "@pushnow/sdk";
-import type { AuthorizedConfig, MessageContent, PreparedMessage } from "@pushnow/sdk";
+import { prepareMessageV2, recipientsV2, submitMessageV2, uploadAttachment } from "pushnow-sdk";
+import type { AuthorizedConfig, MessageContent, PreparedMessage } from "pushnow-sdk";
 import { HttpActivity, additionalHeaders } from "./http-activity";
 import { SenderConnection } from "./playground-sender";
+
+type UploadRole = "file" | "icon" | "image";
+type PendingUpload = { file: File; role: UploadRole };
+type SentLogDetail = {
+  message_id: string;
+  source_id: string;
+  source_kind: "web";
+  created_at: string;
+  title: string;
+  body: string;
+  links: string[];
+  delivery: "push" | "inbox";
+  target: "all" | "selected";
+  target_devices: { id: string; name: string }[];
+  scheduled_at: string | null;
+  sound: string;
+  files: { role: UploadRole; name: string; size: number; mime: string }[];
+  attachments: { role: UploadRole; id: string; name: string; size: number; mime: string }[];
+};
+
+const sentDetailsKey = "pushnow.web.sent.details.v1";
+
+function saveSentDetail(detail: SentLogDetail) {
+  try {
+    const parsed = JSON.parse(sessionStorage.getItem(sentDetailsKey) || "[]");
+    const existing = Array.isArray(parsed) ? parsed as SentLogDetail[] : [];
+    const next = [detail, ...existing.filter(item => item?.message_id !== detail.message_id)].slice(0, 80);
+    sessionStorage.setItem(sentDetailsKey, JSON.stringify(next));
+  } catch {
+    // Sending should still succeed even if the browser blocks session storage.
+  }
+}
 
 export function initPlayground(root: HTMLElement) {
   const zh = root.dataset.language === "zh-Hans";
@@ -124,6 +156,7 @@ export function initPlayground(root: HTMLElement) {
       if (sound !== "default" && sound !== "silent" && sound !== "chime") throw new Error(t("Choose a supported sound", "请选择支持的铃声"));
       const title = field("title").value.trim();
       if (!title) throw new Error(t("Enter a title", "请输入标题"));
+      const body = field("body").value;
       const links = field("links").value.split(/\r?\n/).map(value => value.trim()).filter(Boolean);
       for (const value of links) {
         const url = new URL(value);
@@ -139,8 +172,12 @@ export function initPlayground(root: HTMLElement) {
       const deviceIds = inboxOnly ? [] : field("target").value === "selected"
         ? [...root.querySelectorAll<HTMLInputElement>("[name=device]:checked")].map(input => input.value) : undefined;
       if (!inboxOnly && deviceIds?.length === 0) throw new Error(t("Select at least one device", "请至少选择一个设备"));
-      const files = [...(field("files").files || [])].map(file => ({ file, role: "file" }));
-      for (const role of ["icon", "image"]) {
+      const target = field("target").value === "selected" ? "selected" : "all";
+      const targetDevices = (connection.directory?.devices ?? [])
+        .filter(device => deviceIds ? deviceIds.includes(device.id) : selectedDevices.has(device.id))
+        .map(device => ({ id: device.id, name: device.name || device.id }));
+      const files: PendingUpload[] = [...(field("files").files || [])].map(file => ({ file, role: "file" }));
+      for (const role of ["icon", "image"] as const) {
         const file = field(role).files?.[0];
         if (file) {
           if (!["image/png", "image/jpeg", "image/gif", "image/webp"].includes(file.type)) throw new Error("Icon and preview must be PNG, JPEG, GIF or WebP");
@@ -148,16 +185,19 @@ export function initPlayground(root: HTMLElement) {
         }
       }
       if (files.length > 20 || files.some(({ file }) => file.size > 20 * 1024 * 1024 - 16)) throw new Error("Maximum 20 attachments; each must be under 20 MiB");
+      const cachedFiles = files.map(({ file, role }) => ({ role, name: file.name, size: file.size, mime: file.type || "application/octet-stream" }));
+      const cachedAttachments: SentLogDetail["attachments"] = [];
       http.headers = additionalHeaders(field("headers").value);
       const options = connection.options();
       const config = await connection.ready();
       options.signal.throwIfAborted();
       message(t("Encrypting and sending...", "正在加密并发送..."));
       const directory = await recipientsV2(config, options);
-      const content: MessageContent = { title, body: field("body").value, links, attachments: [] };
+      const content: MessageContent = { title, body, links, attachments: [] };
       for (const { file, role } of files) {
         const descriptor = await uploadAttachment(config, file, { name: file.name, mime: file.type || "application/octet-stream" }, options);
         content.attachments!.push(descriptor);
+        cachedAttachments.push({ role, id: descriptor.id, name: descriptor.name, size: descriptor.size, mime: descriptor.mime });
         if (role === "icon") content.icon_id = descriptor.id;
         if (role === "image") content.image_id = descriptor.id;
       }
@@ -165,13 +205,29 @@ export function initPlayground(root: HTMLElement) {
         ...(inboxOnly || sound === "default" ? {} : { sound }) });
       options.signal.throwIfAborted();
       last = { config, message: prepared };
-      await submitMessageV2(config, prepared, options);
+      const result = await submitMessageV2(config, prepared, options);
       options.signal.throwIfAborted();
+      saveSentDetail({
+        message_id: result.message_id,
+        source_id: config.source_id,
+        source_kind: "web",
+        created_at: new Date().toISOString(),
+        title,
+        body,
+        links,
+        delivery: inboxOnly ? "inbox" : "push",
+        target,
+        target_devices: targetDevices,
+        scheduled_at: scheduledAt ?? null,
+        sound,
+        files: cachedFiles,
+        attachments: cachedAttachments
+      });
       const submitted = t("Notification submitted.", "通知已提交。");
       const delivery = t("Track device delivery in the logs below.", "设备投递结果可在下方日志查看。");
       message(`${submitted} ${delivery}`, "success");
       toast(submitted, delivery);
-      document.dispatchEvent(new CustomEvent("pushnow:notification-sent"));
+      document.dispatchEvent(new CustomEvent("pushnow:notification-sent", { detail: { message_id: result.message_id } }));
     });
   };
   el<HTMLButtonElement>("[data-retry]").onclick = () => void work(async () => {
@@ -186,7 +242,7 @@ export function initPlayground(root: HTMLElement) {
     const retryBody = `${result.message_id} · ${result.deduplicated ? t("Deduplicated", "已去重") : t("New request", "新请求")}`;
     message(`${retryTitle}: ${retryBody}`);
     toast(retryTitle, retryBody);
-    document.dispatchEvent(new CustomEvent("pushnow:notification-sent"));
+    document.dispatchEvent(new CustomEvent("pushnow:notification-sent", { detail: { message_id: result.message_id } }));
   });
   root.dataset.ready = "true";
 }

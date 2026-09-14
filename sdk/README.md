@@ -17,15 +17,17 @@ the CLI's v2 crypto modules plus pinned `@hpke/core` dependencies. A global CLI 
 another SDK folder is not required. This choice preserves the existing HPKE Auth
 wire contract without handwritten cryptographic primitives.
 
-All three support independently pinned-root authorization, verified recipients,
+All SDKs support account-token sender authorization, verified recipients,
 encrypted title/body, links, icon, image/file attachments, all-device or selected
 device targeting, inbox-only messages, scheduling, expiry, durable encrypted
-outbox retries and redacted local request logs. Custom sound is not in the current
-wire contract and explicitly fails. Scheduled reminders remain active after reading.
+outbox retries and redacted local request logs. Manual pinned-root authorization
+remains available for CLI/offline setups. Scheduled reminders remain active after
+reading.
 
 Read the complete [trust, encryption and API contract](python/CONTRACT.md), also
-included inside every language folder. A source token alone is insufficient:
-clients require the authorized sender private key and a signed account archive.
+included inside every language folder. A bearer token or source token alone is
+insufficient: clients require the authorized sender private key and a signed
+account archive.
 
 Run each folder's documented tests before integrating. Tests use local HTTP
 fixtures and actual CLI-generated HPKE vectors; they do not prove production or

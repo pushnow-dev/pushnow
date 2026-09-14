@@ -17,21 +17,24 @@ The setup installs runtime npm dependencies, downloads and verifies the pinned J
 
 Keep the runtime next to the deployed application; the JAR does not embed Node. No Maven Central publication is assumed.
 
-## Authorize
+## Authorize with an account token
 
 Use `dev.pushnow.Client`, `java.nio.file.Path`, `org.json.JSONObject` and `org.json.JSONArray`:
 
 ```java
 Client client = new Client(
     Path.of("/absolute/path/to/sdk/java/runtime/main.js"),
-    trustedRootFingerprint, null);
-JSONObject pending = client.beginAuthorization("https://api.pushnow.dev", "Java automation");
+    "", null);
+JSONObject pending = client.beginAccountAuthorization(
+    "https://api.pushnow.dev", accountAccessToken, "Java automation");
 System.out.println(pending.getJSONObject("authorization").getString("user_code"));
 System.out.println(pending.getString("fingerprint"));
-JSONObject config = client.authorize(pending);
+JSONObject config = client.authorizeAccount(pending);
 ```
 
-Verify the sender on the phone. The trusted account-root fingerprint must come from that trusted device, not the grant response. Save `config` privately and never print the whole object.
+Approve the sender in the signed-in trusted app. The account token only creates the account-bound authorization; it cannot encrypt messages by itself. Save `config` privately and never print the whole object.
+
+Manual fingerprint authorization remains available with `new Client(..., trustedRootFingerprint, null)`, `beginAuthorization(...)` and `authorize(pending)` when an account token is not available.
 
 ## Prepare and retry
 
@@ -65,7 +68,7 @@ Sound is public routing metadata, while content and files remain encrypted. Sile
 
 ## Runnable examples
 
-After setting `PUSHNOW_ROOT_FINGERPRINT` independently, run from `sdk/java`:
+After setting `PUSHNOW_ACCESS_TOKEN` from a signed-in account session, run from `sdk/java`:
 
 ```sh
 java -cp target/test-classes:json-20250517.jar Example authorize

@@ -13,35 +13,36 @@ cd sdk/go
 npm --prefix runtime ci --ignore-scripts
 ```
 
-The module path `example.com/pushnow-local` is explicitly a local placeholder, not a published module. To use it from another Go project:
+The module path is `github.com/pushnow-dev/pushnow-go`. To use the published source repository from another Go project:
 
 ```sh
-go mod edit -require=example.com/pushnow-local@v0.0.0
-go mod edit -replace=example.com/pushnow-local=/absolute/path/to/sdk/go
+go get github.com/pushnow-dev/pushnow-go
 ```
 
-Import it as `pushnow "example.com/pushnow-local"`. Deploy the runtime directory and npm dependencies with your application and pass an absolute path. The Go executable does not embed Node or HPKE dependencies.
+Import it as `pushnow "github.com/pushnow-dev/pushnow-go"`. Deploy the runtime directory and npm dependencies with your application and pass an absolute path. The Go executable does not embed Node or HPKE dependencies.
 
-## Authorize
+## Authorize with an account token
 
 In your integration, with `context` and the local `pushnow` package imported:
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", trustedRootFingerprint, nil)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", nil)
 ctx := context.Background()
-pending, err := client.BeginAuthorization(ctx, "https://api.pushnow.dev", "Go automation")
+pending, err := client.BeginAccountAuthorization(ctx, "https://api.pushnow.dev", accountAccessToken, "Go automation")
 if err != nil { return err }
-// Display only the user_code and sender fingerprint, then approve on the phone.
-config, err := client.Authorize(ctx, pending)
+// Display only the user_code and sender fingerprint, then approve in the signed-in app.
+config, err := client.AuthorizeAccount(ctx, pending)
 if err != nil { return err }
 ```
 
-`trustedRootFingerprint` comes independently from your trusted device. Store `config` securely. Do not print it or the complete pending authorization.
+The account token only creates the account-bound authorization. Store `config` securely because it includes the sender private key and source credential. Do not print it or the complete pending authorization.
+
+Manual fingerprint authorization remains available with `New(..., trustedRootFingerprint, nil)`, `BeginAuthorization(...)` and `Authorize(...)` when an account token is not available.
 
 ## Send with an outbox
 
 ```go
-client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", trustedRootFingerprint, config)
+client := pushnow.New("/absolute/path/to/sdk/go/runtime/main.js", "", config)
 enabled := false
 envelope, err := client.Prepare(ctx, pushnow.Notification{
     Title: "Build complete", Body: "Report attached.",
@@ -70,7 +71,7 @@ Sound is public routing metadata; content and files remain encrypted. Silent ret
 
 ## Runnable examples and cancellation
 
-Set `PUSHNOW_ROOT_FINGERPRINT` to the independently verified account hash, then run from `sdk/go`:
+Set `PUSHNOW_ACCESS_TOKEN` to a signed-in account token, then run from `sdk/go`:
 
 ```sh
 go run ./examples authorize

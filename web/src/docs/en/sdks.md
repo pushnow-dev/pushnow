@@ -21,9 +21,11 @@ Python, Go and Java are subprocess bindings to a bundled, pinned JavaScript HPKE
 
 Sign in and initialize the account in the iOS app first. The SDK's authorization flow does not register users or sign them in with email/password. It creates a sender key pair and asks your trusted device to approve it.
 
-Compare the sender fingerprint on both screens. Verify the account-root fingerprint independently from your trusted app. Do not calculate an expected fingerprint from the same untrusted grant and automatically accept it.
+The recommended flow starts authorization with an account access token from a signed-in app or trusted dashboard session, then completes approval on the trusted phone. The token only authorizes the setup request; it is not enough to encrypt messages.
 
-The resulting configuration includes `api_url`, `user_id`, `source_id`, `source_key`, `identity_public_key`, `sender_private_key` and the certified archive public record. Keep it secret. A source Key alone cannot encrypt a message; it must match the sender configuration's source and account.
+Manual fingerprint authorization remains available for CLI/offline environments. In that flow, compare the sender fingerprint on both screens and verify the account-root fingerprint independently from your trusted app. Do not calculate an expected fingerprint from the same untrusted grant and automatically accept it.
+
+The resulting configuration includes `api_url`, `user_id`, `source_id`, `source_key`, `identity_public_key`, `sender_private_key` and the certified archive public record. Keep it secret. A bearer token or source Key alone cannot encrypt a message; it must match the sender configuration's source and account.
 
 ## Options differ by language
 

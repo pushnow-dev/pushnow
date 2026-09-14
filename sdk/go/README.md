@@ -1,5 +1,7 @@
 # PushNow Go SDK
 
+[中文说明](README.zh-CN.md)
+
 Go 1.22+ and **Node.js 22+** are required. This is a binding to a bundled Node
 HPKE runtime, not native Go HPKE. Go code uses only the standard library.
 Read [CONTRACT.md](CONTRACT.md) for the complete trust and wire contract.

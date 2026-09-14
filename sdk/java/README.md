@@ -1,5 +1,7 @@
 # PushNow Java SDK
 
+[中文说明](README.zh-CN.md)
+
 Java 11+ and **Node.js 22+** are required. This is a Java binding to a bundled
 Node HPKE runtime, not a native Java HPKE implementation. JSON parsing uses
 `org.json:json:20250517`, pinned in pom.xml. See [CONTRACT.md](CONTRACT.md) for

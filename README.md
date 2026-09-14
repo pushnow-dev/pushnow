@@ -1,5 +1,7 @@
 # PushNow
 
+[中文说明](README.zh-CN.md)
+
 PushNow is an account-bound, end-to-end encrypted notification platform for
 teams, agents, scripts and personal automations. It lets a CLI, backend service,
 browser dashboard or SDK sender deliver rich notifications to a user's trusted
@@ -54,7 +56,7 @@ These tests prove local SDK behavior and wire compatibility. They do not prove
 production APNs delivery, App Store release state or third-party package-registry
 ownership.
 
-## English Quick Start
+## Quick Start
 
 TypeScript:
 
@@ -87,22 +89,6 @@ Java:
 Each SDK requires an approved sender config, an independently trusted account
 root fingerprint and access to the PushNow API. A bearer token alone is not
 enough to encrypt messages.
-
-## 中文说明
-
-PushNow 是一个面向 AI Agent、自动化脚本、服务端任务和个人工作流的端到端加密通知平台。它可以把构建结果、监控告警、客户运营事件、定时提醒和富文本消息安全发送到用户信任的 iPhone 与 HarmonyOS 设备，同时避免服务端看到明文标题、正文、附件名称或私钥。
-
-核心能力包括：
-
-- 账号绑定的 E2EE 通知，基于 HPKE Auth 与签名账号归档。
-- 通过手机 App 审批 SDK 发送方，支持用户码和指纹校验。
-- 支持标题、正文、链接、图片、图标和文件附件。
-- 支持全部设备、指定设备、仅收件箱、定时发送和过期时间。
-- 支持可重试的加密 outbox，适合构建系统、监控任务和后台队列。
-- 提供 iOS、HarmonyOS、Web Dashboard、CLI、后端 API 和多语言 SDK。
-
-SDK 仓库按用户安装习惯拆分：JavaScript 放 npm 生态，Python 放 PyPI
-生态，Go 使用 Go module，Java 使用 Maven 坐标。正式发布到各包管理器前，还需要对应 registry 的账号权限、签名/命名空间配置和最终发布 token。
 
 ## SEO Keywords
 

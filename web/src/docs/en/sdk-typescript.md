@@ -18,7 +18,7 @@ npm pack
 Install the generated tarball in your consuming project:
 
 ```sh
-npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
+npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.1.tgz
 ```
 
 The package name is `pushnow-sdk`. Use `npm install pushnow-sdk` after publication, or install the local tarball during development. The package is ESM and includes TypeScript declarations; there is no CommonJS entry.

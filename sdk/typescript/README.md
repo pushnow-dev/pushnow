@@ -21,7 +21,7 @@ Install from npm after publication:
 npm install pushnow-sdk
 ```
 
-For local development, install the resulting `pushnow-sdk-0.1.0.tgz` into a
+For local development, install the resulting `pushnow-sdk-0.1.1.tgz` into a
 consuming project, or use a local `file:` dependency. Package name: `pushnow-sdk`.
 
 The ESM entry `dist/index.js` includes TypeScript declarations. For an unbundled

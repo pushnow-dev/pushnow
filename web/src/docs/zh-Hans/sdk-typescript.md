@@ -18,7 +18,7 @@ npm pack
 在你的项目里安装生成的 tarball：
 
 ```sh
-npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.0.tgz
+npm install /absolute/path/to/sdk/typescript/pushnow-sdk-0.1.1.tgz
 ```
 
 包名是 `pushnow-sdk`。发布后可使用 `npm install pushnow-sdk`，本地开发也可以安装 tarball。包格式是 ESM，并包含 TypeScript declarations；没有 CommonJS 入口。

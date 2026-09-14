@@ -12,7 +12,7 @@ Java 11+ 和 Node.js 22+ 是必需运行环境。这是绑定到 Node HPKE runti
 <dependency>
   <groupId>dev.pushnow</groupId>
   <artifactId>pushnow-sdk</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
